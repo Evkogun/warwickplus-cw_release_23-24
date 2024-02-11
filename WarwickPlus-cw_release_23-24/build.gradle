@@ -76,7 +76,7 @@ tasks.withType(Test) {
     maxHeapSize = "4g"
 
     // set JVM arguments for the test JVM(s)
-    jvmArgs '-XX:MaxPermSize=2048m'
+    // jvmArgs '-XX:MaxPermSize=2048m'
 
     useJUnitPlatform()
     testLogging {
