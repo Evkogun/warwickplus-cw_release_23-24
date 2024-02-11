@@ -22,10 +22,11 @@ public class HashMap<K, V> {
     
     public HashMap() {
         this.capacity = 23503; // A prime number greater than 17,627 / 0.75
+        
         table = new Entry[capacity];
     }
 
-    private int hash(K key) {
+    public int hash(K key) {
         int h = key.hashCode();
         if (h == Integer.MIN_VALUE) h = 0;  
         h ^= (h >>> 20) ^ (h >>> 12);  // Mix the bits of the hashcode
@@ -43,7 +44,7 @@ public class HashMap<K, V> {
               newCapacity = 41813;
               break;
             default:
-              newCapacity = capacity/loadFactor;
+              newCapacity = capacity/4*3;
               break;
         }   // order does not need to be preserved when resizing
 
@@ -115,6 +116,9 @@ public class HashMap<K, V> {
 
     public int size(){
         return size;
+    }
+    public int capacity(){
+        return capacity;
     }
 }
 
