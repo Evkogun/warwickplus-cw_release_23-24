@@ -40,16 +40,16 @@ public class Ratings implements IRatings {
         HashMap<Integer, Float> userRatings = userRatingsMap.get(userid);
         if (userRatings == null) {
             userRatings = new HashMap<>();
-            userRatingsMap.add(userid, userRatings);
+            userRatingsMap.addV(userid, userRatings);
         }
-        userRatings.add(movieid, rating);
+        userRatings.addV(movieid, rating);
         
         RatingInfo movieRatingInfo = movieRatingsMap.get(movieid);
         if (movieRatingInfo == null) {
             movieRatingInfo = new RatingInfo();
-            movieRatingsMap.add(movieid, movieRatingInfo);
+            movieRatingsMap.addV(movieid, movieRatingInfo);
         }
-        movieRatingInfo.addRating(rating);
+        movieRatingInfo.addRating(rating, userid);
 
         return true;
     }
@@ -65,25 +65,27 @@ public class Ratings implements IRatings {
      * @return TRUE if the data was removed successfully, FALSE otherwise
      */
     @Override
-    public boolean remove(int userID, int movieID) {
+    public boolean remove(int userid, int movieid) {
         
         boolean removedFromUserMap = false;
-        HashMap<Integer, Float> userRatings = userRatingsMap.get(userID);
-        if (userRatings != null) { 
-            removedFromUserMap = userRatings.remove(movieID);
+        HashMap<Integer, Float> userRatings = userRatingsMap.get(userid);
+        if (userRatings != null) {
+            Float rating = userRatings.removeV(movieid); 
+            removedFromUserMap = (rating != null); 
+    
             if (userRatings.isEmpty()) {
-                userRatingsMap.remove(userID);
+                userRatingsMap.removeV(userid);
             }
         }
     
         boolean removedFromMovieMap = false;
-        RatingInfo movieRatingInfo = movieRatingsMap.get(movieID);
+        RatingInfo movieRatingInfo = movieRatingsMap.get(movieid);
         if (movieRatingInfo != null && removedFromUserMap) {
 
-            removedFromMovieMap = movieRatingInfo.removeRating(userID);
+            removedFromMovieMap = movieRatingInfo.removeRating(userid);
 
             if (movieRatingInfo.isEmpty()) {
-                movieRatingsMap.remove(movieID);
+                movieRatingsMap.removeV(movieid);
             }
         }
     
@@ -105,8 +107,12 @@ public class Ratings implements IRatings {
      */
     @Override
     public boolean set(int userid, int movieid, float rating, LocalDateTime timestamp) {
-        // TODO Implement this function
-        return false;
+        RatingInfo movieRatingInfo = movieRatingsMap.get(movieid);
+        if (movieRatingInfo.ratedByUsers(userid)){
+            remove(userid, movieid);
+        }
+        add(userid, movieid, rating, timestamp);
+        return true;
     }
 
     /**
@@ -118,6 +124,7 @@ public class Ratings implements IRatings {
      */
     @Override
     public float[] getMovieRatings(int movieid) {
+        movieRatingsMap.get(movieid);
         // TODO Implement this function
         return null;
     }
@@ -244,19 +251,24 @@ class RatingInfo {
         count = 0;
     }
 
-    public void addRating(float rating) {
+    public void addRating(float rating, int userid) {
+        Float previousRating = ratings.get(userid);
+        if (previousRating != null) {
+            totalRating -= previousRating;
+        }
+        ratings.addV(userid, rating);
         totalRating += rating;
-        count++;
+        count = ratings.size();
     }
 
-    public boolean removeRating(int userID) {
-        Float rating = ratings.remove(userID);
-        if (rating != null) {
-            totalRating -= rating;
-            count--;
-            return true; 
+    public boolean removeRating(int userid) {
+        Float ratingToRemove = ratings.removeV(userid);
+        if (ratingToRemove != null) {
+            totalRating -= ratingToRemove;
+            count = ratings.size();
+            return true;
         }
-        return false; 
+        return false;
     }
 
     public float getAverageRating() {
@@ -270,4 +282,20 @@ class RatingInfo {
     public boolean isEmpty() {
         return count == 0;
     }
+
+    public boolean ratedByUsers(int userid) {
+        return ratings.containsKey(userid);
+    }
+    // Banging your head against a wall sometimes works
 }
+
+
+
+/*
+ * 
+ * TODO
+ * 
+ * Change hashmaps so that their size is more dynamic
+ * 
+ * 
+ */

@@ -15,15 +15,15 @@ public class HashMap<K, V> {
         }
     }
 
-    private Entry<K, V>[] table;
+    private Entry<K, V>[] map;
     private int size;
     private int capacity;
     private final double loadFactor = 0.75;
 
     @SuppressWarnings("unchecked")
     public HashMap() {
-        this.capacity = 23503; // A prime number greater than 17,627 / 0.75
-        table = new Entry[capacity];
+        this.capacity = 16; 
+        map = new Entry[capacity];
     }
 
     public int hash(K key) {
@@ -35,8 +35,12 @@ public class HashMap<K, V> {
     }
 
     private void resize() {
-        int newCapacity = 0;
+        int newCapacity = 0; 
         switch(capacity) {
+            case 16:
+                newCapacity = 29;
+            case 29: 
+                newCapacity = 23503;
             case 23503:
               newCapacity = 31357;
               break;
@@ -49,43 +53,43 @@ public class HashMap<K, V> {
         }   // order does not need to be preserved when resizing
 
         @SuppressWarnings("unchecked")
-        Entry<K, V>[] tempTable = new Entry[newCapacity];
+        Entry<K, V>[] tempMap = new Entry[newCapacity];
 
-        for (Entry<K, V> entry : table) {
+        for (Entry<K, V> entry : map) {
             while (entry != null) {
                 int newIndex = Math.abs(entry.key.hashCode()) % newCapacity;
                 Entry<K, V> nextEntry = entry.next;
-                entry.next = tempTable[newIndex];
-                tempTable[newIndex] = entry;
+                entry.next = tempMap[newIndex];
+                tempMap[newIndex] = entry;
                 entry = nextEntry;
             }
         }
 
-        table = tempTable;
+        map = tempMap;
         this.capacity = newCapacity;
     }
 
-    public boolean add(K key, V value) {
+    public boolean addV(K key, V value) {
         if ((size + 1) >= capacity * loadFactor) {
             resize();
         }
 
         int index = hash(key);
-        for (Entry<K, V> e = table[index]; e != null; e = e.next) {
+        for (Entry<K, V> e = map[index]; e != null; e = e.next) {
             if (e.key.equals(key)) {
                 e.value = value;
                 return true;
             }
         }
 
-        table[index] = new Entry<>(key, value, table[index]);
+        map[index] = new Entry<>(key, value, map[index]);
         this.size++;
         return true;
     }
 
     public V get(K key) {
         int index = hash(key);
-        for (Entry<K, V> e = table[index]; e != null; e = e.next) {
+        for (Entry<K, V> e = map[index]; e != null; e = e.next) {
             if (e.key.equals(key)) {
                 return e.value;
             }
@@ -93,27 +97,30 @@ public class HashMap<K, V> {
         return null;
     }
 
-    public boolean remove(K key) {
+    public V removeV(K key) {
         int index = hash(key);
         Entry<K, V> prev = null;
-        for (Entry<K, V> e = table[index]; e != null; e = e.next) {
+        for (Entry<K, V> e = map[index]; e != null; e = e.next) {
             if (e.key.equals(key)) {
+                V oldValue = e.value; 
+    
                 if (prev == null) {
-                    table[index] = e.next;
+                    map[index] = e.next;
                 } else {
-                    prev.next = e.next;
+                    prev.next = e.next; 
                 }
-                this.size--;
-                return true;
+                this.size--; 
+    
+                return oldValue; 
             }
-            prev = e;
+            prev = e; 
         }
-        return false;
+        return null; 
     }
 
     @SuppressWarnings("unchecked")
     public void clear() {
-        this.table = new Entry[capacity]; 
+        this.map = new Entry[capacity]; 
         this.size = 0; 
     }
 
@@ -126,6 +133,19 @@ public class HashMap<K, V> {
 
     public boolean isEmpty(){
         return size == 0;
+    }
+
+    public boolean containsKey(K userid){
+        int index = hash(userid);  
+        Entry<K, V> entry = map[index]; 
+
+        while (entry != null) {  
+            if (entry.key.equals(userid)) {
+                return true;  
+            }
+            entry = entry.next;  
+        }
+        return false;
     }
 }
 
