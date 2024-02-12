@@ -19,10 +19,10 @@ public class HashMap<K, V> {
     private int size;
     private int capacity;
     private final double loadFactor = 0.75;
-    
+
+    @SuppressWarnings("unchecked")
     public HashMap() {
         this.capacity = 23503; // A prime number greater than 17,627 / 0.75
-        
         table = new Entry[capacity];
     }
 
@@ -48,6 +48,7 @@ public class HashMap<K, V> {
               break;
         }   // order does not need to be preserved when resizing
 
+        @SuppressWarnings("unchecked")
         Entry<K, V>[] tempTable = new Entry[newCapacity];
 
         for (Entry<K, V> entry : table) {
@@ -63,6 +64,7 @@ public class HashMap<K, V> {
         table = tempTable;
         this.capacity = newCapacity;
     }
+
     public boolean add(K key, V value) {
         if ((size + 1) >= capacity * loadFactor) {
             resize();
@@ -109,6 +111,7 @@ public class HashMap<K, V> {
         return false;
     }
 
+    @SuppressWarnings("unchecked")
     public void clear() {
         this.table = new Entry[capacity]; 
         this.size = 0; 
@@ -119,6 +122,10 @@ public class HashMap<K, V> {
     }
     public int capacity(){
         return capacity;
+    }
+
+    public boolean isEmpty(){
+        return size == 0;
     }
 }
 

@@ -7,6 +7,8 @@ import structures.*;
 
 public class Ratings implements IRatings {
     Stores stores;
+    private HashMap<Integer, HashMap<Integer, Float>> userRatingsMap;
+    private HashMap<Integer, RatingInfo> movieRatingsMap;
 
     /**
      * The constructor for the Ratings data store. This is where you should
@@ -16,7 +18,8 @@ public class Ratings implements IRatings {
      */
     public Ratings(Stores stores) {
         this.stores = stores;
-        // TODO Add initialisation of data structure here
+        userRatingsMap = new HashMap<>();
+        movieRatingsMap = new HashMap<>();
     }
 
     /**
@@ -30,11 +33,28 @@ public class Ratings implements IRatings {
      * @param timestamp The time at which the rating was made
      * @return TRUE if the data able to be added, FALSE otherwise
      */
+
     @Override
     public boolean add(int userid, int movieid, float rating, LocalDateTime timestamp) {
-        // TODO Implement this function
-        return false;
+        
+        HashMap<Integer, Float> userRatings = userRatingsMap.get(userid);
+        if (userRatings == null) {
+            userRatings = new HashMap<>();
+            userRatingsMap.add(userid, userRatings);
+        }
+        userRatings.add(movieid, rating);
+        
+        RatingInfo movieRatingInfo = movieRatingsMap.get(movieid);
+        if (movieRatingInfo == null) {
+            movieRatingInfo = new RatingInfo();
+            movieRatingsMap.add(movieid, movieRatingInfo);
+        }
+        movieRatingInfo.addRating(rating);
+
+        return true;
     }
+
+    
 
     /**
      * Removes a given rating, using the user ID and the movie ID as the unique
@@ -45,9 +65,29 @@ public class Ratings implements IRatings {
      * @return TRUE if the data was removed successfully, FALSE otherwise
      */
     @Override
-    public boolean remove(int userid, int movieid) {
-        // TODO Implement this function
-        return false;
+    public boolean remove(int userID, int movieID) {
+        
+        boolean removedFromUserMap = false;
+        HashMap<Integer, Float> userRatings = userRatingsMap.get(userID);
+        if (userRatings != null) { 
+            removedFromUserMap = userRatings.remove(movieID);
+            if (userRatings.isEmpty()) {
+                userRatingsMap.remove(userID);
+            }
+        }
+    
+        boolean removedFromMovieMap = false;
+        RatingInfo movieRatingInfo = movieRatingsMap.get(movieID);
+        if (movieRatingInfo != null && removedFromUserMap) {
+
+            removedFromMovieMap = movieRatingInfo.removeRating(userID);
+
+            if (movieRatingInfo.isEmpty()) {
+                movieRatingsMap.remove(movieID);
+            }
+        }
+    
+        return removedFromUserMap && removedFromMovieMap; 
     }
 
     /**
@@ -190,5 +230,44 @@ public class Ratings implements IRatings {
     public int[] getTopAverageRatedMovies(int numResults) {
         // TODO Implement this function
         return null;
+    }
+}
+
+class RatingInfo {
+    private HashMap<Integer, Float> ratings;
+    private float totalRating;
+    private int count;
+
+    public RatingInfo() {
+        ratings = new HashMap<>();
+        totalRating = 0;
+        count = 0;
+    }
+
+    public void addRating(float rating) {
+        totalRating += rating;
+        count++;
+    }
+
+    public boolean removeRating(int userID) {
+        Float rating = ratings.remove(userID);
+        if (rating != null) {
+            totalRating -= rating;
+            count--;
+            return true; 
+        }
+        return false; 
+    }
+
+    public float getAverageRating() {
+        return count == 0 ? 0 : totalRating / count;
+    }
+
+    public HashMap<Integer, Float> getRatings() {
+        return ratings;
+    }
+
+    public boolean isEmpty() {
+        return count == 0;
     }
 }
