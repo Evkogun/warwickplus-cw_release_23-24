@@ -203,7 +203,7 @@ public class Ratings implements IRatings {
      */
     @Override
     public int[] getMostRatedMovies(int num) {
-        // TODO Implement this function
+
         return null;
     }
 
@@ -217,9 +217,23 @@ public class Ratings implements IRatings {
      */
     @Override
     public int[] getMostRatedUsers(int num) {
-        // TODO Implement this function
-        return null;
+        int[] keyListStore = userRatingsMap.keyList(); 
+        if (userRatings.length != keyListStore.length){
+
+        }
+        UserRatingCount[] userRatings = new UserRatingCount[keyListStore.length];
+        for (int i = 0; i < keyListStore.length; i++){
+            userRatings[i] = new UserRatingCount(keyListStore[i], getUserAverageRating(keyListStore[i]));
+        }  
+        Sort.sort(userRatings);
+
+        int[] returnArr = new int[num];
+        for (int i = 0; i < num; i++){
+            returnArr[i] = userRatings[i].getUserId();
+        }
+        return returnArr;
     }
+
 
     /**
      * Gets the number of ratings in the data structure
@@ -314,4 +328,62 @@ class RatingInfo {
     }
     // Banging your head against a wall sometimes works
 }
+
+class UserRatingCount {
+    int userid;
+    float averageRating;
+
+    public UserRatingCount(int userid, float averageRating) {
+        this.userid = userid;
+        this.averageRating = averageRating;
+    }
+
+    public float getRating() {
+        return averageRating;
+    }
+
+    public int getUserId(){
+        return userid;
+    }
+}
+
+class Sort {
+    public static void sort(UserRatingCount[] array) {
+        if (array.length <= 1) {
+            return;
+        }
+
+        UserRatingCount[] leftHalf = new UserRatingCount[array.length / 2];
+        UserRatingCount[] rightHalf = new UserRatingCount[array.length - leftHalf.length];
+
+        System.arraycopy(array, 0, leftHalf, 0, leftHalf.length);
+        System.arraycopy(array, leftHalf.length, rightHalf, 0, rightHalf.length);
+
+        sort(leftHalf);
+        sort(rightHalf);
+
+        merge(array, leftHalf, rightHalf);
+    }
+
+    private static void merge(UserRatingCount[] outputArray, UserRatingCount[] leftHalf, UserRatingCount[] rightHalf) {
+        int leftIndex = 0;
+        int rightIndex = 0;
+        int mergeIndex = 0;
+
+        while (leftIndex < leftHalf.length && rightIndex < rightHalf.length) {
+            if (leftHalf[leftIndex].getRating() >= rightHalf[rightIndex].getRating()) {
+                outputArray[mergeIndex] = leftHalf[leftIndex];
+                leftIndex++;
+            } else {
+                outputArray[mergeIndex] = rightHalf[rightIndex];
+                rightIndex++;
+            }
+            mergeIndex++;
+        }
+
+        System.arraycopy(leftHalf, leftIndex, outputArray, mergeIndex, leftHalf.length - leftIndex);
+        System.arraycopy(rightHalf, rightIndex, outputArray, mergeIndex, rightHalf.length - rightIndex);
+    }
+}
+
 
