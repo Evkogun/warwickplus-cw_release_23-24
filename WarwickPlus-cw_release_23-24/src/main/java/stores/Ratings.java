@@ -10,6 +10,7 @@ public class Ratings implements IRatings {
     private HashMap<Integer, HashMap<Integer, Float>> userRatingsMap;
     private HashMap<Integer, RatingInfo> movieRatingsMap;
     private UserRatingCount[] userRatings;
+    private RatingInfo[] movieRatings;
 
     /**
      * The constructor for the Ratings data store. This is where you should
@@ -22,6 +23,7 @@ public class Ratings implements IRatings {
         userRatingsMap = new HashMap<>();
         movieRatingsMap = new HashMap<>();
         userRatings = new UserRatingCount[0];
+        movieRatings = new RatingInfo[0];
     }
 
     /**
@@ -50,6 +52,7 @@ public class Ratings implements IRatings {
         if (movieRatingInfo == null) {
             movieRatingInfo = new RatingInfo();
             movieRatingsMap.put(movieid, movieRatingInfo);
+            movieRatingsMap.get(movieid).setMovieID(movieid);
         }
         movieRatingInfo.addRating(rating, userid);
 
@@ -205,8 +208,21 @@ public class Ratings implements IRatings {
      */
     @Override
     public int[] getMostRatedMovies(int num) {
+        int[] keyListStore = movieRatingsMap.keyList();
+        if (movieRatings.length != keyListStore.length){
+            this.movieRatings = new RatingInfo[keyListStore.length];
+        }
+        for (int i = 0; i < keyListStore.length; i++){
+            movieRatings[i] = movieRatingsMap.get(keyListStore[i]);
+        }  
+        Sort.movieSort(movieRatings);
 
-        return null;
+        int[] returnArr = new int[num];
+        for (int i = 0; i < num; i++){
+            returnArr[i] = movieRatings[i].getMovieID();
+        }
+
+        return returnArr;
     }
 
     /**
@@ -221,12 +237,12 @@ public class Ratings implements IRatings {
     public int[] getMostRatedUsers(int num) {
         int[] keyListStore = userRatingsMap.keyList(); 
         if (userRatings.length != keyListStore.length){
-            resizeUserRatingCount(keyListStore.length);
+            this.userRatings = new UserRatingCount[keyListStore.length];
         }
         for (int i = 0; i < keyListStore.length; i++){
             userRatings[i] = new UserRatingCount(keyListStore[i], getUserAverageRating(keyListStore[i]));
         }  
-        Sort.sort(userRatings);
+        Sort.userSort(userRatings);
 
         int[] returnArr = new int[num];
         for (int i = 0; i < num; i++){
@@ -275,17 +291,13 @@ public class Ratings implements IRatings {
         // TODO Implement this function
         return null;
     }
-
-    public void resizeUserRatingCount(int newsize){
-        UserRatingCount[] temp = new UserRatingCount[newsize];
-        this.userRatings = temp;
-    }
 }
 
 class RatingInfo {
     private HashMap<Integer, Float> ratings;
     private float totalRating;
     private int count;
+    private int movieid;
 
     public RatingInfo() {
         ratings = new HashMap<>();
@@ -332,20 +344,27 @@ class RatingInfo {
     public int getCount(){
         return count;
     }
-    // Banging your head against a wall sometimes works
+
+    public int getMovieID(){
+        return movieid;
+    }
+
+    public void setMovieID(int movieidinput){
+        this.movieid = movieidinput;
+    }
 }
 
 class UserRatingCount {
     int userid;
-    float averageRating;
+    float rating;
 
     public UserRatingCount(int userid, float averageRating) {
         this.userid = userid;
-        this.averageRating = averageRating;
+        this.rating = averageRating;
     }
 
     public float getRating() {
-        return averageRating;
+        return rating;
     }
 
     public int getUserId(){
@@ -354,7 +373,7 @@ class UserRatingCount {
 }
 
 class Sort {
-    public static void sort(UserRatingCount[] array) {
+    public static void userSort(UserRatingCount[] array) {
         if (array.length <= 1) {
             return;
         }
@@ -365,19 +384,56 @@ class Sort {
         System.arraycopy(array, 0, leftHalf, 0, leftHalf.length);
         System.arraycopy(array, leftHalf.length, rightHalf, 0, rightHalf.length);
 
-        sort(leftHalf);
-        sort(rightHalf);
+        userSort(leftHalf);
+        userSort(rightHalf);
 
-        merge(array, leftHalf, rightHalf);
+        userMerge(array, leftHalf, rightHalf);
     }
 
-    private static void merge(UserRatingCount[] outputArray, UserRatingCount[] leftHalf, UserRatingCount[] rightHalf) {
+    private static void userMerge(UserRatingCount[] outputArray, UserRatingCount[] leftHalf, UserRatingCount[] rightHalf) {
         int leftIndex = 0;
         int rightIndex = 0;
         int mergeIndex = 0;
 
         while (leftIndex < leftHalf.length && rightIndex < rightHalf.length) {
             if (leftHalf[leftIndex].getRating() >= rightHalf[rightIndex].getRating()) {
+                outputArray[mergeIndex] = leftHalf[leftIndex];
+                leftIndex++;
+            } else {
+                outputArray[mergeIndex] = rightHalf[rightIndex];
+                rightIndex++;
+            }
+            mergeIndex++;
+        }
+
+        System.arraycopy(leftHalf, leftIndex, outputArray, mergeIndex, leftHalf.length - leftIndex);
+        System.arraycopy(rightHalf, rightIndex, outputArray, mergeIndex, rightHalf.length - rightIndex);
+    }
+
+    public static void movieSort(RatingInfo[] array) {
+        if (array.length <= 1) {
+            return;
+        }
+
+        RatingInfo[] leftHalf = new RatingInfo[array.length / 2];
+        RatingInfo[] rightHalf = new RatingInfo[array.length - leftHalf.length];
+
+        System.arraycopy(array, 0, leftHalf, 0, leftHalf.length);
+        System.arraycopy(array, leftHalf.length, rightHalf, 0, rightHalf.length);
+
+        movieSort(leftHalf);
+        movieSort(rightHalf);
+
+        movieMerge(array, leftHalf, rightHalf);
+    }
+
+    private static void movieMerge(RatingInfo[] outputArray, RatingInfo[] leftHalf, RatingInfo[] rightHalf) {
+        int leftIndex = 0;
+        int rightIndex = 0;
+        int mergeIndex = 0;
+
+        while (leftIndex < leftHalf.length && rightIndex < rightHalf.length) {
+            if (leftHalf[leftIndex].getCount() >= rightHalf[rightIndex].getCount()) {
                 outputArray[mergeIndex] = leftHalf[leftIndex];
                 leftIndex++;
             } else {
