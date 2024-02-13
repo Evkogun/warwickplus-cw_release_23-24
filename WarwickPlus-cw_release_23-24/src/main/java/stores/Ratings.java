@@ -9,6 +9,7 @@ public class Ratings implements IRatings {
     Stores stores;
     private HashMap<Integer, HashMap<Integer, Float>> userRatingsMap;
     private HashMap<Integer, RatingInfo> movieRatingsMap;
+    private UserRatingCount[] userRatings;
 
     /**
      * The constructor for the Ratings data store. This is where you should
@@ -20,6 +21,7 @@ public class Ratings implements IRatings {
         this.stores = stores;
         userRatingsMap = new HashMap<>();
         movieRatingsMap = new HashMap<>();
+        userRatings = new UserRatingCount[0];
     }
 
     /**
@@ -219,9 +221,8 @@ public class Ratings implements IRatings {
     public int[] getMostRatedUsers(int num) {
         int[] keyListStore = userRatingsMap.keyList(); 
         if (userRatings.length != keyListStore.length){
-
+            resizeUserRatingCount(keyListStore.length);
         }
-        UserRatingCount[] userRatings = new UserRatingCount[keyListStore.length];
         for (int i = 0; i < keyListStore.length; i++){
             userRatings[i] = new UserRatingCount(keyListStore[i], getUserAverageRating(keyListStore[i]));
         }  
@@ -273,6 +274,11 @@ public class Ratings implements IRatings {
     public int[] getTopAverageRatedMovies(int numResults) {
         // TODO Implement this function
         return null;
+    }
+
+    public void resizeUserRatingCount(int newsize){
+        UserRatingCount[] temp = new UserRatingCount[newsize];
+        this.userRatings = temp;
     }
 }
 
