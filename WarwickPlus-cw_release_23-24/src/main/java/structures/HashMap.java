@@ -69,15 +69,15 @@ public class HashMap<K, V> {
         this.capacity = newCapacity;
     }
 
-    public boolean addV(K key, V value) {
+    public boolean put(K key, V value) {
         if ((size + 1) >= capacity * loadFactor) {
             resize();
         }
 
         int index = hash(key);
-        for (Entry<K, V> e = map[index]; e != null; e = e.next) {
-            if (e.key.equals(key)) {
-                e.value = value;
+        for (Entry<K, V> entry = map[index]; entry != null; entry = entry.next) {
+            if (entry.key.equals(key)) {
+                entry.value = value;
                 return true;
             }
         }
@@ -89,31 +89,31 @@ public class HashMap<K, V> {
 
     public V get(K key) {
         int index = hash(key);
-        for (Entry<K, V> e = map[index]; e != null; e = e.next) {
-            if (e.key.equals(key)) {
-                return e.value;
+        for (Entry<K, V> entry = map[index]; entry != null; entry = entry.next) {
+            if (entry.key.equals(key)) {
+                return entry.value;
             }
         }
         return null;
     }
 
-    public V removeV(K key) {
+    public V take(K key) {
         int index = hash(key);
         Entry<K, V> prev = null;
-        for (Entry<K, V> e = map[index]; e != null; e = e.next) {
-            if (e.key.equals(key)) {
-                V oldValue = e.value; 
+        for (Entry<K, V> entry = map[index]; entry != null; entry = entry.next) {
+            if (entry.key.equals(key)) {
+                V oldValue = entry.value; 
     
                 if (prev == null) {
-                    map[index] = e.next;
+                    map[index] = entry.next;
                 } else {
-                    prev.next = e.next; 
+                    prev.next = entry.next; 
                 }
                 this.size--; 
     
                 return oldValue; 
             }
-            prev = e; 
+            prev = entry; 
         }
         return null; 
     }
@@ -146,6 +146,21 @@ public class HashMap<K, V> {
             entry = entry.next;  
         }
         return false;
+    }
+
+
+    public float[] values() {
+        float[] valuesArray = new float[size];
+        int i = 0;
+    
+        for (Entry<K, V> entry : map) {
+            while (entry != null) {
+                valuesArray[i++] = (Float) entry.value;
+                entry = entry.next;
+            }
+        }
+    
+        return valuesArray;
     }
 }
 

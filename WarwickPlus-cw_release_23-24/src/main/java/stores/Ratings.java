@@ -40,14 +40,14 @@ public class Ratings implements IRatings {
         HashMap<Integer, Float> userRatings = userRatingsMap.get(userid);
         if (userRatings == null) {
             userRatings = new HashMap<>();
-            userRatingsMap.addV(userid, userRatings);
+            userRatingsMap.put(userid, userRatings);
         }
-        userRatings.addV(movieid, rating);
+        userRatings.put(movieid, rating);
         
         RatingInfo movieRatingInfo = movieRatingsMap.get(movieid);
         if (movieRatingInfo == null) {
             movieRatingInfo = new RatingInfo();
-            movieRatingsMap.addV(movieid, movieRatingInfo);
+            movieRatingsMap.put(movieid, movieRatingInfo);
         }
         movieRatingInfo.addRating(rating, userid);
 
@@ -70,11 +70,11 @@ public class Ratings implements IRatings {
         boolean removedFromUserMap = false;
         HashMap<Integer, Float> userRatings = userRatingsMap.get(userid);
         if (userRatings != null) {
-            Float rating = userRatings.removeV(movieid); 
+            Float rating = userRatings.take(movieid); 
             removedFromUserMap = (rating != null); 
     
             if (userRatings.isEmpty()) {
-                userRatingsMap.removeV(userid);
+                userRatingsMap.take(userid);
             }
         }
     
@@ -85,7 +85,7 @@ public class Ratings implements IRatings {
             removedFromMovieMap = movieRatingInfo.removeRating(userid);
 
             if (movieRatingInfo.isEmpty()) {
-                movieRatingsMap.removeV(movieid);
+                movieRatingsMap.take(movieid);
             }
         }
     
@@ -124,9 +124,11 @@ public class Ratings implements IRatings {
      */
     @Override
     public float[] getMovieRatings(int movieid) {
-        movieRatingsMap.get(movieid);
-        // TODO Implement this function
-        return null;
+        RatingInfo  movieRatingInfo = movieRatingsMap.get(movieid);
+        if (movieRatingInfo.isEmpty()){
+            return new float[0];
+        }
+        return movieRatingInfo.getRatings().values();
     }
 
     /**
@@ -138,8 +140,11 @@ public class Ratings implements IRatings {
      */
     @Override
     public float[] getUserRatings(int userid) {
-        // TODO Implement this function
-        return null;
+        HashMap<Integer, Float> userRatings = userRatingsMap.get(userid);
+        if (userRatings == null || userRatings.isEmpty()) {
+            return new float[0]; 
+        }
+        return userRatings.values();
     }
 
     /**
@@ -152,8 +157,19 @@ public class Ratings implements IRatings {
      */
     @Override
     public float getMovieAverageRating(int movieid) {
-        // TODO Implement this function
-        return -1;
+        RatingInfo  movieRatingInfo = movieRatingsMap.get(movieid);
+        if (movieRatingInfo == null) {
+            return -1.0f;
+        } else if (movieRatingInfo.isEmpty()) {
+            return 0.0f;
+        }
+        HashMap<Integer, Float> ratings = movieRatingInfo.getRatings();
+        float[] ratingsArr = ratings.values();
+        float avgRatings = 0;
+        for (int i = 0; i < ratings.size(); i++){
+            avgRatings += ratingsArr[i];
+        }
+        return avgRatings/ratings.size();
     }
 
     /**
@@ -165,8 +181,16 @@ public class Ratings implements IRatings {
      */
     @Override
     public float getUserAverageRating(int userid) {
-        // TODO Implement this function
-        return -1;
+        HashMap<Integer, Float> userInfo = userRatingsMap.get(userid);
+        if (userInfo == null || userInfo.isEmpty()) {
+            return -1;  
+        }
+        float[] userArr = userInfo.values();
+        float avgRatings = 0;
+        for (int i = 0; i < userInfo.size(); i++){
+            avgRatings += userArr[i];
+        }
+        return avgRatings/userInfo.size();
     }
 
     /**
@@ -204,8 +228,7 @@ public class Ratings implements IRatings {
      */
     @Override
     public int size() {
-        // TODO Implement this function
-        return -1;
+        return userRatingsMap.size();
     }
 
     /**
@@ -220,8 +243,7 @@ public class Ratings implements IRatings {
      */
     @Override
     public int getNumRatings(int movieid) {
-        // TODO Implement this function
-        return -1;
+        return movieRatingsMap.get(movieid).getCount();
     }
 
     /**
@@ -256,13 +278,13 @@ class RatingInfo {
         if (previousRating != null) {
             totalRating -= previousRating;
         }
-        ratings.addV(userid, rating);
+        ratings.put(userid, rating);
         totalRating += rating;
         count = ratings.size();
     }
 
     public boolean removeRating(int userid) {
-        Float ratingToRemove = ratings.removeV(userid);
+        Float ratingToRemove = ratings.take(userid);
         if (ratingToRemove != null) {
             totalRating -= ratingToRemove;
             count = ratings.size();
@@ -286,16 +308,10 @@ class RatingInfo {
     public boolean ratedByUsers(int userid) {
         return ratings.containsKey(userid);
     }
+
+    public int getCount(){
+        return count;
+    }
     // Banging your head against a wall sometimes works
 }
 
-
-
-/*
- * 
- * TODO
- * 
- * Change hashmaps so that their size is more dynamic
- * 
- * 
- */
