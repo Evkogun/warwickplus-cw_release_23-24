@@ -288,8 +288,21 @@ public class Ratings implements IRatings {
      */
     @Override
     public int[] getTopAverageRatedMovies(int numResults) {
-        // TODO Implement this function
-        return null;
+        int[] keyListStore = movieRatingsMap.keyList();
+        if (movieRatings.length != keyListStore.length){
+            this.movieRatings = new RatingInfo[keyListStore.length];
+        }
+        for (int i = 0; i < keyListStore.length; i++){
+            movieRatings[i] = movieRatingsMap.get(keyListStore[i]);
+        }  
+        Sort.movieSort(movieRatings);
+
+        int[] returnArr = new int[numResults];
+        for (int i = 0; i < numResults; i++){
+            returnArr[i] = movieRatings[i].getMovieID();
+        }
+
+        return returnArr;
     }
 }
 
@@ -434,6 +447,43 @@ class Sort {
 
         while (leftIndex < leftHalf.length && rightIndex < rightHalf.length) {
             if (leftHalf[leftIndex].getCount() >= rightHalf[rightIndex].getCount()) {
+                outputArray[mergeIndex] = leftHalf[leftIndex];
+                leftIndex++;
+            } else {
+                outputArray[mergeIndex] = rightHalf[rightIndex];
+                rightIndex++;
+            }
+            mergeIndex++;
+        }
+
+        System.arraycopy(leftHalf, leftIndex, outputArray, mergeIndex, leftHalf.length - leftIndex);
+        System.arraycopy(rightHalf, rightIndex, outputArray, mergeIndex, rightHalf.length - rightIndex);
+    }
+
+    public static void movieSortRating(RatingInfo[] array) {
+        if (array.length <= 1) {
+            return;
+        }
+
+        RatingInfo[] leftHalf = new RatingInfo[array.length / 2];
+        RatingInfo[] rightHalf = new RatingInfo[array.length - leftHalf.length];
+
+        System.arraycopy(array, 0, leftHalf, 0, leftHalf.length);
+        System.arraycopy(array, leftHalf.length, rightHalf, 0, rightHalf.length);
+
+        movieSort(leftHalf);
+        movieSort(rightHalf);
+
+        movieMergeRating(array, leftHalf, rightHalf);
+    }
+
+    private static void movieMergeRating(RatingInfo[] outputArray, RatingInfo[] leftHalf, RatingInfo[] rightHalf) {
+        int leftIndex = 0;
+        int rightIndex = 0;
+        int mergeIndex = 0;
+
+        while (leftIndex < leftHalf.length && rightIndex < rightHalf.length) {
+            if (leftHalf[leftIndex].getAverageRating() >= rightHalf[rightIndex].getAverageRating()) {
                 outputArray[mergeIndex] = leftHalf[leftIndex];
                 leftIndex++;
             } else {
