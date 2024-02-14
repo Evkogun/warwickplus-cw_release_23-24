@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="MoviesTest" tests="94" skipped="0" failures="57" errors="0" timestamp="2024-02-12T22:47:57" hostname="HOMEWORK-GAMING" time="0.188">
+<testsuite name="MoviesTest" tests="94" skipped="0" failures="57" errors="0" timestamp="2024-02-14T20:26:36" hostname="HOMEWORK-GAMING" time="0.163">
   <properties/>
-  <testcase name="testAddNeg()" classname="MoviesTest" time="0.011"/>
-  <testcase name="testAddPos()" classname="MoviesTest" time="0.004">
+  <testcase name="testAddNeg()" classname="MoviesTest" time="0.013"/>
+  <testcase name="testAddPos()" classname="MoviesTest" time="0.003">
     <failure message="org.opentest4j.AssertionFailedError: This is a new film with a unique ID, so should be able to be added ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: This is a new film with a unique ID, so should be able to be added ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:40)
@@ -94,7 +94,7 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testAddProductionCompanyNeg()" classname="MoviesTest" time="0.009"/>
+  <testcase name="testAddProductionCompanyNeg()" classname="MoviesTest" time="0.003"/>
   <testcase name="testAddProductionCompanyPos()" classname="MoviesTest" time="0.002">
     <failure message="org.opentest4j.AssertionFailedError: Should return true if successfully added. ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Should return true if successfully added. ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
@@ -280,8 +280,8 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testAddToCollectionNeg()" classname="MoviesTest" time="0.002"/>
-  <testcase name="testAddToCollectionPos()" classname="MoviesTest" time="0.002">
+  <testcase name="testAddToCollectionNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testAddToCollectionPos()" classname="MoviesTest" time="0.003">
     <failure message="org.opentest4j.AssertionFailedError: A valid add should return true. ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: A valid add should return true. ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:40)
@@ -376,7 +376,7 @@
   <testcase name="testAdultPos()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGenreNegID()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetAdultAll()" classname="MoviesTest" time="0.002">
-    <failure message="org.opentest4j.AssertionFailedError: expected: &lt;[true, true, true, false, false, false, false, false, true, true, false, true, false, true, true, false, false, false, true, false]&gt; but was: &lt;[false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;[true, true, true, false, false, false, false, false, true, true, false, true, false, true, true, false, false, false, true, false]&gt; but was: &lt;[false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]&gt;
+    <failure message="org.opentest4j.AssertionFailedError: expected: &lt;[true, false, true, true, true, false, false, false, true, false, true, false, false, true, true, true, false, false, true, false]&gt; but was: &lt;[false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;[true, false, true, true, true, false, false, false, true, false, true, false, false, true, true, true, false, false, true, false]&gt; but was: &lt;[false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
 	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
@@ -469,7 +469,7 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetAdultNeg()" classname="MoviesTest" time="0.002"/>
+  <testcase name="testGetAdultNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetAllIDs()" classname="MoviesTest" time="0.002">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at MoviesTest.checkContentsOfArray(MoviesTest.java:438)
@@ -650,7 +650,7 @@
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetAllIDsReleasedInRangePos()" classname="MoviesTest" time="0.003">
+  <testcase name="testGetAllIDsReleasedInRangePos()" classname="MoviesTest" time="0.002">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at MoviesTest.checkContentsOfArray(MoviesTest.java:438)
 	at MoviesTest.testGetAllIDsReleasedInRangePos(MoviesTest.java:520)
@@ -740,8 +740,8 @@
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetBudgetAll()" classname="MoviesTest" time="0.002">
-    <failure message="org.opentest4j.AssertionFailedError: Does not return the correct values. ==&gt; expected: &lt;[-9223372036854775808, -9223372036854775808, -9223372036854775808, 9223372036854775807, -9223372036854775808, -9223372036854775808, -9223372036854775808, 9223372036854775807, -9223372036854775808, 9223372036854775807, -9223372036854775808, -9223372036854775808, 9223372036854775807, 9223372036854775807, 9223372036854775807, -9223372036854775808, -9223372036854775808, 9223372036854775807, 9223372036854775807, -9223372036854775808]&gt; but was: &lt;[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Does not return the correct values. ==&gt; expected: &lt;[-9223372036854775808, -9223372036854775808, -9223372036854775808, 9223372036854775807, -9223372036854775808, -9223372036854775808, -9223372036854775808, 9223372036854775807, -9223372036854775808, 9223372036854775807, -9223372036854775808, -9223372036854775808, 9223372036854775807, 9223372036854775807, 9223372036854775807, -9223372036854775808, -9223372036854775808, 9223372036854775807, 9223372036854775807, -9223372036854775808]&gt; but was: &lt;[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]&gt;
+  <testcase name="testGetBudgetAll()" classname="MoviesTest" time="0.003">
+    <failure message="org.opentest4j.AssertionFailedError: Does not return the correct values. ==&gt; expected: &lt;[9223372036854775807, 9223372036854775807, 9223372036854775807, -9223372036854775808, 9223372036854775807, -9223372036854775808, -9223372036854775808, -9223372036854775808, 9223372036854775807, -9223372036854775808, 9223372036854775807, 9223372036854775807, -9223372036854775808, -9223372036854775808, -9223372036854775808, -9223372036854775808, -9223372036854775808, 9223372036854775807, 9223372036854775807, -9223372036854775808]&gt; but was: &lt;[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Does not return the correct values. ==&gt; expected: &lt;[9223372036854775807, 9223372036854775807, 9223372036854775807, -9223372036854775808, 9223372036854775807, -9223372036854775808, -9223372036854775808, -9223372036854775808, 9223372036854775807, -9223372036854775808, 9223372036854775807, 9223372036854775807, -9223372036854775808, -9223372036854775808, -9223372036854775808, -9223372036854775808, -9223372036854775808, 9223372036854775807, 9223372036854775807, -9223372036854775808]&gt; but was: &lt;[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
 	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
@@ -833,8 +833,8 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetBudgetNeg()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetBudgetPos()" classname="MoviesTest" time="0.002">
+  <testcase name="testGetBudgetNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetBudgetPos()" classname="MoviesTest" time="0.001">
     <failure message="org.opentest4j.AssertionFailedError: Does not return the correct value. ==&gt; expected: &lt;1&gt; but was: &lt;-1&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Does not return the correct value. ==&gt; expected: &lt;1&gt; but was: &lt;-1&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -927,7 +927,7 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetCollectionBackdropNeg()" classname="MoviesTest" time="0.002"/>
+  <testcase name="testGetCollectionBackdropNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetCollectionBackdropPos()" classname="MoviesTest" time="0.002">
     <failure message="org.opentest4j.AssertionFailedError: Incorrect value returned. ==&gt; expected: &lt;collectionbackdrop&gt; but was: &lt;null&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Incorrect value returned. ==&gt; expected: &lt;collectionbackdrop&gt; but was: &lt;null&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
@@ -1022,7 +1022,7 @@
 </failure>
   </testcase>
   <testcase name="testGetCollectionIDNeg()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetCollectionIDPos()" classname="MoviesTest" time="0.001">
+  <testcase name="testGetCollectionIDPos()" classname="MoviesTest" time="0.002">
     <failure message="org.opentest4j.AssertionFailedError: Incorrect ID returned. ==&gt; expected: &lt;1&gt; but was: &lt;-1&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Incorrect ID returned. ==&gt; expected: &lt;1&gt; but was: &lt;-1&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -1116,7 +1116,7 @@
 </failure>
   </testcase>
   <testcase name="testGetCollectionNameNeg()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetCollectionNamePos()" classname="MoviesTest" time="0.001">
+  <testcase name="testGetCollectionNamePos()" classname="MoviesTest" time="0.002">
     <failure message="org.opentest4j.AssertionFailedError: Incorrect value returned. ==&gt; expected: &lt;Toy Story Series&gt; but was: &lt;null&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Incorrect value returned. ==&gt; expected: &lt;Toy Story Series&gt; but was: &lt;null&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -1209,7 +1209,7 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetCollectionPosterNeg()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetCollectionPosterNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetCollectionPosterPos()" classname="MoviesTest" time="0.001">
     <failure message="org.opentest4j.AssertionFailedError: Incorrect value returned. ==&gt; expected: &lt;collectionposter&gt; but was: &lt;null&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Incorrect value returned. ==&gt; expected: &lt;collectionposter&gt; but was: &lt;null&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
@@ -1303,7 +1303,7 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetFilmsInCollectionNeg()" classname="MoviesTest" time="0.004">
+  <testcase name="testGetFilmsInCollectionNeg()" classname="MoviesTest" time="0.001">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at MoviesTest.checkContentsOfArray(MoviesTest.java:438)
 	at MoviesTest.testGetFilmsInCollectionNeg(MoviesTest.java:1542)
@@ -1393,7 +1393,7 @@
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetFilmsInCollectionPos()" classname="MoviesTest" time="0.002">
+  <testcase name="testGetFilmsInCollectionPos()" classname="MoviesTest" time="0.001">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at MoviesTest.checkContentsOfArray(MoviesTest.java:438)
 	at MoviesTest.testGetFilmsInCollectionPos(MoviesTest.java:1525)
@@ -1666,7 +1666,7 @@
 </failure>
   </testcase>
   <testcase name="testGetHomepageAll()" classname="MoviesTest" time="0.002">
-    <failure message="org.opentest4j.AssertionFailedError: expected: &lt;[bobnjioyqc, chgatzkivo, uhuabdmdny, bnbqfwrgko, hbyiegkgjq, klzxftjzri, lzsxyaphwq, vzkkxryqdl, ctarormtkb, trimxmvdhz, njxhmxincb, ekqhpkxhls, cupvcuoahb, pzoshuqcjw, gkcsaazqkr, jogwnkgemk, bdcmiwwgzh, iptimlxdyf, vgfkrnoimh, cfuszlwhqs]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;[bobnjioyqc, chgatzkivo, uhuabdmdny, bnbqfwrgko, hbyiegkgjq, klzxftjzri, lzsxyaphwq, vzkkxryqdl, ctarormtkb, trimxmvdhz, njxhmxincb, ekqhpkxhls, cupvcuoahb, pzoshuqcjw, gkcsaazqkr, jogwnkgemk, bdcmiwwgzh, iptimlxdyf, vgfkrnoimh, cfuszlwhqs]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;
+    <failure message="org.opentest4j.AssertionFailedError: expected: &lt;[dhudkxcpxa, akuhsdizai, utwumeburx, guzrcigsur, jtgdyewgel, syfijufxou, iekmpofqpm, akovcfvzyi, jlsjowckio, hpmjouyyci, edhbhiiyki, hhsushnist, cuwaetohff, qmjefcnrzq, rqvqmygzie, sjtaxfqofo, nfzhxymxkb, qodttxairo, blgyzpuqum, ekbykdqfrw]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;[dhudkxcpxa, akuhsdizai, utwumeburx, guzrcigsur, jtgdyewgel, syfijufxou, iekmpofqpm, akovcfvzyi, jlsjowckio, hpmjouyyci, edhbhiiyki, hhsushnist, cuwaetohff, qmjefcnrzq, rqvqmygzie, sjtaxfqofo, nfzhxymxkb, qodttxairo, blgyzpuqum, ekbykdqfrw]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
 	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
@@ -1759,7 +1759,7 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetHomepageNeg()" classname="MoviesTest" time="0.002"/>
+  <testcase name="testGetHomepageNeg()" classname="MoviesTest" time="0.003"/>
   <testcase name="testGetHomepagePos()" classname="MoviesTest" time="0.002">
     <failure message="org.opentest4j.AssertionFailedError: Does not return the correct value. ==&gt; expected: &lt;http://homepage.com/homepage&gt; but was: &lt;null&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Does not return the correct value. ==&gt; expected: &lt;http://homepage.com/homepage&gt; but was: &lt;null&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
@@ -1853,8 +1853,8 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetIMDBNeg()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetIMDBPos()" classname="MoviesTest" time="0.003">
+  <testcase name="testGetIMDBNeg()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetIMDBPos()" classname="MoviesTest" time="0.001">
     <failure message="org.opentest4j.AssertionFailedError: Incorrect value returned. ==&gt; expected: &lt;IMDBid&gt; but was: &lt;null&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Incorrect value returned. ==&gt; expected: &lt;IMDBid&gt; but was: &lt;null&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -1947,7 +1947,7 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetLanguagesMany()" classname="MoviesTest" time="0.003">
+  <testcase name="testGetLanguagesMany()" classname="MoviesTest" time="0.002">
     <failure message="org.opentest4j.AssertionFailedError: Does not return the correct values. ==&gt; expected: &lt;[[Ljava.lang.String;@5a9d6f02, [Ljava.lang.String;@362045c0, [Ljava.lang.String;@112f364d, [Ljava.lang.String;@5ccbeb64, [Ljava.lang.String;@6d9f7a80, [Ljava.lang.String;@59252cb6, [Ljava.lang.String;@31d0e481, [Ljava.lang.String;@3243b914, [Ljava.lang.String;@241e8ea6, [Ljava.lang.String;@542e560f, [Ljava.lang.String;@626c44e7, [Ljava.lang.String;@4dc8caa7, [Ljava.lang.String;@1d730606, [Ljava.lang.String;@3bcbb589, [Ljava.lang.String;@3b00856b, [Ljava.lang.String;@3016fd5e, [Ljava.lang.String;@35d08e6c, [Ljava.lang.String;@53d102a2, [Ljava.lang.String;@6c45ee6e, [Ljava.lang.String;@6b3e12b5]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Does not return the correct values. ==&gt; expected: &lt;[[Ljava.lang.String;@5a9d6f02, [Ljava.lang.String;@362045c0, [Ljava.lang.String;@112f364d, [Ljava.lang.String;@5ccbeb64, [Ljava.lang.String;@6d9f7a80, [Ljava.lang.String;@59252cb6, [Ljava.lang.String;@31d0e481, [Ljava.lang.String;@3243b914, [Ljava.lang.String;@241e8ea6, [Ljava.lang.String;@542e560f, [Ljava.lang.String;@626c44e7, [Ljava.lang.String;@4dc8caa7, [Ljava.lang.String;@1d730606, [Ljava.lang.String;@3bcbb589, [Ljava.lang.String;@3b00856b, [Ljava.lang.String;@3016fd5e, [Ljava.lang.String;@35d08e6c, [Ljava.lang.String;@53d102a2, [Ljava.lang.String;@6c45ee6e, [Ljava.lang.String;@6b3e12b5]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -2041,7 +2041,7 @@
 </failure>
   </testcase>
   <testcase name="testGetLanguagesNeg()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetLanguagesPos()" classname="MoviesTest" time="0.002">
+  <testcase name="testGetLanguagesPos()" classname="MoviesTest" time="0.001">
     <failure message="org.opentest4j.AssertionFailedError: Does not return the correct values. ==&gt; actual array was &lt;null&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Does not return the correct values. ==&gt; actual array was &lt;null&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
 	at app//org.junit.jupiter.api.AssertArrayEquals.failActualArrayIsNull(AssertArrayEquals.java:413)
@@ -2136,8 +2136,8 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetOriginalLanguageAll()" classname="MoviesTest" time="0.003">
-    <failure message="org.opentest4j.AssertionFailedError: Does not return the correct values. ==&gt; expected: &lt;[sqtepiunxy, wagktjztdx, hevbxeerdt, qbqdfvtxcc, ohdvaxhyut, ldxgvhbrxj, qyycoecmlv, zoknodsnzm, jrpdqitibm, ohunndcusz, hauisfdows, xkesxtmrms, ybewaymyjj, lcyooyseve, yjaiznuyta, wbpzgbfqmi, adwhohcnvs, shjkgkhwwd, xcngmadpkn, rlfgferxpd]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Does not return the correct values. ==&gt; expected: &lt;[sqtepiunxy, wagktjztdx, hevbxeerdt, qbqdfvtxcc, ohdvaxhyut, ldxgvhbrxj, qyycoecmlv, zoknodsnzm, jrpdqitibm, ohunndcusz, hauisfdows, xkesxtmrms, ybewaymyjj, lcyooyseve, yjaiznuyta, wbpzgbfqmi, adwhohcnvs, shjkgkhwwd, xcngmadpkn, rlfgferxpd]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;
+  <testcase name="testGetOriginalLanguageAll()" classname="MoviesTest" time="0.001">
+    <failure message="org.opentest4j.AssertionFailedError: Does not return the correct values. ==&gt; expected: &lt;[eosrwiaofh, vvsmpkgzbb, fqvjoyogfd, zlfjcfnskg, ainvyurtof, hszmkpctie, ifkvxxqirs, cqhqiqcqru, wmlsdnqwot, ibggwjxmaf, srhcselgeo, xrltgpruac, wszrdwnlbq, bxjuhmpeke, nznqnxjwjt, vgjlenovld, pvwtmhqpch, fpqctspzio, wnthwgknxj, srrjeptnvx]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Does not return the correct values. ==&gt; expected: &lt;[eosrwiaofh, vvsmpkgzbb, fqvjoyogfd, zlfjcfnskg, ainvyurtof, hszmkpctie, ifkvxxqirs, cqhqiqcqru, wmlsdnqwot, ibggwjxmaf, srhcselgeo, xrltgpruac, wszrdwnlbq, bxjuhmpeke, nznqnxjwjt, vgjlenovld, pvwtmhqpch, fpqctspzio, wnthwgknxj, srrjeptnvx]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
 	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
@@ -2229,7 +2229,7 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetOriginalLanguageNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetOriginalLanguageNeg()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGetOriginalLanguagePos()" classname="MoviesTest" time="0.001">
     <failure message="org.opentest4j.AssertionFailedError: Does not return the correct value. ==&gt; expected: &lt;en&gt; but was: &lt;null&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Does not return the correct value. ==&gt; expected: &lt;en&gt; but was: &lt;null&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
@@ -2323,8 +2323,8 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetOriginalTitleAll()" classname="MoviesTest" time="0.001">
-    <failure message="org.opentest4j.AssertionFailedError: Incorrect values returned. ==&gt; expected: &lt;[zcbmdnndem, ywyteftjmk, pcbhlogzrm, gyghtlclql, zfshncljbs, lgxzdsiagr, wquzazryib, aecysbyisb, egscgicckm, ffrqjtsmrt, xqxxuidkgr, hbrmwgoprh, tkmxvugyxk, uekrtkcwab, zxgqgpvmsf, djnjsbwdpa, sojdtncysu, cdxyzukccj, hhswijfhxm, zqyxjmigqb]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Incorrect values returned. ==&gt; expected: &lt;[zcbmdnndem, ywyteftjmk, pcbhlogzrm, gyghtlclql, zfshncljbs, lgxzdsiagr, wquzazryib, aecysbyisb, egscgicckm, ffrqjtsmrt, xqxxuidkgr, hbrmwgoprh, tkmxvugyxk, uekrtkcwab, zxgqgpvmsf, djnjsbwdpa, sojdtncysu, cdxyzukccj, hhswijfhxm, zqyxjmigqb]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;
+  <testcase name="testGetOriginalTitleAll()" classname="MoviesTest" time="0.002">
+    <failure message="org.opentest4j.AssertionFailedError: Incorrect values returned. ==&gt; expected: &lt;[nrsmbdolse, meuszubumg, onkeggaily, azmfdczean, oadyigruim, qrwbtufbrw, gsiaksloxq, cwmdekpahd, zdcwdfucur, rpvlqidgom, glwunalhzv, oyijdlhnjk, ugeeghugdp, adzxtajxpu, uquwifaxvh, xmyqzolhpn, uukwjgdtzp, uuoedewfov, kohkcanrbk, shxqtgsmvg]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Incorrect values returned. ==&gt; expected: &lt;[nrsmbdolse, meuszubumg, onkeggaily, azmfdczean, oadyigruim, qrwbtufbrw, gsiaksloxq, cwmdekpahd, zdcwdfucur, rpvlqidgom, glwunalhzv, oyijdlhnjk, ugeeghugdp, adzxtajxpu, uquwifaxvh, xmyqzolhpn, uukwjgdtzp, uuoedewfov, kohkcanrbk, shxqtgsmvg]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
 	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
@@ -2510,8 +2510,8 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetOverviewAll()" classname="MoviesTest" time="0.003">
-    <failure message="org.opentest4j.AssertionFailedError: Incorrect values returned. ==&gt; expected: &lt;[ukeziphnqd, hspapnwgjx, vwmbynijpu, fyviishmca, kvawjrgacg, gwydugorew, luguhopqsv, drcbaztekg, qorbauxzyn, ekvfcxbiin, eixvxwlazp, vhngryurok, xgfvmhkida, caobhvpkne, mzbxqerfzt, waorhtvxiy, aotgsuiiya, qerqloahmu, jgknivbavs, lxqbswveaz]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Incorrect values returned. ==&gt; expected: &lt;[ukeziphnqd, hspapnwgjx, vwmbynijpu, fyviishmca, kvawjrgacg, gwydugorew, luguhopqsv, drcbaztekg, qorbauxzyn, ekvfcxbiin, eixvxwlazp, vhngryurok, xgfvmhkida, caobhvpkne, mzbxqerfzt, waorhtvxiy, aotgsuiiya, qerqloahmu, jgknivbavs, lxqbswveaz]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;
+  <testcase name="testGetOverviewAll()" classname="MoviesTest" time="0.001">
+    <failure message="org.opentest4j.AssertionFailedError: Incorrect values returned. ==&gt; expected: &lt;[nesxinqcvj, mirecyrjny, tqgbkglvpb, qfepqftrmw, tlnemhljmz, tpbwhlojlo, hikqpoztpr, bhyhmniali, sfcvqzpudl, vburrwgyjk, oqpxeldrjt, clojulttax, zufpilrmhh, srlplapqok, bxbmuraykt, xhwsacmzuc, lflcfgojxr, rwqasltxuw, lwqetszfel, jpifghihps]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Incorrect values returned. ==&gt; expected: &lt;[nesxinqcvj, mirecyrjny, tqgbkglvpb, qfepqftrmw, tlnemhljmz, tpbwhlojlo, hikqpoztpr, bhyhmniali, sfcvqzpudl, vburrwgyjk, oqpxeldrjt, clojulttax, zufpilrmhh, srlplapqok, bxbmuraykt, xhwsacmzuc, lflcfgojxr, rwqasltxuw, lwqetszfel, jpifghihps]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
 	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
@@ -2697,7 +2697,7 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetPopularityEmpty()" classname="MoviesTest" time="0.002">
+  <testcase name="testGetPopularityEmpty()" classname="MoviesTest" time="0.003">
     <failure message="org.opentest4j.AssertionFailedError: The value produced is not correct ==&gt; expected: &lt;0.0&gt; but was: &lt;-1.0&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: The value produced is not correct ==&gt; expected: &lt;0.0&gt; but was: &lt;-1.0&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -2884,8 +2884,8 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetPosterAll()" classname="MoviesTest" time="0.001">
-    <failure message="org.opentest4j.AssertionFailedError: Incorrect values returned. ==&gt; expected: &lt;[iiavrkrpge, effikucyih, bgitqiabtw, egxkulnlme, kzwuccumpg, jdnijsceqn, vwwsbaxqgi, otzagpewmp, fanrrrvyqd, bzqfpgqcpq, ynvldibfoa, uoironjzqg, epasqjqwmm, vojoqhshnk, qwczzeqtgs, oprouytyok, rappxrdyme, hljsadndtx, ccoahwljid, spbcymapzt]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Incorrect values returned. ==&gt; expected: &lt;[iiavrkrpge, effikucyih, bgitqiabtw, egxkulnlme, kzwuccumpg, jdnijsceqn, vwwsbaxqgi, otzagpewmp, fanrrrvyqd, bzqfpgqcpq, ynvldibfoa, uoironjzqg, epasqjqwmm, vojoqhshnk, qwczzeqtgs, oprouytyok, rappxrdyme, hljsadndtx, ccoahwljid, spbcymapzt]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;
+  <testcase name="testGetPosterAll()" classname="MoviesTest" time="0.002">
+    <failure message="org.opentest4j.AssertionFailedError: Incorrect values returned. ==&gt; expected: &lt;[xyvemnhiuj, gobxgvpckn, wailkgmdqy, khxfwkyizn, mnmikqwabk, uneilrcnaz, agbtsrpyzg, zdgowljxpp, jksvdtzdzh, ppydtzmpyh, twskmhzmok, uqeacziega, hlnhrbzwlf, quyvpjwsqg, jatlrrezry, drokkmstfo, zgzzwhfgib, hxjfzmrlnq, pvsnyebllk, mjbwntwwua]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Incorrect values returned. ==&gt; expected: &lt;[xyvemnhiuj, gobxgvpckn, wailkgmdqy, khxfwkyizn, mnmikqwabk, uneilrcnaz, agbtsrpyzg, zdgowljxpp, jksvdtzdzh, ppydtzmpyh, twskmhzmok, uqeacziega, hlnhrbzwlf, quyvpjwsqg, jatlrrezry, drokkmstfo, zgzzwhfgib, hxjfzmrlnq, pvsnyebllk, mjbwntwwua]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
 	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
@@ -2977,8 +2977,8 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetPosterNeg()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetPosterPos()" classname="MoviesTest" time="0.001">
+  <testcase name="testGetPosterNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetPosterPos()" classname="MoviesTest" time="0.002">
     <failure message="org.opentest4j.AssertionFailedError: expected: &lt;/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg&gt; but was: &lt;null&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg&gt; but was: &lt;null&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -3073,7 +3073,7 @@
 </failure>
   </testcase>
   <testcase name="testGetProductionCompanyNeg()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetProductionCompanyPos()" classname="MoviesTest" time="0.002">
+  <testcase name="testGetProductionCompanyPos()" classname="MoviesTest" time="0.001">
     <failure message="org.opentest4j.AssertionFailedError: Incorrect result. ==&gt; actual array was &lt;null&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Incorrect result. ==&gt; actual array was &lt;null&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
 	at app//org.junit.jupiter.api.AssertArrayEquals.failActualArrayIsNull(AssertArrayEquals.java:413)
@@ -3264,8 +3264,8 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetReleaseAll()" classname="MoviesTest" time="0.001">
-    <failure message="org.opentest4j.AssertionFailedError: Does not return the correct values. ==&gt; expected: &lt;[1956-01-01, 1967-01-01, 1997-01-01, 2006-01-01, 2000-01-01, 1980-01-01, 2016-01-01, 1993-01-01, 1991-01-01, 1964-01-01, 2005-01-01, 1977-01-01, 1978-01-01, 2018-01-01, 1964-01-01, 1951-01-01, 1967-01-01, 1992-01-01, 1968-01-01, 1962-01-01]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Does not return the correct values. ==&gt; expected: &lt;[1956-01-01, 1967-01-01, 1997-01-01, 2006-01-01, 2000-01-01, 1980-01-01, 2016-01-01, 1993-01-01, 1991-01-01, 1964-01-01, 2005-01-01, 1977-01-01, 1978-01-01, 2018-01-01, 1964-01-01, 1951-01-01, 1967-01-01, 1992-01-01, 1968-01-01, 1962-01-01]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;
+  <testcase name="testGetReleaseAll()" classname="MoviesTest" time="0.0">
+    <failure message="org.opentest4j.AssertionFailedError: Does not return the correct values. ==&gt; expected: &lt;[1990-01-01, 2001-01-01, 2016-01-01, 2008-01-01, 2017-01-01, 1975-01-01, 1979-01-01, 1975-01-01, 1975-01-01, 2012-01-01, 1952-01-01, 1962-01-01, 1951-01-01, 1991-01-01, 2004-01-01, 1990-01-01, 1989-01-01, 1993-01-01, 2002-01-01, 1986-01-01]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Does not return the correct values. ==&gt; expected: &lt;[1990-01-01, 2001-01-01, 2016-01-01, 2008-01-01, 2017-01-01, 1975-01-01, 1979-01-01, 1975-01-01, 1975-01-01, 2012-01-01, 1952-01-01, 1962-01-01, 1951-01-01, 1991-01-01, 2004-01-01, 1990-01-01, 1989-01-01, 1993-01-01, 2002-01-01, 1986-01-01]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
 	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
@@ -3357,8 +3357,8 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetReleaseNeg()" classname="MoviesTest" time="0.002"/>
-  <testcase name="testGetReleaseNegVal()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetReleaseNeg()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetReleaseNegVal()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetReleasePos()" classname="MoviesTest" time="0.001">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at MoviesTest.testGetReleasePos(MoviesTest.java:799)
@@ -3449,7 +3449,7 @@
 </failure>
   </testcase>
   <testcase name="testGetRevenueAll()" classname="MoviesTest" time="0.001">
-    <failure message="org.opentest4j.AssertionFailedError: Does not return the correct values. ==&gt; expected: &lt;[-9223372036854775808, 9223372036854775807, -9223372036854775808, -9223372036854775808, 9223372036854775807, 9223372036854775807, 9223372036854775807, 9223372036854775807, -9223372036854775808, -9223372036854775808, -9223372036854775808, 9223372036854775807, -9223372036854775808, 9223372036854775807, 9223372036854775807, -9223372036854775808, -9223372036854775808, -9223372036854775808, 9223372036854775807, 9223372036854775807]&gt; but was: &lt;[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Does not return the correct values. ==&gt; expected: &lt;[-9223372036854775808, 9223372036854775807, -9223372036854775808, -9223372036854775808, 9223372036854775807, 9223372036854775807, 9223372036854775807, 9223372036854775807, -9223372036854775808, -9223372036854775808, -9223372036854775808, 9223372036854775807, -9223372036854775808, 9223372036854775807, 9223372036854775807, -9223372036854775808, -9223372036854775808, -9223372036854775808, 9223372036854775807, 9223372036854775807]&gt; but was: &lt;[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]&gt;
+    <failure message="org.opentest4j.AssertionFailedError: Does not return the correct values. ==&gt; expected: &lt;[-9223372036854775808, -9223372036854775808, 9223372036854775807, 9223372036854775807, 9223372036854775807, -9223372036854775808, -9223372036854775808, 9223372036854775807, 9223372036854775807, 9223372036854775807, -9223372036854775808, -9223372036854775808, -9223372036854775808, 9223372036854775807, -9223372036854775808, -9223372036854775808, -9223372036854775808, 9223372036854775807, -9223372036854775808, 9223372036854775807]&gt; but was: &lt;[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Does not return the correct values. ==&gt; expected: &lt;[-9223372036854775808, -9223372036854775808, 9223372036854775807, 9223372036854775807, 9223372036854775807, -9223372036854775808, -9223372036854775808, 9223372036854775807, 9223372036854775807, 9223372036854775807, -9223372036854775808, -9223372036854775808, -9223372036854775808, 9223372036854775807, -9223372036854775808, -9223372036854775808, -9223372036854775808, 9223372036854775807, -9223372036854775808, 9223372036854775807]&gt; but was: &lt;[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
 	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
@@ -3541,8 +3541,8 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetRevenueNeg()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetRevenuePos()" classname="MoviesTest" time="0.001">
+  <testcase name="testGetRevenueNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetRevenuePos()" classname="MoviesTest" time="0.0">
     <failure message="org.opentest4j.AssertionFailedError: Does not return the correct value. ==&gt; expected: &lt;2&gt; but was: &lt;-1&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Does not return the correct value. ==&gt; expected: &lt;2&gt; but was: &lt;-1&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -3636,7 +3636,7 @@
 </failure>
   </testcase>
   <testcase name="testGetRuntimeAll()" classname="MoviesTest" time="0.001">
-    <failure message="org.opentest4j.AssertionFailedError: Does not return the correct values. ==&gt; expected: &lt;[77.07061940293772, 165.72925824988386, 96.02039415707492, 141.53472381543048, 81.3316063632843, 111.2602892578227, 129.46288979786627, 89.26321116821143, 142.44033373850567, 141.61835167273574, 102.17361185410005, 171.66812230904583, 88.36281919685294, 179.84674949185342, 78.23817348032885, 169.77098435397912, 143.87480935856803, 110.08950965023769, 150.32482270952136, 169.08317716496043]&gt; but was: &lt;[-1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Does not return the correct values. ==&gt; expected: &lt;[77.07061940293772, 165.72925824988386, 96.02039415707492, 141.53472381543048, 81.3316063632843, 111.2602892578227, 129.46288979786627, 89.26321116821143, 142.44033373850567, 141.61835167273574, 102.17361185410005, 171.66812230904583, 88.36281919685294, 179.84674949185342, 78.23817348032885, 169.77098435397912, 143.87480935856803, 110.08950965023769, 150.32482270952136, 169.08317716496043]&gt; but was: &lt;[-1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0]&gt;
+    <failure message="org.opentest4j.AssertionFailedError: Does not return the correct values. ==&gt; expected: &lt;[157.19534932126035, 175.28203450354204, 88.36012574074982, 154.9651187016501, 166.00142203288578, 94.04704483584963, 73.15323409464285, 75.69268145857085, 72.29243928221698, 96.30746890831315, 115.6482733860795, 72.07096515105357, 111.27047188631485, 116.28763998684758, 131.84826465938397, 108.29712420849643, 150.77242519113057, 132.18607973074387, 127.43253314331031, 91.04392268335587]&gt; but was: &lt;[-1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Does not return the correct values. ==&gt; expected: &lt;[157.19534932126035, 175.28203450354204, 88.36012574074982, 154.9651187016501, 166.00142203288578, 94.04704483584963, 73.15323409464285, 75.69268145857085, 72.29243928221698, 96.30746890831315, 115.6482733860795, 72.07096515105357, 111.27047188631485, 116.28763998684758, 131.84826465938397, 108.29712420849643, 150.77242519113057, 132.18607973074387, 127.43253314331031, 91.04392268335587]&gt; but was: &lt;[-1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0]&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
 	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
@@ -3728,8 +3728,8 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetRuntimeNeg()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetRuntimePos()" classname="MoviesTest" time="0.001">
+  <testcase name="testGetRuntimeNeg()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetRuntimePos()" classname="MoviesTest" time="0.002">
     <failure message="org.opentest4j.AssertionFailedError: Does not return the correct value. ==&gt; expected: &lt;90.0&gt; but was: &lt;-1.0&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Does not return the correct value. ==&gt; expected: &lt;90.0&gt; but was: &lt;-1.0&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -3823,7 +3823,7 @@
 </failure>
   </testcase>
   <testcase name="testGetStatusAll()" classname="MoviesTest" time="0.001">
-    <failure message="org.opentest4j.AssertionFailedError: Incorrect values returned. ==&gt; expected: &lt;[swrfjuezwe, hojmhdylfw, gbwdmefpuf, vejlifccom, rdurofiugf, mtvmlbnlhr, gmmsoqurlj, munywlkxoe, bfavhhxxjb, tooaxqghtu, jbmujezkbw, yudyvppnox, waraicsgck, qiqywrrayi, jvcblufgvp, zyofosfsyg, kadfrsmgce, suqoqnlqos, scigtvnstx, pcrwikkzdu]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Incorrect values returned. ==&gt; expected: &lt;[swrfjuezwe, hojmhdylfw, gbwdmefpuf, vejlifccom, rdurofiugf, mtvmlbnlhr, gmmsoqurlj, munywlkxoe, bfavhhxxjb, tooaxqghtu, jbmujezkbw, yudyvppnox, waraicsgck, qiqywrrayi, jvcblufgvp, zyofosfsyg, kadfrsmgce, suqoqnlqos, scigtvnstx, pcrwikkzdu]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;
+    <failure message="org.opentest4j.AssertionFailedError: Incorrect values returned. ==&gt; expected: &lt;[nmumwcsxsk, viiqxwdtsx, qcbasynijn, pewzhenjwc, oaqbicdfcs, neqbnjfbhf, ilaqwztufe, uqtuxypyxj, egafuwijss, nqleqepxhh, tiiroxyoco, psrjvmchqg, emfsijchsx, eftlefkima, pirkxvxteq, fdcjdjbqro, wtlxemusnr, gghkwglydc, qgdljhtraz, rxjljcqnum]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Incorrect values returned. ==&gt; expected: &lt;[nmumwcsxsk, viiqxwdtsx, qcbasynijn, pewzhenjwc, oaqbicdfcs, neqbnjfbhf, ilaqwztufe, uqtuxypyxj, egafuwijss, nqleqepxhh, tiiroxyoco, psrjvmchqg, emfsijchsx, eftlefkima, pirkxvxteq, fdcjdjbqro, wtlxemusnr, gghkwglydc, qgdljhtraz, rxjljcqnum]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
 	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
@@ -4009,8 +4009,8 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetTaglineAll()" classname="MoviesTest" time="0.001">
-    <failure message="org.opentest4j.AssertionFailedError: Incorrect values returned. ==&gt; expected: &lt;[dgcmfcyfxz, nacibtcqcx, jcfbukfyhs, dftycxkiqq, cgnavyeirx, iuswqcgoep, jjgtgmnpnb, whvldggyue, scvvavexke, jiwypxqhke, myhjmhjqmh, znnmrchpju, wsqukuobfh, toddenmkgt, dqknothgfw, ufophyvlor, icbqmygvfr, fkjyskawty, wvwdpbkrwy, ghindxdbvp]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Incorrect values returned. ==&gt; expected: &lt;[dgcmfcyfxz, nacibtcqcx, jcfbukfyhs, dftycxkiqq, cgnavyeirx, iuswqcgoep, jjgtgmnpnb, whvldggyue, scvvavexke, jiwypxqhke, myhjmhjqmh, znnmrchpju, wsqukuobfh, toddenmkgt, dqknothgfw, ufophyvlor, icbqmygvfr, fkjyskawty, wvwdpbkrwy, ghindxdbvp]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;
+  <testcase name="testGetTaglineAll()" classname="MoviesTest" time="0.003">
+    <failure message="org.opentest4j.AssertionFailedError: Incorrect values returned. ==&gt; expected: &lt;[vxqwqqujis, uresxycdip, trjmdvhwws, qebndvwsqx, kolzyjyqmp, vhocpovfse, ryduvhawmw, yjyigslvid, tlatjoqtlo, npjbzdmhlh, jfkpblysom, ftuyneopje, rfjqfnomhk, ngionwydju, zvntugznsc, yahijjllig, qlunlgldjw, uniozfpjnw, eorkwddhum, fmbzkgmaui]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Incorrect values returned. ==&gt; expected: &lt;[vxqwqqujis, uresxycdip, trjmdvhwws, qebndvwsqx, kolzyjyqmp, vhocpovfse, ryduvhawmw, yjyigslvid, tlatjoqtlo, npjbzdmhlh, jfkpblysom, ftuyneopje, rfjqfnomhk, ngionwydju, zvntugznsc, yahijjllig, qlunlgldjw, uniozfpjnw, eorkwddhum, fmbzkgmaui]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
 	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
@@ -4103,7 +4103,7 @@
 </failure>
   </testcase>
   <testcase name="testGetTaglineNeg()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetTaglinePos()" classname="MoviesTest" time="0.002">
+  <testcase name="testGetTaglinePos()" classname="MoviesTest" time="0.001">
     <failure message="org.opentest4j.AssertionFailedError: Incorrect value returned. ==&gt; expected: &lt;tagline&gt; but was: &lt;null&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Incorrect value returned. ==&gt; expected: &lt;tagline&gt; but was: &lt;null&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -4196,8 +4196,8 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetTitleAll()" classname="MoviesTest" time="0.001">
-    <failure message="org.opentest4j.AssertionFailedError: Incorrect values returned. ==&gt; expected: &lt;[nbmmwgoejb, kuqgcvjgdx, jijcxxptpv, gbjuynpfdw, cjislodkfu, fvxdkntxwq, bioxlexcef, rtqwipsfyn, cdgnwezocb, raqiamqncp, kknatyzvxe, thaiqrbyab, ymizepvuun, pgybcxzloc, sggdqvbunk, bctaprdsdj, wuhiqzfwqi, euxnmnltnn, ltyiiznryf, bptmcdweom]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Incorrect values returned. ==&gt; expected: &lt;[nbmmwgoejb, kuqgcvjgdx, jijcxxptpv, gbjuynpfdw, cjislodkfu, fvxdkntxwq, bioxlexcef, rtqwipsfyn, cdgnwezocb, raqiamqncp, kknatyzvxe, thaiqrbyab, ymizepvuun, pgybcxzloc, sggdqvbunk, bctaprdsdj, wuhiqzfwqi, euxnmnltnn, ltyiiznryf, bptmcdweom]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;
+  <testcase name="testGetTitleAll()" classname="MoviesTest" time="0.002">
+    <failure message="org.opentest4j.AssertionFailedError: Incorrect values returned. ==&gt; expected: &lt;[sbdrjyhgno, hncfbmeatu, cnunkltxxi, hvfleqrqru, oxqiyzitpo, xohcjbtlks, zhthipstmt, sszlslmvyk, qvzjifmadr, hwgdzcmrfx, yupjjfrbej, sjbtjabmsx, gncccibnun, glukrjhvnf, wlchzowdkd, vdyqfpfyhh, rsvjtecnpe, cyanmdwqyh, eixqqsblio, ktdxzsbnbd]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Incorrect values returned. ==&gt; expected: &lt;[sbdrjyhgno, hncfbmeatu, cnunkltxxi, hvfleqrqru, oxqiyzitpo, xohcjbtlks, zhthipstmt, sszlslmvyk, qvzjifmadr, hwgdzcmrfx, yupjjfrbej, sjbtjabmsx, gncccibnun, glukrjhvnf, wlchzowdkd, vdyqfpfyhh, rsvjtecnpe, cyanmdwqyh, eixqqsblio, ktdxzsbnbd]&gt; but was: &lt;[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
 	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
@@ -4289,7 +4289,7 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetTitleNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetTitleNeg()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGetTitlePos()" classname="MoviesTest" time="0.001">
     <failure message="org.opentest4j.AssertionFailedError: Incorrect value returned. ==&gt; expected: &lt;title&gt; but was: &lt;null&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Incorrect value returned. ==&gt; expected: &lt;title&gt; but was: &lt;null&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
@@ -4384,7 +4384,7 @@
 </failure>
   </testcase>
   <testcase name="testGetVideoAll()" classname="MoviesTest" time="0.001">
-    <failure message="org.opentest4j.AssertionFailedError: expected: &lt;[true, true, false, false, false, false, false, true, true, true, true, false, false, true, false, true, false, false, true, false]&gt; but was: &lt;[false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;[true, true, false, false, false, false, false, true, true, true, true, false, false, true, false, true, false, false, true, false]&gt; but was: &lt;[false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]&gt;
+    <failure message="org.opentest4j.AssertionFailedError: expected: &lt;[false, true, false, false, true, false, true, false, false, true, false, false, true, true, true, true, true, true, true, false]&gt; but was: &lt;[false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;[false, true, false, false, true, false, true, false, false, true, false, false, true, true, true, true, true, true, true, false]&gt; but was: &lt;[false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
 	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
@@ -4479,8 +4479,8 @@
   </testcase>
   <testcase name="testGetVideoNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetVideoPos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetVoteAverageNeg()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetVoteAveragePos()" classname="MoviesTest" time="0.001">
+  <testcase name="testGetVoteAverageNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetVoteAveragePos()" classname="MoviesTest" time="0.002">
     <failure message="org.opentest4j.AssertionFailedError: Incorrect value returned. ==&gt; expected: &lt;1.1&gt; but was: &lt;-1.0&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Incorrect value returned. ==&gt; expected: &lt;1.1&gt; but was: &lt;-1.0&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -4573,8 +4573,8 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetVoteCountNeg()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetVoteCountPos()" classname="MoviesTest" time="0.001">
+  <testcase name="testGetVoteCountNeg()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetVoteCountPos()" classname="MoviesTest" time="0.002">
     <failure message="org.opentest4j.AssertionFailedError: Incorrect value returned. ==&gt; expected: &lt;1000&gt; but was: &lt;-1&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Incorrect value returned. ==&gt; expected: &lt;1000&gt; but was: &lt;-1&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -4667,8 +4667,8 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testRemoveNeg()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testRemovePos()" classname="MoviesTest" time="0.002">
+  <testcase name="testRemoveNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testRemovePos()" classname="MoviesTest" time="0.001">
     <failure message="org.opentest4j.AssertionFailedError: The film id is valid, so should be able to be removed ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: The film id is valid, so should be able to be removed ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:40)
@@ -4853,8 +4853,8 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testSetPopularityNeg()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testSetPopularityPos()" classname="MoviesTest" time="0.002">
+  <testcase name="testSetPopularityNeg()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testSetPopularityPos()" classname="MoviesTest" time="0.001">
     <failure message="org.opentest4j.AssertionFailedError: The popularity should be able to be set, as the film exists ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: The popularity should be able to be set, as the film exists ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:40)
@@ -4946,7 +4946,7 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testSetVoteNeg()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testSetVoteNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testSetVotePos()" classname="MoviesTest" time="0.001">
     <failure message="org.opentest4j.AssertionFailedError: Setting a value for a valid ID should return true. ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Setting a value for a valid ID should return true. ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
@@ -5039,7 +5039,7 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testSize()" classname="MoviesTest" time="0.006">
+  <testcase name="testSize()" classname="MoviesTest" time="0.001">
     <failure message="org.opentest4j.AssertionFailedError: Size not equal. ==&gt; expected: &lt;2&gt; but was: &lt;-1&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Size not equal. ==&gt; expected: &lt;2&gt; but was: &lt;-1&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -5132,7 +5132,7 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testfindFilmsNeg()" classname="MoviesTest" time="0.001">
+  <testcase name="testfindFilmsNeg()" classname="MoviesTest" time="0.002">
     <failure message="org.opentest4j.AssertionFailedError: actual array was &lt;null&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: actual array was &lt;null&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
 	at app//org.junit.jupiter.api.AssertArrayEquals.failActualArrayIsNull(AssertArrayEquals.java:413)
@@ -5228,7 +5228,7 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testfindFilmsPos()" classname="MoviesTest" time="0.001">
+  <testcase name="testfindFilmsPos()" classname="MoviesTest" time="0.002">
     <failure message="org.opentest4j.AssertionFailedError: Could not find a valid film. ==&gt; actual array was &lt;null&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Could not find a valid film. ==&gt; actual array was &lt;null&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
 	at app//org.junit.jupiter.api.AssertArrayEquals.failActualArrayIsNull(AssertArrayEquals.java:413)

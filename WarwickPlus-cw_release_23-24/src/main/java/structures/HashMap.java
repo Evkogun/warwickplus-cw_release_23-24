@@ -39,8 +39,10 @@ public class HashMap<K, V> {
         switch(capacity) {
             case 16:
                 newCapacity = 29;
+                break;
             case 29: 
                 newCapacity = 23503;
+                break;
             case 23503:
               newCapacity = 31357;
               break;
@@ -68,20 +70,20 @@ public class HashMap<K, V> {
         map = tempMap;
         this.capacity = newCapacity;
     }
-
+    // returns false if value was replaced
     public boolean put(K key, V value) {
         if ((size + 1) >= capacity * loadFactor) {
             resize();
         }
-
+    
         int index = hash(key);
         for (Entry<K, V> entry = map[index]; entry != null; entry = entry.next) {
             if (entry.key.equals(key)) {
                 entry.value = value;
-                return true;
+                return false;
             }
         }
-
+    
         map[index] = new Entry<>(key, value, map[index]);
         this.size++;
         return true;

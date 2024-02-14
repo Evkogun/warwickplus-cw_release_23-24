@@ -2,11 +2,13 @@ import stores.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.TestInstance;
 import static org.junit.jupiter.api.Assertions.*;
+import structures.HashMap;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class RatingsTest {
@@ -22,7 +24,7 @@ public class RatingsTest {
         stores.getRatings().add(101, 201, 0.1f, LocalDateTime.of(1989, 1, 1, 0, 0));
 
         stores.getRatings().add(101, 202, 1.1f, LocalDateTime.of(1991, 1, 1, 0, 0));
-
+        
         stores.getRatings().add(101, 203, 2.1f, LocalDateTime.of(1993, 1, 1, 0, 0));
 
         stores.getRatings().add(101, 204, 3.1f, LocalDateTime.of(1995, 1, 1, 0, 0));
@@ -32,7 +34,7 @@ public class RatingsTest {
         // ratings for uid 102 
         
         stores.getRatings().add(102, 201, 2.2f, LocalDateTime.of(2001, 1, 1, 0, 0));
-
+        
         stores.getRatings().add(102, 202, 3.2f, LocalDateTime.of(2005, 1, 1, 0, 0));
 
         stores.getRatings().add(102, 203, 4.2f, LocalDateTime.of(2009, 1, 1, 0, 0));
@@ -53,7 +55,9 @@ public class RatingsTest {
         stores.getRatings().add(105, 201, 3.5f, LocalDateTime.of(2013, 1, 1, 0, 0));
 
         stores.getRatings().add(105, 202, 4.5f, LocalDateTime.of(2013, 1, 1, 0, 0));
-
+        for (int i = 0; i < stores.getRatings().getMovieRatings(201).length; i++){
+            System.out.println(stores.getRatings().getMovieRatings(201)[i]);
+        }
     }
 
     LocalDateTime calendarYear(int year){
@@ -95,7 +99,9 @@ public class RatingsTest {
         }
         return finalFlag;
     }
+
     
+
     /**
      * Correct value for add when adding a unique combination of user ID and movie 
      * ID is TRUE
@@ -151,6 +157,25 @@ public class RatingsTest {
         assertTrue(stores.getRatings().set(101, 201, 1.0f, LocalDateTime.of(2021, 1, 1, 0, 0)), "Data should be able to be set as the user and movie combination is unique");
     }
 
+    
+    
+    // /**
+    //  * Correct values for movie 201 are 0.1f, 2.2f, 1.3f, 4.4f, 3.5f.
+    //  */
+    // @Test void testGetMovieRatingsPos1(){
+
+    //     System.out.println("\nStarting testGetMovieRatingsPos...");
+
+    //     float[] tmpRatings = {0.1f, 2.2f, 1.3f, 3.5f, 4.4f};
+    //     float[] ratings = stores.getRatings().getMovieRatings(201);
+    //     for (int i = 0; i < ratings.length; i++) {
+    //         System.out.println(ratings[i]);
+    //     }
+    //     //System.out.println(stores.getRatings().getUserRatings(101)[3]);
+    //     //stores.getRatings().add(108, 201, 0.1f, LocalDateTime.of(1989, 1, 1, 0, 0));
+    //     assertTrue(checkContentsOfArray(tmpRatings, stores.getRatings().getMovieRatings(201)), "Not returning correct ratings for movie." );
+    // }
+
     /**
      * Correct values for movie 201 are 0.1f, 2.2f, 1.3f, 4.4f, 3.5f.
      */
@@ -159,10 +184,15 @@ public class RatingsTest {
         System.out.println("\nStarting testGetMovieRatingsPos...");
 
         float[] tmpRatings = {0.1f, 2.2f, 1.3f, 3.5f, 4.4f};
-        
-
-        assertTrue(checkContentsOfArray(tmpRatings, stores.getRatings().getMovieRatings(201)), "Not returning correct ratings for movie.");
+        float[] ratings = stores.getRatings().getMovieRatings(201);
+        for (int i = 0; i < ratings.length; i++) {
+            System.out.println(ratings[i]);
+        }
+        //System.out.println(stores.getRatings().getUserRatings(101)[3]);
+        //stores.getRatings().add(108, 201, 0.1f, LocalDateTime.of(1989, 1, 1, 0, 0));
+        assertTrue(checkContentsOfArray(tmpRatings, stores.getRatings().getMovieRatings(201)), "Not returning correct ratings for movie." );
     }
+
 
     /**
      * Fake ID should return empty array.
@@ -204,6 +234,10 @@ public class RatingsTest {
         int num = 3;
         int[] tmpMostRatedUsers = {101, 103, 102};
 
+        for (int i = 0; i < 5; i++){
+            System.out.println(stores.getRatings().getMostRatedUsers(5)[i]);
+        }
+
         assertArrayEquals(tmpMostRatedUsers, stores.getRatings().getMostRatedUsers(num), "Incorrect values returned.");
 
     }
@@ -228,7 +262,9 @@ public class RatingsTest {
         System.out.println("\nStarting testGetTopAverageMoviesPos...");
         int num = 3;
         int[] tmpMostRatedUsers = {205, 204, 203};
-
+        for (int i = 0; i < 5; i++){
+            System.out.println(stores.getRatings().getTopAverageRatedMovies(5)[i]);
+        }
         assertArrayEquals(tmpMostRatedUsers, stores.getRatings().getTopAverageRatedMovies(num), "Incorrect values returned.");
 
     }
@@ -322,6 +358,42 @@ public class RatingsTest {
     @Test void testSize(){
         assertEquals(15, stores.getRatings().size(), "Incorrect size.");
     }
+
+    // CUSTOM TESTS
+
+
+    // @Test
+    // void testCorrectAverageRating() {
+    //     System.out.println("\nStarting testCorrectAverageRating...");
+    //     float expectedAvg = (0.1f + 2.2f + 1.3f + 4.4f + 3.5f) / 5;
+    //     float actualAvg = stores.getRatings().getMovieAverageRating(201);
+    //     assertEquals(expectedAvg, actualAvg, 0.01, "The average rating calculation should be accurate." + actualAvg);
+    // }
     
-    
+    // @Test
+    // public void testHashMapValuesMethod() {
+    //     System.out.println("\nStarting testHashMapValuesMethod...");
+
+    //     // Setup a temporary HashMap to test the values method directly
+    //     HashMap<Integer, Float> testHashMap = new HashMap<>();
+    //     testHashMap.put(1, 1.0f);
+    //     testHashMap.put(2, 2.0f);
+    //     testHashMap.put(3, 3.0f);
+
+    //     // Expected values array
+    //     float[] expectedValues = {1.0f, 2.0f, 3.0f};
+
+    //     // Actual values from the test HashMap
+    //     float[] actualValues = testHashMap.values();
+
+    //     // Sort both arrays to ensure the order is not affecting the equality check
+    //     Arrays.sort(expectedValues);
+    //     Arrays.sort(actualValues);
+
+    //     // Assertion
+    //     assertArrayEquals(expectedValues, actualValues, "The values array does not match the expected values.");
+    // }
+
 }
+
+

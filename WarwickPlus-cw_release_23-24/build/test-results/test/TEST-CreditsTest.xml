@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CreditsTest" tests="37" skipped="0" failures="30" errors="0" timestamp="2024-02-12T22:47:57" hostname="HOMEWORK-GAMING" time="0.09">
+<testsuite name="CreditsTest" tests="37" skipped="0" failures="30" errors="0" timestamp="2024-02-14T20:26:36" hostname="HOMEWORK-GAMING" time="0.071">
   <properties/>
   <testcase name="testAddNeg()" classname="CreditsTest" time="0.01"/>
   <testcase name="testAddPos()" classname="CreditsTest" time="0.005">
@@ -183,7 +183,7 @@
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testFindCastPos()" classname="CreditsTest" time="0.004">
+  <testcase name="testFindCastPos()" classname="CreditsTest" time="0.002">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at CreditsTest.testFindCastPos(CreditsTest.java:477)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -272,7 +272,7 @@
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testFindCrewNeg()" classname="CreditsTest" time="0.002">
+  <testcase name="testFindCrewNeg()" classname="CreditsTest" time="0.001">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at CreditsTest.testFindCrewNeg(CreditsTest.java:519)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -635,7 +635,7 @@
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetCastNeg()" classname="CreditsTest" time="0.001"/>
+  <testcase name="testGetCastNeg()" classname="CreditsTest" time="0.0"/>
   <testcase name="testGetCastPos()" classname="CreditsTest" time="0.001">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at CreditsTest.testGetCastPos(CreditsTest.java:148)
@@ -1185,7 +1185,7 @@
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetFilmCastNeg()" classname="CreditsTest" time="0.001">
+  <testcase name="testGetFilmCastNeg()" classname="CreditsTest" time="0.002">
     <failure message="org.opentest4j.AssertionFailedError: There should be no cast members for a film that does not exist in the store ==&gt; actual array was &lt;null&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: There should be no cast members for a film that does not exist in the store ==&gt; actual array was &lt;null&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
 	at app//org.junit.jupiter.api.AssertArrayEquals.failActualArrayIsNull(AssertArrayEquals.java:413)
@@ -1280,7 +1280,7 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetFilmCastPos()" classname="CreditsTest" time="0.0">
+  <testcase name="testGetFilmCastPos()" classname="CreditsTest" time="0.001">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at CreditsTest.testGetFilmCastPos(CreditsTest.java:234)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -1737,8 +1737,8 @@
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetNumCastCreditsNeg()" classname="CreditsTest" time="0.001"/>
-  <testcase name="testGetNumCastCreditsPos()" classname="CreditsTest" time="0.002">
+  <testcase name="testGetNumCastCreditsNeg()" classname="CreditsTest" time="0.002"/>
+  <testcase name="testGetNumCastCreditsPos()" classname="CreditsTest" time="0.001">
     <failure message="org.opentest4j.AssertionFailedError: The value is incorrect ==&gt; expected: &lt;3&gt; but was: &lt;-1&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: The value is incorrect ==&gt; expected: &lt;3&gt; but was: &lt;-1&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -1927,7 +1927,7 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetUniqueCastPos()" classname="CreditsTest" time="0.003">
+  <testcase name="testGetUniqueCastPos()" classname="CreditsTest" time="0.001">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at CreditsTest.testGetUniqueCastPos(CreditsTest.java:407)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -2016,7 +2016,7 @@
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetUniqueCrewNeg()" classname="CreditsTest" time="0.002">
+  <testcase name="testGetUniqueCrewNeg()" classname="CreditsTest" time="0.001">
     <failure message="org.opentest4j.AssertionFailedError: Should return empty array if there is nothing there. ==&gt; actual array was &lt;null&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Should return empty array if there is nothing there. ==&gt; actual array was &lt;null&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
 	at app//org.junit.jupiter.api.AssertArrayEquals.failActualArrayIsNull(AssertArrayEquals.java:413)
@@ -2111,7 +2111,7 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetUniqueCrewPos()" classname="CreditsTest" time="0.002">
+  <testcase name="testGetUniqueCrewPos()" classname="CreditsTest" time="0.0">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at CreditsTest.testGetUniqueCrewPos(CreditsTest.java:442)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -2201,7 +2201,7 @@
 </failure>
   </testcase>
   <testcase name="testRemoveNeg()" classname="CreditsTest" time="0.0"/>
-  <testcase name="testRemovePos()" classname="CreditsTest" time="0.004">
+  <testcase name="testRemovePos()" classname="CreditsTest" time="0.001">
     <failure message="org.opentest4j.AssertionFailedError: Removed credit not returning true. ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Removed credit not returning true. ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:40)
@@ -2293,7 +2293,7 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testRemovePosValues()" classname="CreditsTest" time="0.005">
+  <testcase name="testRemovePosValues()" classname="CreditsTest" time="0.001">
     <failure message="org.opentest4j.AssertionFailedError: The IDs according to getFilmCast is not as expected after removal, this could be an issue with remove() or an issue with getFilmCast(). ==&gt; actual array was &lt;null&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: The IDs according to getFilmCast is not as expected after removal, this could be an issue with remove() or an issue with getFilmCast(). ==&gt; actual array was &lt;null&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
 	at app//org.junit.jupiter.api.AssertArrayEquals.failActualArrayIsNull(AssertArrayEquals.java:413)
@@ -2481,7 +2481,7 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testSizeOfCastNeg()" classname="CreditsTest" time="0.0"/>
+  <testcase name="testSizeOfCastNeg()" classname="CreditsTest" time="0.001"/>
   <testcase name="testSizeOfCastPos()" classname="CreditsTest" time="0.001">
     <failure message="org.opentest4j.AssertionFailedError: Incorrect value returned. ==&gt; expected: &lt;1&gt; but was: &lt;-1&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Incorrect value returned. ==&gt; expected: &lt;1&gt; but was: &lt;-1&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
@@ -2575,8 +2575,8 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testSizeOfCrewNeg()" classname="CreditsTest" time="0.002"/>
-  <testcase name="testSizeOfCrewPos()" classname="CreditsTest" time="0.004">
+  <testcase name="testSizeOfCrewNeg()" classname="CreditsTest" time="0.0"/>
+  <testcase name="testSizeOfCrewPos()" classname="CreditsTest" time="0.001">
     <failure message="org.opentest4j.AssertionFailedError: Incorrect value returned. ==&gt; expected: &lt;1&gt; but was: &lt;-1&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Incorrect value returned. ==&gt; expected: &lt;1&gt; but was: &lt;-1&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
