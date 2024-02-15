@@ -1,5 +1,6 @@
 package structures;
 
+import stores.Movies.MovieInfoData;
 
 public class HashMap<K, V> {
 
@@ -19,6 +20,8 @@ public class HashMap<K, V> {
     private int size;
     private int capacity;
     private final double loadFactor = 0.75;
+    private int[] primes = {2, 5, 11, 23, 47, 97, 197, 397, 797, 1597, 3203, 6421, 12853, 25717, 51437, 102877, 205759, 411527, 823117, 1646237, 3292489, 6584983, 13169977, 26339969, 52679969, 105359939, 210719881, 421439783, 842879579, 1685759167};
+    private int primecount = 0;
 
     @SuppressWarnings("unchecked")
     public HashMap() {
@@ -29,34 +32,18 @@ public class HashMap<K, V> {
     public int hash(K key) {
         int h = key.hashCode();
         if (h == Integer.MIN_VALUE) h = 0;  
-        h ^= (h >>> 20) ^ (h >>> 12);  // Mix the bits of the hashcode
+        h ^= (h >>> 20) ^ (h >>> 12); 
         h = h ^ (h >>> 7) ^ (h >>> 4);
         return Math.abs(h) % capacity;
     }
 
     private void resize() {
-        int newCapacity = 0; 
-        switch(capacity) {
-            case 16:
-                newCapacity = 29;
-                break;
-            case 29: 
-                newCapacity = 23503;
-                break;
-            case 23503:
-              newCapacity = 31357;
-              break;
-            case 31357:
-              newCapacity = 41813;
-              break;
-            default:
-              newCapacity = capacity/4*3;
-              break;
-        }   // order does not need to be preserved when resizing
-
+        int newCapacity = primes[primecount];
+        primecount++;
+        
         @SuppressWarnings("unchecked")
         Entry<K, V>[] tempMap = new Entry[newCapacity];
-
+    
         for (Entry<K, V> entry : map) {
             while (entry != null) {
                 int newIndex = Math.abs(entry.key.hashCode()) % newCapacity;
@@ -66,11 +53,11 @@ public class HashMap<K, V> {
                 entry = nextEntry;
             }
         }
-
+    
         map = tempMap;
         this.capacity = newCapacity;
     }
-    // returns false if value was replaced
+
     public boolean put(K key, V value) {
         if ((size + 1) >= capacity * loadFactor) {
             resize();
@@ -178,7 +165,18 @@ public class HashMap<K, V> {
         return keyListArray;
     }
 
-    
+    public MovieInfoData[] movieInfoList(){
+        MovieInfoData[] movieInfoArray = new MovieInfoData[size];
+        int i = 0;
+        
+        for (Entry<K, V> entry : map) {
+            while (entry != null) {
+                movieInfoArray[i++] = (MovieInfoData) entry.value;
+                entry = entry.next;
+            }
+        }
+        return movieInfoArray;
+    }
     
 }
 

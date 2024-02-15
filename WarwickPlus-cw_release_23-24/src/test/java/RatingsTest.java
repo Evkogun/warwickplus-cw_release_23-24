@@ -2,13 +2,11 @@ import stores.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.TestInstance;
 import static org.junit.jupiter.api.Assertions.*;
-import structures.HashMap;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class RatingsTest {
@@ -159,22 +157,22 @@ public class RatingsTest {
 
     
     
-    // /**
-    //  * Correct values for movie 201 are 0.1f, 2.2f, 1.3f, 4.4f, 3.5f.
-    //  */
-    // @Test void testGetMovieRatingsPos1(){
+    /**
+     * Correct values for movie 201 are 0.1f, 2.2f, 1.3f, 4.4f, 3.5f.
+     */
+    @Test void testGetMovieRatingsPos1(){
 
-    //     System.out.println("\nStarting testGetMovieRatingsPos...");
+        System.out.println("\nStarting testGetMovieRatingsPos...");
 
-    //     float[] tmpRatings = {0.1f, 2.2f, 1.3f, 3.5f, 4.4f};
-    //     float[] ratings = stores.getRatings().getMovieRatings(201);
-    //     for (int i = 0; i < ratings.length; i++) {
-    //         System.out.println(ratings[i]);
-    //     }
-    //     //System.out.println(stores.getRatings().getUserRatings(101)[3]);
-    //     //stores.getRatings().add(108, 201, 0.1f, LocalDateTime.of(1989, 1, 1, 0, 0));
-    //     assertTrue(checkContentsOfArray(tmpRatings, stores.getRatings().getMovieRatings(201)), "Not returning correct ratings for movie." );
-    // }
+        float[] tmpRatings = {0.1f, 2.2f, 1.3f, 3.5f, 4.4f};
+        float[] ratings = stores.getRatings().getMovieRatings(201);
+        for (int i = 0; i < ratings.length; i++) {
+            System.out.println(ratings[i]);
+        }
+        //System.out.println(stores.getRatings().getUserRatings(101)[3]);
+        //stores.getRatings().add(108, 201, 0.1f, LocalDateTime.of(1989, 1, 1, 0, 0));
+        assertTrue(checkContentsOfArray(tmpRatings, stores.getRatings().getMovieRatings(201)), "Not returning correct ratings for movie." );
+    }
 
     /**
      * Correct values for movie 201 are 0.1f, 2.2f, 1.3f, 4.4f, 3.5f.

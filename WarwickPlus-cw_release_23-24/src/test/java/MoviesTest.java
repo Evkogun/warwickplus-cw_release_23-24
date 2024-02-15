@@ -516,7 +516,6 @@ class MoviesTest {
 
         int[] expected = {1};
         int[] result = stores.getMovies().getAllIDsReleasedInRange(LocalDate.of(1999, 12, 31), LocalDate.of(2000, 12, 31));
-
         assertTrue(checkContentsOfArray(expected, result), "The list of IDs does not match what is expected");
     }
 
@@ -529,7 +528,7 @@ class MoviesTest {
 
         int[] expected = {};
         int[] result = stores.getMovies().getAllIDsReleasedInRange(LocalDate.of(1900, 1, 1),
-                LocalDate.of(1999, 12, 31));
+        LocalDate.of(1999, 12, 31));
 
         assertTrue(checkContentsOfArray(expected, result), "The list of IDs does not match what is expected");
     }
