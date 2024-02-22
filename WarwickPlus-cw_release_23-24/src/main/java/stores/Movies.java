@@ -51,11 +51,11 @@ public class Movies implements IMovies{
      */
     @Override
     public boolean add(int id, String title, String originalTitle, String overview, String tagline, String status, Genre[] genres, LocalDate release, long budget, long revenue, String[] languages, String originalLanguage, double runtime, String homepage, boolean adult, boolean video, String poster) {
-
         MovieInfoData movieInfoTemp = new MovieInfoData(id, title, originalTitle, overview, tagline, status, genres, release, budget, revenue, languages, originalLanguage, runtime, homepage, adult, video, poster);
+        if (!movieInfo.put(id, movieInfoTemp)) return false;
         timeTreeMap.put(release, id);
 
-        return movieInfo.put(id, movieInfoTemp);
+        return true;
     }
 
     /**
@@ -70,7 +70,9 @@ public class Movies implements IMovies{
         if (movieInfo.containsKey(id)) {
             LocalDate releaseDate = movieInfo.get(id).release;
             LinkedList<Integer> movieIds = timeTreeMap.take(releaseDate);
-            movieIds.remove(id); 
+            if (movieIds != null && movieIds.size > 0) {
+                movieIds.remove(id); 
+            }
             movieInfo.take(id); 
             return true;
         }
@@ -101,13 +103,12 @@ public class Movies implements IMovies{
         if (timeTreeMap == null) {
             return new int[0];
         }
-        LinkedList<Integer> movieIdList = timeTreeMap.getMovieIdsInRange(start.plusDays(1), end.minusDays(1)); // Adjust the range to exclude start and end dates
-        if (movieIdList == null) {
+        LinkedList<Integer> movieIdList = timeTreeMap.getMovieIdsInRange(start, end);
+        if (movieIdList == null || movieIdList.size == 0) {
             return new int[0];
         }
         return movieIdList.getValues();
     }
-    
 
     /**
      * Gets the title of a particular film, given the ID number of that film
@@ -371,11 +372,15 @@ public class Movies implements IMovies{
         if (movie == null) {
             return false; 
         }
-        if (collectionInfo.get(collectionID) == null) {
-            CollectionData collection = new CollectionData(filmID, collectionName, collectionPosterPath, collectionBackdropPath);
-            collectionInfo.put(collectionID, collection); 
+        CollectionData collection = collectionInfo.get(collectionID);
+        if (collection == null) {
+            collection = new CollectionData(filmID, collectionName, collectionPosterPath, collectionBackdropPath);
+            collectionInfo.put(collectionID, collection);
         } else {
-            if (!collectionInfo.get(collectionID).filmAdd(filmID)) return false;
+            LinkedList<Integer> filmList = collection.filmStore;
+            if (filmList == null) {
+                collection.filmAdd(filmID);
+            }
         }
         movie.collectionID = collectionID; 
         return true;
@@ -392,8 +397,11 @@ public class Movies implements IMovies{
      */
     @Override
     public int[] getFilmsInCollection(int collectionID) {
-        if (collectionInfo.get(collectionID) == null) return new int[0];
-        return collectionInfo.get(collectionID).filmStore.getValues();
+        CollectionData collectionData = collectionInfo.get(collectionID);
+        if (collectionData == null || collectionData.filmStore == null || collectionData.filmStore.size == 0) {
+            return new int[0];
+        }
+        return collectionData.filmStore.getValues();
     }
 
     /**
@@ -581,7 +589,7 @@ public class Movies implements IMovies{
     @Override
     public int[] findFilms(String searchTerm) {
         MovieInfoData[] movieStore = movieInfo.movieInfoList();
-        LinkedList<Integer> matchingMovieIds = new LinkedList<>(0);
+        LinkedList<Integer> matchingMovieIds = new LinkedList<>();
         
         for (int i = 0; i < movieStore.length; i++){
             if (movieStore[i].title != null && movieStore[i].title.toLowerCase().contains(searchTerm.toLowerCase())){
@@ -589,7 +597,7 @@ public class Movies implements IMovies{
             }
         }
 
-        if (matchingMovieIds.size == 1 && matchingMovieIds.element == 0) {
+        if (matchingMovieIds.size == 0) {
             return new int[0];
         }
 
@@ -659,10 +667,12 @@ public class Movies implements IMovies{
             this.imdbID = null;
             this.popularity = 0;
         }
+        
 
         public void productionCompanyAdd(Company company){
             if (productionCompanyList == null) {
-                productionCompanyList = new LinkedList<>(company);
+                productionCompanyList = new LinkedList<>();
+                productionCompanyList.add(company);
             } 
             else {
                 LinkedList<Company> current = productionCompanyList;
@@ -682,7 +692,8 @@ public class Movies implements IMovies{
 
         public void productionCountryAdd(String country){
             if (productionCountryList == null) {
-                productionCountryList = new LinkedList<>(country);
+                productionCountryList = new LinkedList<>();
+                productionCountryList.add(country);
             } 
             else {
                 LinkedList<String> current = productionCountryList;
@@ -708,7 +719,8 @@ public class Movies implements IMovies{
         private String collectionBackdropPath;
     
         public CollectionData(int filmID, String collectionName, String collectionPosterPath, String collectionBackdropPath) {
-            this.filmStore = new LinkedList<>(filmID);
+            this.filmStore = new LinkedList<>();
+            filmStore.add(filmID);
             this.collectionName = collectionName;
             this.collectionPosterPath = collectionPosterPath;
             this.collectionBackdropPath = collectionBackdropPath;

@@ -321,6 +321,8 @@ public class CreditsTest {
 
         int[] tmpFilmIDs = {201, 202, 204};
         int[] testFilmIDs = manyCreditsStores.getCredits().getCrewFilms(1);
+        
+        System.out.println(testFilmIDs[0]);
         Arrays.sort(testFilmIDs);
 
         assertArrayEquals(tmpFilmIDs, testFilmIDs, "Incorrect values returned.");
@@ -487,7 +489,7 @@ public class CreditsTest {
     @Test void testFindCastNeg(){
 
         System.out.println("\nStarting testFindCastNeg...");
-
+        
         assertEquals(0, manyCreditsStores.getCredits().findCast("Unreasonably long check").length, "Finding Cast where there are not.");
 
     }
@@ -577,7 +579,7 @@ public class CreditsTest {
      * The cast member 1 should have 3 credits
      */
     @Test void testGetNumCastCreditsPos() {
-        System.out.println("\nStarting testGetNumCastCreditsPos...");
+        System.out.println("\nStarting testGetNumCastCreditsPos..." + manyCreditsStores.getCredits().getNumCastCredits(1));
 
         assertEquals(3, manyCreditsStores.getCredits().getNumCastCredits(1), "The value is incorrect");
     }

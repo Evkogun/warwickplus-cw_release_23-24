@@ -123,16 +123,16 @@ public class RatingsTest {
      */
     @Test void testRemovePos() {
         System.out.println("\nStarting testRemovePos...");
-        assertFalse(stores.getRatings().remove(101, 201), "Data should be able to be removed as the user and movie combination exists");
+        assertTrue(stores.getRatings().remove(101, 201), "Data should be able to be removed as the user and movie combination exists");
     }
 
     /**
      * Correct value for removing a unknown rating is FALSE
      */
     @Test
-    void testRemoveNeg() {
+    void testRemoveNeg1() {
         System.out.println("\nStarting testRemoveNeg...");
-        assertTrue(stores.getRatings().remove(106, 206), "Data should not be able to be removed as unique user and movie ID combination is not in the data structure");
+        assertFalse(stores.getRatings().remove(106, 206), "Data should not be able to be removed as unique user and movie ID combination is not in the data structure");
     }
 
     /**
@@ -174,22 +174,22 @@ public class RatingsTest {
         assertTrue(checkContentsOfArray(tmpRatings, stores.getRatings().getMovieRatings(201)), "Not returning correct ratings for movie." );
     }
 
-    /**
-     * Correct values for movie 201 are 0.1f, 2.2f, 1.3f, 4.4f, 3.5f.
-     */
-    @Test void testGetMovieRatingsPos(){
+    // /**
+    //  * Correct values for movie 201 are 0.1f, 2.2f, 1.3f, 4.4f, 3.5f.
+    //  */
+    // @Test void testGetMovieRatingsPos(){
 
-        System.out.println("\nStarting testGetMovieRatingsPos...");
+    //     System.out.println("\nStarting testGetMovieRatingsPos...");
 
-        float[] tmpRatings = {0.1f, 2.2f, 1.3f, 3.5f, 4.4f};
-        float[] ratings = stores.getRatings().getMovieRatings(201);
-        for (int i = 0; i < ratings.length; i++) {
-            System.out.println(ratings[i]);
-        }
-        //System.out.println(stores.getRatings().getUserRatings(101)[3]);
-        //stores.getRatings().add(108, 201, 0.1f, LocalDateTime.of(1989, 1, 1, 0, 0));
-        assertTrue(checkContentsOfArray(tmpRatings, stores.getRatings().getMovieRatings(201)), "Not returning correct ratings for movie." );
-    }
+    //     float[] tmpRatings = {0.1f, 2.2f, 1.3f, 3.5f, 4.4f};
+    //     float[] ratings = stores.getRatings().getMovieRatings(201);
+    //     for (int i = 0; i < ratings.length; i++) {
+    //         System.out.println(ratings[i]);
+    //     }
+    //     //System.out.println(stores.getRatings().getUserRatings(101)[3]);
+    //     //stores.getRatings().add(108, 201, 0.1f, LocalDateTime.of(1989, 1, 1, 0, 0));
+    //     assertTrue(checkContentsOfArray(tmpRatings, stores.getRatings().getMovieRatings(201)), "Not returning correct ratings for movie." );
+    // }
 
 
     /**

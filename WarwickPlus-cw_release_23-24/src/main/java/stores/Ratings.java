@@ -39,19 +39,13 @@ public class Ratings implements IRatings {
      */
 
     @Override
-    public boolean add(int userid, int movieid, float rating, LocalDateTime timestamp) {
-
-        if (rating < 0 || rating > 5) {
-            throw new IllegalArgumentException("Rating must be between 0 and 5");
-        }
-    
+    public boolean add(int userid, int movieid, float rating, LocalDateTime timestamp) {    
         HashMap<Integer, Float> userRatings = userRatingsMap.get(userid);
         if (userRatings == null) {
             userRatings = new HashMap<>();
             userRatingsMap.put(userid, userRatings);
         }
-        boolean addedNewRating = userRatings.put(movieid, rating);
-        
+        if (!userRatings.put(movieid, rating)) return false;
         RatingInfo movieRatingInfo = movieRatingsMap.get(movieid);
         if (movieRatingInfo == null) {
             movieRatingInfo = new RatingInfo();
@@ -60,7 +54,7 @@ public class Ratings implements IRatings {
         }
         movieRatingInfo.addRating(rating, userid);
 
-        return addedNewRating;
+        return true;
     }
 
     
@@ -77,7 +71,7 @@ public class Ratings implements IRatings {
     public boolean remove(int userid, int movieid) {
         boolean removedFromUserMap = false;
         HashMap<Integer, Float> userRatings = userRatingsMap.get(userid);
-        if (userRatings != null) {
+        if (userRatings != null && !userRatings.isEmpty()) {
             Float rating = userRatings.take(movieid);
             removedFromUserMap = (rating != null);
     
@@ -88,7 +82,7 @@ public class Ratings implements IRatings {
     
         boolean removedFromMovieMap = false;
         RatingInfo movieRatingInfo = movieRatingsMap.get(movieid);
-        if (movieRatingInfo != null) {
+        if (movieRatingInfo != null && !movieRatingInfo.isEmpty()) {
             removedFromMovieMap = movieRatingInfo.removeRating(userid);
     
             if (movieRatingInfo.isEmpty()) {
@@ -96,7 +90,7 @@ public class Ratings implements IRatings {
             }
         }
     
-        return (removedFromUserMap || removedFromMovieMap);
+        return (removedFromUserMap && removedFromMovieMap);
     }
 
     /**
@@ -132,7 +126,7 @@ public class Ratings implements IRatings {
     @Override
     public float[] getMovieRatings(int movieid) {
         RatingInfo movieRatingInfo = movieRatingsMap.get(movieid);
-        if (movieRatingInfo == null) {
+        if (movieRatingInfo == null || movieRatingInfo.isEmpty()) {
             return new float[0];
         }
         return movieRatingInfo.getRatings().values();
@@ -201,7 +195,9 @@ public class Ratings implements IRatings {
      */
     @Override
     public int[] getMostRatedMovies(int num) {
+        if (movieRatingsMap == null || movieRatingsMap.isEmpty()) return new int[0];
         int[] keyListStore = movieRatingsMap.keyList();
+        if (keyListStore == null) return new int[0];
         if (movieRatings.length != keyListStore.length){
             this.movieRatings = new RatingInfo[keyListStore.length];
         }
@@ -228,7 +224,9 @@ public class Ratings implements IRatings {
      */
     @Override
     public int[] getMostRatedUsers(int num) {
+        if (userRatingsMap == null || userRatingsMap.isEmpty()) return new int[0];
         int[] keyListStore = userRatingsMap.keyList(); 
+        if (keyListStore == null) return new int[0];
         if (userRatings.length != keyListStore.length){
             this.userRatings = new UserRatingCount[keyListStore.length];
         }
@@ -252,7 +250,9 @@ public class Ratings implements IRatings {
      */
     @Override
     public int size() {
+        if (userRatingsMap == null) return 0;
         int[] sizeArr = userRatingsMap.keyList();
+        if (sizeArr == null) return 0;
         int totalSize = 0;
         for (int i = 0; i < sizeArr.length; i++){
             totalSize += userRatingsMap.get(sizeArr[i]).size();
@@ -290,7 +290,9 @@ public class Ratings implements IRatings {
      */
     @Override
     public int[] getTopAverageRatedMovies(int numResults) {
+        if (movieRatings == null) return new int[0];
         int[] keyListStore = movieRatingsMap.keyList();
+        if (keyListStore == null) return new int[0];
         if (movieRatings.length != keyListStore.length){
             this.movieRatings = new RatingInfo[keyListStore.length];
         }
