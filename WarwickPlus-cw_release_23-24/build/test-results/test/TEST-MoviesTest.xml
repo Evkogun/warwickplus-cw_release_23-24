@@ -1,100 +1,190 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="MoviesTest" tests="94" skipped="0" failures="0" errors="0" timestamp="2024-02-22T14:09:12" hostname="HOMEWORK-GAMING" time="0.128">
+<testsuite name="MoviesTest" tests="94" skipped="0" failures="1" errors="0" timestamp="2024-02-27T15:38:41" hostname="coalab-01" time="0.094">
   <properties/>
-  <testcase name="testAddNeg()" classname="MoviesTest" time="0.011"/>
+  <testcase name="testAddNeg()" classname="MoviesTest" time="0.015"/>
   <testcase name="testAddPos()" classname="MoviesTest" time="0.002"/>
-  <testcase name="testAddProductionCompanyNeg()" classname="MoviesTest" time="0.003"/>
+  <testcase name="testAddProductionCompanyNeg()" classname="MoviesTest" time="0.002"/>
   <testcase name="testAddProductionCompanyPos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testAddProductionCountryNeg()" classname="MoviesTest" time="0.002"/>
+  <testcase name="testAddProductionCountryNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testAddProductionCountryPos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testAddToCollectionNeg()" classname="MoviesTest" time="0.002"/>
-  <testcase name="testAddToCollectionPos()" classname="MoviesTest" time="0.002"/>
-  <testcase name="testAdultPos()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testAddToCollectionNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testAddToCollectionPos()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testAdultPos()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGenreNegID()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetAdultAll()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetAdultAll()" classname="MoviesTest" time="0.002"/>
   <testcase name="testGetAdultNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetAllIDs()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetAllIDsReleasedInRangeNeg()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetAllIDsReleasedInRangePos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetBudgetAll()" classname="MoviesTest" time="0.002"/>
+  <testcase name="testGetAllIDsReleasedInRangePos()" classname="MoviesTest" time="0.003">
+    <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
+	at structures.LinkedList.getValues(LinkedList.java:83)
+	at stores.Movies.getAllIDsReleasedInRange(Movies.java:116)
+	at MoviesTest.testGetAllIDsReleasedInRangePos(MoviesTest.java:518)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:688)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:149)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:140)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:84)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(ExecutableInvoker.java:115)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.lambda$invoke$0(ExecutableInvoker.java:105)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:104)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:98)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$6(TestMethodTestDescriptor.java:210)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:206)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:131)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:65)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:129)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:127)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:126)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:84)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:129)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:127)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:126)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:84)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:129)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:127)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:126)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:84)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:32)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:51)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:110)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:90)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:85)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:62)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94)
+	at com.sun.proxy.$Proxy2.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:193)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:129)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:100)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:60)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:113)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:65)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+</failure>
+  </testcase>
+  <testcase name="testGetBudgetAll()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetBudgetNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetBudgetPos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetCollectionBackdropNeg()" classname="MoviesTest" time="0.002"/>
-  <testcase name="testGetCollectionBackdropPos()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetCollectionBackdropNeg()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetCollectionBackdropPos()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGetCollectionIDNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetCollectionIDPos()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetCollectionNameNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetCollectionNamePos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetCollectionPosterNeg()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetCollectionPosterPos()" classname="MoviesTest" time="0.002"/>
-  <testcase name="testGetFilmsInCollectionNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetCollectionPosterNeg()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetCollectionPosterPos()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetFilmsInCollectionNeg()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGetFilmsInCollectionPos()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetGenreAll()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetGenrePos()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetHomepageAll()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetHomepageNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetHomepagePos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetIMDBNeg()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetIMDBPos()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetIMDBNeg()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetIMDBPos()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGetLanguagesMany()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGetLanguagesNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetLanguagesPos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetOriginalLanguageAll()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetOriginalLanguageNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetOriginalLanguageAll()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetOriginalLanguageNeg()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGetOriginalLanguagePos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetOriginalTitleAll()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetOriginalTitleAll()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetOriginalTitleNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetOriginalTitlePos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetOverviewAll()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetOverviewAll()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetOverviewNeg()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetOverviewPos()" classname="MoviesTest" time="0.002"/>
-  <testcase name="testGetPopularityEmpty()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetPopularityNeg()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetPopularityPos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetPosterAll()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetOverviewPos()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetPopularityEmpty()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetPopularityNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetPopularityPos()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetPosterAll()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGetPosterNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetPosterPos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetProductionCompanyNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetProductionCompanyNeg()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGetProductionCompanyPos()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetProductionCountriesNeg()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetProductionCountriesNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetProductionCountryPos()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetReleaseAll()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetReleaseAll()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGetReleaseNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetReleaseNegVal()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetReleasePos()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetReleasePos()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGetRevenueAll()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetRevenueNeg()" classname="MoviesTest" time="0.003"/>
-  <testcase name="testGetRevenuePos()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetRevenueNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetRevenuePos()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGetRuntimeAll()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetRuntimeNeg()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetRuntimePos()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetRuntimePos()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGetStatusAll()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetStatusNeg()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetStatusPos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetTaglineAll()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetTaglineNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetStatusNeg()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetStatusPos()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetTaglineAll()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetTaglineNeg()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGetTaglinePos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetTitleAll()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetTitleAll()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGetTitleNeg()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGetTitlePos()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetVideoAll()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetVideoNeg()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetVideoPos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetVoteAverageNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetVideoNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetVideoPos()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetVoteAverageNeg()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGetVoteAveragePos()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetVoteCountNeg()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetVoteCountPos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testRemoveNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetVoteCountNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetVoteCountPos()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testRemoveNeg()" classname="MoviesTest" time="0.0"/>
   <testcase name="testRemovePos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testSetIMDBNeg()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testSetIMDBPos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testSetPopularityNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testSetIMDBNeg()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testSetIMDBPos()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testSetPopularityNeg()" classname="MoviesTest" time="0.0"/>
   <testcase name="testSetPopularityPos()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testSetVoteNeg()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testSetVotePos()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testSetVoteNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testSetVotePos()" classname="MoviesTest" time="0.0"/>
   <testcase name="testSize()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testfindFilmsNeg()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testfindFilmsPos()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testfindFilmsNeg()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testfindFilmsPos()" classname="MoviesTest" time="0.001"/>
   <system-out><![CDATA[
 Starting testAddNeg...
 
@@ -123,8 +213,11 @@ Starting testGetAdultNeg...
 Starting testGetAllIDs...
 
 Starting testGetAllIDsReleasedInRangeNeg...
+0
 
 Starting testGetAllIDsReleasedInRangePos...
+1
+null
 
 Starting testGetBudgetAll...
 
@@ -158,7 +251,7 @@ Starting testGetGenreAll...
 Starting testGenrePos...
 0
 0
-[Lstores.Genre;@1fdf1c5
+[Lstores.Genre;@50f6ac94
 
 Starting testGetHomepageAll...
 

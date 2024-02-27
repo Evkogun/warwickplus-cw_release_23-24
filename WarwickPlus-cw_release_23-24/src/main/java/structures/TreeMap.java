@@ -129,6 +129,7 @@ public class TreeMap {
     public LinkedList<Integer> getMovieIdsInRange(LocalDate start, LocalDate end) {
         LinkedList<Integer> result = new LinkedList<>();
         getMovieIdsInRange(root, start, end, result);
+        result.next.size = result.size;
         return result.next;
     }
 

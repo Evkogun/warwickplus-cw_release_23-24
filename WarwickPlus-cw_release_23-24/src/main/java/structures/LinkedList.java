@@ -15,6 +15,7 @@ public class LinkedList<T> {
     }
 
     public boolean add(T newElement) {
+        
         if (this.size == 0) {
             this.element = newElement;
             this.size = 1;
