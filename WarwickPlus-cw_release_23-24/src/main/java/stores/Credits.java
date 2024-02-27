@@ -350,7 +350,7 @@ public class Credits implements ICredits{
      */
     @Override
     public Person[] getMostCastCredits(int numResults) {
-        if (castIDToCast.isEmpty()) return new Person[0];
+        if (castIDToCast.isEmpty() || castIDToFilmID.isEmpty()) return new Person[0];
         int[] castIDList = castIDToFilmID.keyList();
         CastCount[] mostCastCredits = new CastCount[castIDList.length];
         for (int i = 0; i < castIDList.length; i++){

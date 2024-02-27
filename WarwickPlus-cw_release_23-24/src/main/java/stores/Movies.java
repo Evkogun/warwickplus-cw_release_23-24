@@ -104,12 +104,12 @@ public class Movies implements IMovies{
             return new int[0];
         }
         LinkedList<Integer> movieIdList = timeTreeMap.getMovieIdsInRange(start, end);
-        LinkedList<Integer> temp = movieIdList;
-        System.out.println(movieIdList.size);
-        while (temp.next != null){
-            System.out.println(temp.element);
-            temp = temp.next;
-        }
+        // LinkedList<Integer> temp = movieIdList;
+        // System.out.println(movieIdList.size);
+        // while (temp.next != null){
+        //     System.out.println(temp.element);
+        //     temp = temp.next;
+        // }
         if (movieIdList == null || movieIdList.size == 0) {
             return new int[0];
         }
