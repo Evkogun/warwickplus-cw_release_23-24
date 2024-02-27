@@ -86,31 +86,30 @@ public class TreeMap {
         return node;
     }
 
-    public LinkedList<Integer> take(LocalDate key) {
-        MovieIdListHolder holder = new MovieIdListHolder();
-        root = take(root, key, holder);
-        return holder.movieIdList;
+    public void take(LocalDate key, Integer movieId) {
+        root = take(root, key, movieId);
     }
 
-    private class MovieIdListHolder {
-        LinkedList<Integer> movieIdList;
-    }
-
-    private Node take(Node node, LocalDate key, MovieIdListHolder holder) {
+    private Node take(Node node, LocalDate key, Integer movieId) {
         if (node == null) return null;
+
         int cmp = key.compareTo(node.key);
         if (cmp < 0) {
-            node.left = take(node.left, key, holder);
+            node.left = take(node.left, key, movieId);
         } else if (cmp > 0) {
-            node.right = take(node.right, key, holder);
+            node.right = take(node.right, key, movieId);
         } else {
-            holder.movieIdList = node.movieIds;
-            if (node.right == null) return node.left;
-            if (node.left == null) return node.right;
-            Node t = node;
-            node = min(t.right);
-            node.right = deleteMin(t.right);
-            node.left = t.left;
+            node.movieIds.remove(movieId);
+
+            if (node.movieIds.size == 0) {
+                if (node.left == null) return node.right;
+                if (node.right == null) return node.left;
+
+                Node t = node;
+                node = min(t.right); 
+                node.right = deleteMin(t.right);
+                node.left = t.left;
+            }
         }
         return balanceNode(node);
     }

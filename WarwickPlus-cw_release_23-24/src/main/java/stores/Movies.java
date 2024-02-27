@@ -69,10 +69,7 @@ public class Movies implements IMovies{
     public boolean remove(int id) {
         if (movieInfo.containsKey(id)) {
             LocalDate releaseDate = movieInfo.get(id).release;
-            LinkedList<Integer> movieIds = timeTreeMap.take(releaseDate);
-            if (movieIds != null && movieIds.size > 0) {
-                movieIds.remove(id); 
-            }
+            timeTreeMap.take(releaseDate, id);
             movieInfo.take(id); 
             return true;
         }
@@ -556,7 +553,7 @@ public class Movies implements IMovies{
     @Override
     public Company[] getProductionCompanies(int id) {
         if (movieInfo.get(id) == null) return null;
-        return movieInfo.get(id).productionCompanyList.getValuesCompany();
+        return movieInfo.get(id).productionCompanyList.getValuez(Company.class);
     }
 
     /**
@@ -570,7 +567,7 @@ public class Movies implements IMovies{
     @Override
     public String[] getProductionCountries(int id) {
         if (movieInfo.get(id) == null) return null;
-        return movieInfo.get(id).productionCountryList.getValuesCountry();
+        return movieInfo.get(id).productionCountryList.getValuez(String.class);
     }
 
     /**

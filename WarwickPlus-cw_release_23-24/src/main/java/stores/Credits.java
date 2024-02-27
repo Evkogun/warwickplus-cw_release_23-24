@@ -2,6 +2,7 @@ package stores;
 
 import structures.*;
 
+import java.util.Comparator;
 
 import interfaces.ICredits;
 
@@ -223,7 +224,7 @@ public class Credits implements ICredits{
                 results.add(temp[i]);
             }
         }
-        return results.getValuesPerson();
+        return results.getValuez(Person.class);
     }
 
     /**
@@ -243,7 +244,7 @@ public class Credits implements ICredits{
                 results.add(temp[i]);
             }
         }
-        return results.getValuesPerson();
+        return results.getValuez(Person.class);
     }
 
     /**
@@ -358,7 +359,10 @@ public class Credits implements ICredits{
             mostCastCredits[i] = new CastCount(castIDList[i], temp.size);
         }
         if (mostCastCredits.length < numResults) numResults = mostCastCredits.length;
-        sortMostCastCredits(mostCastCredits);
+        
+        Comparator<CastCount> moviesStarredCount = (o1, o2) -> Float.compare(o1.getMoviesStarred(), o2.getMoviesStarred());
+        Sort.genericSort(mostCastCredits, moviesStarredCount);
+
         Person[] returnArray = new Person[numResults];
         for(int i = 0; i < numResults; i++){
             returnArray[i] = uniqueCast.get(castIDToCast.get(mostCastCredits[i].castID));
@@ -415,43 +419,5 @@ public class Credits implements ICredits{
         public int getMoviesStarred(){
             return moviesStarred;
         }
-    }
-    
-
-    public static void sortMostCastCredits(CastCount[] array) {
-        if (array.length <= 1) {
-            return;
-        }
-
-        CastCount[] leftHalf = new CastCount[array.length / 2];
-        CastCount[] rightHalf = new CastCount[array.length - leftHalf.length];
-
-        System.arraycopy(array, 0, leftHalf, 0, leftHalf.length);
-        System.arraycopy(array, leftHalf.length, rightHalf, 0, rightHalf.length);
-
-        sortMostCastCredits(leftHalf);
-        sortMostCastCredits(rightHalf);
-
-        mostCastCreditsMerge(array, leftHalf, rightHalf);
-    }
-
-    private static void mostCastCreditsMerge(CastCount[] outputArray, CastCount[] leftHalf, CastCount[] rightHalf) {
-        int leftIndex = 0;
-        int rightIndex = 0;
-        int mergeIndex = 0;
-
-        while (leftIndex < leftHalf.length && rightIndex < rightHalf.length) {
-            if (leftHalf[leftIndex].getMoviesStarred() >= rightHalf[rightIndex].getMoviesStarred()) {
-                outputArray[mergeIndex] = leftHalf[leftIndex];
-                leftIndex++;
-            } else {
-                outputArray[mergeIndex] = rightHalf[rightIndex];
-                rightIndex++;
-            }
-            mergeIndex++;
-        }
-
-        System.arraycopy(leftHalf, leftIndex, outputArray, mergeIndex, leftHalf.length - leftIndex);
-        System.arraycopy(rightHalf, rightIndex, outputArray, mergeIndex, rightHalf.length - rightIndex);
     }
 }

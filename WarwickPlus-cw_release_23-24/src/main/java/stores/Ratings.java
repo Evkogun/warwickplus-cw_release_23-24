@@ -1,7 +1,7 @@
 package stores;
 
 import java.time.LocalDateTime;
-
+import java.util.Comparator;
 import interfaces.IRatings;
 import structures.*;
 
@@ -53,7 +53,6 @@ public class Ratings implements IRatings {
             movieRatingsMap.get(movieid).setMovieID(movieid);
         }
         movieRatingInfo.addRating(rating, userid);
-
         return true;
     }
 
@@ -89,7 +88,6 @@ public class Ratings implements IRatings {
                 movieRatingsMap.take(movieid);
             }
         }
-    
         return (removedFromUserMap && removedFromMovieMap);
     }
 
@@ -204,7 +202,8 @@ public class Ratings implements IRatings {
         for (int i = 0; i < keyListStore.length; i++){
             movieRatings[i] = movieRatingsMap.get(keyListStore[i]);
         }  
-        Sort.movieSort(movieRatings);
+        Comparator<RatingInfo> movieRatingCountComparator = (o1, o2) -> Float.compare(o1.getCount(), o2.getCount());
+        Sort.genericSort(movieRatings, movieRatingCountComparator);
 
         int[] returnArr = new int[num];
         for (int i = 0; i < num; i++){
@@ -233,7 +232,8 @@ public class Ratings implements IRatings {
         for (int i = 0; i < keyListStore.length; i++){
             userRatings[i] = new UserRatingCount(keyListStore[i], userRatingsMap.get(keyListStore[i]).size());
         }  
-        Sort.userSort(userRatings);
+        Comparator<UserRatingCount> userRatingCountComparator = (o1, o2) -> Float.compare(o1.getRating(), o2.getRating());
+        Sort.genericSort(userRatings, userRatingCountComparator);
 
         int[] returnArr = new int[num];
         for (int i = 0; i < num; i++){
@@ -299,7 +299,9 @@ public class Ratings implements IRatings {
         for (int i = 0; i < keyListStore.length; i++){
             movieRatings[i] = movieRatingsMap.get(keyListStore[i]);
         }  
-        Sort.movieSortRating(movieRatings);
+        
+        Comparator<RatingInfo> averageMovieRationsCountComparator = (o1, o2) -> Float.compare(o1.getAverageRating(), o2.getAverageRating());
+        Sort.genericSort(movieRatings, averageMovieRationsCountComparator);
 
         int[] returnArr = new int[numResults];
         for (int i = 0; i < numResults; i++){
@@ -390,116 +392,41 @@ class UserRatingCount {
 }
 
 class Sort {
-    public static void userSort(UserRatingCount[] array) {
+    @SuppressWarnings("unchecked")
+    public static <T> void genericSort(T[] array, Comparator<T> comparator) {
         if (array.length <= 1) {
             return;
         }
 
-        UserRatingCount[] leftHalf = new UserRatingCount[array.length / 2];
-        UserRatingCount[] rightHalf = new UserRatingCount[array.length - leftHalf.length];
+        T[] leftHalf = (T[]) new Object[array.length / 2];
+        T[] rightHalf = (T[]) new Object[array.length - leftHalf.length];
 
         System.arraycopy(array, 0, leftHalf, 0, leftHalf.length);
         System.arraycopy(array, leftHalf.length, rightHalf, 0, rightHalf.length);
 
-        userSort(leftHalf);
-        userSort(rightHalf);
+        genericSort(leftHalf, comparator);
+        genericSort(rightHalf, comparator);
 
-        userMerge(array, leftHalf, rightHalf);
+        genericMerge(array, leftHalf, rightHalf, comparator);
     }
 
-    private static void userMerge(UserRatingCount[] outputArray, UserRatingCount[] leftHalf, UserRatingCount[] rightHalf) {
+    private static <T> void genericMerge(T[] outputArray, T[] leftHalf, T[] rightHalf, Comparator<T> comparator) {
         int leftIndex = 0;
         int rightIndex = 0;
         int mergeIndex = 0;
 
         while (leftIndex < leftHalf.length && rightIndex < rightHalf.length) {
-            if (leftHalf[leftIndex].getRating() >= rightHalf[rightIndex].getRating()) {
-                outputArray[mergeIndex] = leftHalf[leftIndex];
-                leftIndex++;
+            if (comparator.compare(leftHalf[leftIndex], rightHalf[rightIndex]) >= 0) {
+                outputArray[mergeIndex++] = leftHalf[leftIndex++];
             } else {
-                outputArray[mergeIndex] = rightHalf[rightIndex];
-                rightIndex++;
+                outputArray[mergeIndex++] = rightHalf[rightIndex++];
             }
-            mergeIndex++;
         }
 
         System.arraycopy(leftHalf, leftIndex, outputArray, mergeIndex, leftHalf.length - leftIndex);
         System.arraycopy(rightHalf, rightIndex, outputArray, mergeIndex, rightHalf.length - rightIndex);
     }
-
-    public static void movieSort(RatingInfo[] array) {
-        if (array.length <= 1) {
-            return;
-        }
-
-        RatingInfo[] leftHalf = new RatingInfo[array.length / 2];
-        RatingInfo[] rightHalf = new RatingInfo[array.length - leftHalf.length];
-
-        System.arraycopy(array, 0, leftHalf, 0, leftHalf.length);
-        System.arraycopy(array, leftHalf.length, rightHalf, 0, rightHalf.length);
-
-        movieSort(leftHalf);
-        movieSort(rightHalf);
-
-        movieMerge(array, leftHalf, rightHalf);
-    }
-
-    private static void movieMerge(RatingInfo[] outputArray, RatingInfo[] leftHalf, RatingInfo[] rightHalf) {
-        int leftIndex = 0;
-        int rightIndex = 0;
-        int mergeIndex = 0;
-
-        while (leftIndex < leftHalf.length && rightIndex < rightHalf.length) {
-            if (leftHalf[leftIndex].getCount() >= rightHalf[rightIndex].getCount()) {
-                outputArray[mergeIndex] = leftHalf[leftIndex];
-                leftIndex++;
-            } else {
-                outputArray[mergeIndex] = rightHalf[rightIndex];
-                rightIndex++;
-            }
-            mergeIndex++;
-        }
-
-        System.arraycopy(leftHalf, leftIndex, outputArray, mergeIndex, leftHalf.length - leftIndex);
-        System.arraycopy(rightHalf, rightIndex, outputArray, mergeIndex, rightHalf.length - rightIndex);
-    }
-
-    public static void movieSortRating(RatingInfo[] array) {
-        if (array.length <= 1) {
-            return;
-        }
-
-        RatingInfo[] leftHalf = new RatingInfo[array.length / 2];
-        RatingInfo[] rightHalf = new RatingInfo[array.length - leftHalf.length];
-
-        System.arraycopy(array, 0, leftHalf, 0, leftHalf.length);
-        System.arraycopy(array, leftHalf.length, rightHalf, 0, rightHalf.length);
-
-        movieSortRating(leftHalf);
-        movieSortRating(rightHalf);
-
-        movieMergeRating(array, leftHalf, rightHalf);
-    }
-
-    private static void movieMergeRating(RatingInfo[] outputArray, RatingInfo[] leftHalf, RatingInfo[] rightHalf) {
-        int leftIndex = 0;
-        int rightIndex = 0;
-        int mergeIndex = 0;
-
-        while (leftIndex < leftHalf.length && rightIndex < rightHalf.length) {
-            if (leftHalf[leftIndex].getAverageRating() >= rightHalf[rightIndex].getAverageRating()) {
-                outputArray[mergeIndex] = leftHalf[leftIndex];
-                leftIndex++;
-            } else {
-                outputArray[mergeIndex] = rightHalf[rightIndex];
-                rightIndex++;
-            }
-            mergeIndex++;
-        }
-
-        System.arraycopy(leftHalf, leftIndex, outputArray, mergeIndex, leftHalf.length - leftIndex);
-        System.arraycopy(rightHalf, rightIndex, outputArray, mergeIndex, rightHalf.length - rightIndex);
-    }
+    
 }
 
 

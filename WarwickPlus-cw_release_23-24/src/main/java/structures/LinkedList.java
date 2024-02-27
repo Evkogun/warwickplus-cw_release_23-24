@@ -1,6 +1,5 @@
 package structures;
-import stores.Person;
-import stores.Company;
+import java.lang.reflect.Array;
 
 public class LinkedList<T> {
 
@@ -87,37 +86,23 @@ public class LinkedList<T> {
         return values;
     }
 
-    public Company[] getValuesCompany() {
-        Company[] values = new Company[this.size];
-        LinkedList<T> current = this;
-        int index = 0;
-        while (current != null) {
-            values[index++] = (Company) current.element;
-            current = current.next;
+    public <E> E[] getValuez(Class<E> clazz) {
+        if (this.size == 0) {
+            @SuppressWarnings("unchecked")
+            E[] emptyArray = (E[]) Array.newInstance(clazz, 0);
+            return emptyArray;
         }
-        return values;
-    }
 
-    public String[] getValuesCountry() {
-        String[] values = new String[this.size];
-        LinkedList<T> current = this;
-        int index = 0;
-        while (current != null) {
-            values[index++] = (String) current.element;
-            current = current.next;
-        }
-        return values;
-    }
+        @SuppressWarnings("unchecked")
+        E[] values = (E[]) Array.newInstance(clazz, this.size);
 
-    public Person[] getValuesPerson() {
-        if (this.size == 0) return new Person[0];
-        Person[] values = new Person[this.size];
         LinkedList<T> current = this;
         int index = 0;
         while (current != null) {
-            values[index++] = (Person) current.element;
+            values[index++] = clazz.cast(current.element);
             current = current.next;
         }
+
         return values;
     }
 }
