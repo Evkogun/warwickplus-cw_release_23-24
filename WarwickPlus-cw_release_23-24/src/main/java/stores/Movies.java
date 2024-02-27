@@ -591,7 +591,7 @@ public class Movies implements IMovies{
      */
     @Override
     public int[] findFilms(String searchTerm) {
-        MovieInfoData[] movieStore = movieInfo.movieInfoList();
+        MovieInfoData[] movieStore = movieInfo.valuez(MovieInfoData.class);
         LinkedList<Integer> matchingMovieIds = new LinkedList<>();
         
         for (int i = 0; i < movieStore.length; i++){

@@ -1,9 +1,4 @@
 package structures;
-import stores.Person;
-
-
-import stores.Movies.MovieInfoData;
-
 public class HashMap<K, V> {
 
     private static class Entry<K, V> {
@@ -182,32 +177,19 @@ public class HashMap<K, V> {
         return keyListArray;
     }
 
-    public MovieInfoData[] movieInfoList(){
-        MovieInfoData[] movieInfoArray = new MovieInfoData[size];
+    @SuppressWarnings("unchecked")
+    public <T> T[] valuez(Class<T> clazz) {
+        T[] array = (T[]) java.lang.reflect.Array.newInstance(clazz, size);
         int i = 0;
-        
-        for (Entry<K, V> entry : map) {
-            while (entry != null) {
-                movieInfoArray[i++] = (MovieInfoData) entry.value;
-                entry = entry.next;
-            }
-        }
-        return movieInfoArray;
-    }
 
-    public Person[] valuesS() {            
-        if (size == 0) return new Person[0];
-        Person[] valuesArray = new Person[size];
-        int i = 0;
-    
         for (Entry<K, V> entry : map) {
             while (entry != null) {
-                valuesArray[i++] = (Person) entry.value;
+                array[i++] = clazz.cast(entry.value);
                 entry = entry.next;
             }
         }
-        
-        return valuesArray;
+
+        return array;
     }
 }
 

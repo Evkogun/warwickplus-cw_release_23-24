@@ -190,7 +190,7 @@ public class Credits implements ICredits{
         if (uniqueCast.isEmpty()) {
             return new Person[0]; 
         }
-        return uniqueCast.valuesS();
+        return uniqueCast.valuez(Person.class);
     }
 
     /**
@@ -204,7 +204,7 @@ public class Credits implements ICredits{
         if (uniqueCrew.isEmpty()) {
             return new Person[0]; 
         }
-        return uniqueCrew.valuesS();
+        return uniqueCrew.valuez(Person.class);
     }
 
     /**
@@ -217,7 +217,7 @@ public class Credits implements ICredits{
     @Override
     public Person[] findCast(String cast) {
         if (uniqueCast.isEmpty()) return new Person[0];
-        Person[] temp = uniqueCast.valuesS();
+        Person[] temp = uniqueCast.valuez(Person.class);
         LinkedList<Person> results = new LinkedList<>();
         for (int i = 0; i < temp.length; i++){
             if (temp[i].getName().toLowerCase().contains(cast.toLowerCase())){
@@ -237,7 +237,7 @@ public class Credits implements ICredits{
     @Override
     public Person[] findCrew(String crew) {
         if (uniqueCrew.isEmpty()) return new Person[0];
-        Person[] temp = uniqueCrew.valuesS();
+        Person[] temp = uniqueCrew.valuez(Person.class);
         LinkedList<Person> results = new LinkedList<>();
         for (int i = 0; i < temp.length; i++){
             if (temp[i].getName().toLowerCase().contains(crew.toLowerCase())){
