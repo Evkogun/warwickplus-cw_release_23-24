@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="RatingsTest" tests="21" skipped="0" failures="0" errors="0" timestamp="2024-02-27T21:34:15" hostname="HOMEWORK-GAMING" time="0.011">
+<testsuite name="RatingsTest" tests="21" skipped="0" failures="0" errors="0" timestamp="2024-03-04T16:58:12" hostname="HOMEWORK-GAMING" time="0.013">
   <properties/>
   <testcase name="testGetMovieRatingsPos1()" classname="RatingsTest" time="0.001"/>
   <testcase name="testSize()" classname="RatingsTest" time="0.0"/>
-  <testcase name="testGetMovieAverageRatingNeg()" classname="RatingsTest" time="0.0"/>
+  <testcase name="testGetMovieAverageRatingNeg()" classname="RatingsTest" time="0.001"/>
   <testcase name="testGetMovieAverageRatingPos()" classname="RatingsTest" time="0.001"/>
   <testcase name="testGetNumRatingsNeg()" classname="RatingsTest" time="0.0"/>
   <testcase name="testGetNumRatingsPos()" classname="RatingsTest" time="0.001"/>
-  <testcase name="testGetMostRatedUsersNeg()" classname="RatingsTest" time="0.0"/>
-  <testcase name="testGetMostRatedUsersPos()" classname="RatingsTest" time="0.001"/>
+  <testcase name="testGetMostRatedUsersNeg()" classname="RatingsTest" time="0.001"/>
+  <testcase name="testGetMostRatedUsersPos()" classname="RatingsTest" time="0.0"/>
   <testcase name="testGetUserRatingsNeg()" classname="RatingsTest" time="0.0"/>
   <testcase name="testGetUserRatingsPos()" classname="RatingsTest" time="0.0"/>
   <testcase name="testRemoveNeg1()" classname="RatingsTest" time="0.0"/>
   <testcase name="testGetUserAverageRatingNeg()" classname="RatingsTest" time="0.0"/>
   <testcase name="testGetUserAverageRatingPos()" classname="RatingsTest" time="0.001"/>
-  <testcase name="testGetTopAverageRatedMoviesNeg()" classname="RatingsTest" time="0.0"/>
-  <testcase name="testGetTopAverageRatedMoviesPos()" classname="RatingsTest" time="0.001"/>
-  <testcase name="testAddNeg()" classname="RatingsTest" time="0.0"/>
-  <testcase name="testAddPos()" classname="RatingsTest" time="0.001"/>
-  <testcase name="testSetAdd()" classname="RatingsTest" time="0.0"/>
+  <testcase name="testGetTopAverageRatedMoviesNeg()" classname="RatingsTest" time="0.001"/>
+  <testcase name="testGetTopAverageRatedMoviesPos()" classname="RatingsTest" time="0.0"/>
+  <testcase name="testAddNeg()" classname="RatingsTest" time="0.001"/>
+  <testcase name="testAddPos()" classname="RatingsTest" time="0.0"/>
+  <testcase name="testSetAdd()" classname="RatingsTest" time="0.001"/>
   <testcase name="testSetPos()" classname="RatingsTest" time="0.0"/>
   <testcase name="testRemovePos()" classname="RatingsTest" time="0.0"/>
   <testcase name="testGetMovieRatingsNeg()" classname="RatingsTest" time="0.0"/>
