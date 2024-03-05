@@ -7,10 +7,11 @@ import structures.*;
 
 public class Ratings implements IRatings {
     Stores stores;
-    private HashMap<Integer, HashMap<Integer, Float>> userRatingsMap;
+    private HashMap<Integer, RatingInfo> userRatingsMap;
     private HashMap<Integer, RatingInfo> movieRatingsMap;
-    private UserRatingCount[] userRatings;
     private RatingInfo[] movieRatings;
+    private RatingInfo[] userRatings;
+    private int size;
 
     /**
      * The constructor for the Ratings data store. This is where you should
@@ -22,8 +23,9 @@ public class Ratings implements IRatings {
         this.stores = stores;
         userRatingsMap = new HashMap<>();
         movieRatingsMap = new HashMap<>();
-        userRatings = new UserRatingCount[0];
         movieRatings = new RatingInfo[0];
+        userRatings = new RatingInfo[0];
+        size = 0;
     }
 
     /**
@@ -40,20 +42,21 @@ public class Ratings implements IRatings {
 
     @Override
     public boolean add(int userid, int movieid, float rating, LocalDateTime timestamp) {    
-        HashMap<Integer, Float> userRatings = userRatingsMap.get(userid);
-        if (userRatings == null) {
-            userRatings = new HashMap<>();
-            userRatingsMap.put(userid, userRatings);
+        RatingInfo userRatingInfo = userRatingsMap.get(userid);
+        if (userRatingInfo == null) {
+            userRatingInfo = new RatingInfo();
+            userRatingsMap.put(userid, userRatingInfo);
+            userRatingsMap.get(userid).setMovieID(userid);
         }
-        if (!userRatings.put(movieid, rating)) return false;
+        if(userRatingInfo.addRating(rating, movieid) == true) size++;
+       
         RatingInfo movieRatingInfo = movieRatingsMap.get(movieid);
         if (movieRatingInfo == null) {
             movieRatingInfo = new RatingInfo();
             movieRatingsMap.put(movieid, movieRatingInfo);
             movieRatingsMap.get(movieid).setMovieID(movieid);
         }
-        movieRatingInfo.addRating(rating, userid);
-        return true;
+        return movieRatingInfo.addRating(rating, userid);
     }
 
     
@@ -69,12 +72,11 @@ public class Ratings implements IRatings {
     @Override
     public boolean remove(int userid, int movieid) {
         boolean removedFromUserMap = false;
-        HashMap<Integer, Float> userRatings = userRatingsMap.get(userid);
-        if (userRatings != null && !userRatings.isEmpty()) {
-            Float rating = userRatings.take(movieid);
-            removedFromUserMap = (rating != null);
+        RatingInfo userRatingsInfo = userRatingsMap.get(userid);
+        if (userRatingsInfo != null && !userRatingsInfo.isEmpty()) {
+            removedFromUserMap = userRatingsInfo.removeRating(movieid);
     
-            if (userRatings.isEmpty()) {
+            if (userRatingsInfo.isEmpty()) {
                 userRatingsMap.take(userid);
             }
         }
@@ -88,7 +90,11 @@ public class Ratings implements IRatings {
                 movieRatingsMap.take(movieid);
             }
         }
-        return (removedFromUserMap && removedFromMovieMap);
+        if (removedFromUserMap && removedFromMovieMap){
+            size++;
+            return true;
+        }
+        else return false;
     }
 
     /**
@@ -139,11 +145,11 @@ public class Ratings implements IRatings {
      */
     @Override
     public float[] getUserRatings(int userid) {
-        HashMap<Integer, Float> userRatings = userRatingsMap.get(userid);
-        if (userRatings == null || userRatings.isEmpty()) {
+        RatingInfo userRatingsInfo = userRatingsMap.get(userid);
+        if (userRatingsInfo == null || userRatingsInfo.isEmpty()) {
             return new float[0]; 
         }
-        return userRatings.values();
+        return userRatingsInfo.getRatings().values();
     }
 
     /**
@@ -171,16 +177,11 @@ public class Ratings implements IRatings {
      */
     @Override
     public float getUserAverageRating(int userid) {
-        HashMap<Integer, Float> userInfo = userRatingsMap.get(userid);
-        if (userInfo == null || userInfo.isEmpty()) {
-            return -1;  
+        RatingInfo userRatingInfo = userRatingsMap.get(userid);
+        if (userRatingInfo == null || userRatingInfo.isEmpty()) {
+            return userRatingInfo == null ? -1.0f : 0.0f;
         }
-        float[] userArr = userInfo.values();
-        float avgRatings = 0;
-        for (int i = 0; i < userInfo.size(); i++){
-            avgRatings += userArr[i];
-        }
-        return avgRatings/userInfo.size();
+        return userRatingInfo.getAverageRating();
     }
 
     /**
@@ -224,21 +225,22 @@ public class Ratings implements IRatings {
     @Override
     public int[] getMostRatedUsers(int num) {
         if (userRatingsMap == null || userRatingsMap.isEmpty()) return new int[0];
-        int[] keyListStore = userRatingsMap.keyList(); 
+        int[] keyListStore = userRatingsMap.keyList();
         if (keyListStore == null) return new int[0];
         if (userRatings.length != keyListStore.length){
-            this.userRatings = new UserRatingCount[keyListStore.length];
+            this.userRatings = new RatingInfo[keyListStore.length];
         }
         for (int i = 0; i < keyListStore.length; i++){
-            userRatings[i] = new UserRatingCount(keyListStore[i], userRatingsMap.get(keyListStore[i]).size());
+            userRatings[i] = userRatingsMap.get(keyListStore[i]);
         }  
-        Comparator<UserRatingCount> userRatingCountComparator = (o1, o2) -> Float.compare(o1.getRating(), o2.getRating());
+        Comparator<RatingInfo> userRatingCountComparator = (o1, o2) -> Float.compare(o1.getCount(), o2.getCount());
         Sort.genericSort(userRatings, userRatingCountComparator);
 
         int[] returnArr = new int[num];
         for (int i = 0; i < num; i++){
-            returnArr[i] = userRatings[i].getUserId();
+            returnArr[i] = userRatings[i].getMovieID();
         }
+
         return returnArr;
     }
 
@@ -250,14 +252,7 @@ public class Ratings implements IRatings {
      */
     @Override
     public int size() {
-        if (userRatingsMap == null) return 0;
-        int[] sizeArr = userRatingsMap.keyList();
-        if (sizeArr == null) return 0;
-        int totalSize = 0;
-        for (int i = 0; i < sizeArr.length; i++){
-            totalSize += userRatingsMap.get(sizeArr[i]).size();
-        }
-        return totalSize;
+        return size;
     }
 
     /**
@@ -324,14 +319,11 @@ class RatingInfo {
         count = 0;
     }
 
-    public void addRating(float rating, int userid) {
-        Float previousRating = ratings.get(userid);
-        if (previousRating != null) {
-            totalRating -= previousRating;
-        }
-        ratings.put(userid, rating);
+    public boolean addRating(float rating, int userid) {
+        if (!ratings.put(userid, rating)) return false;
         totalRating += rating;
         count = ratings.size();
+        return true;
     }
 
     public boolean removeRating(int userid) {
@@ -373,23 +365,7 @@ class RatingInfo {
     }
 }
 
-class UserRatingCount {
-    int userid;
-    float rating;
 
-    public UserRatingCount(int userid, int ratingCount) {
-        this.userid = userid;
-        this.rating = ratingCount;
-    }
-
-    public float getRating() {
-        return rating;
-    }
-
-    public int getUserId(){
-        return userid;
-    }
-}
 
 class Sort {
     @SuppressWarnings("unchecked")
