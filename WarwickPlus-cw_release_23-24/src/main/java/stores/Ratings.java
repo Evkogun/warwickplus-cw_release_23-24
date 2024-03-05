@@ -9,8 +9,6 @@ public class Ratings implements IRatings {
     Stores stores;
     private HashMap<Integer, RatingInfo> userRatingsMap;
     private HashMap<Integer, RatingInfo> movieRatingsMap;
-    private RatingInfo[] movieRatings;
-    private RatingInfo[] userRatings;
     private int size;
 
     /**
@@ -23,8 +21,6 @@ public class Ratings implements IRatings {
         this.stores = stores;
         userRatingsMap = new HashMap<>();
         movieRatingsMap = new HashMap<>();
-        movieRatings = new RatingInfo[0];
-        userRatings = new RatingInfo[0];
         size = 0;
     }
 
@@ -48,7 +44,6 @@ public class Ratings implements IRatings {
             userRatingsMap.put(userid, userRatingInfo);
             userRatingsMap.get(userid).setMovieID(userid);
         }
-        if(userRatingInfo.addRating(rating, movieid) == true) size++;
        
         RatingInfo movieRatingInfo = movieRatingsMap.get(movieid);
         if (movieRatingInfo == null) {
@@ -56,7 +51,9 @@ public class Ratings implements IRatings {
             movieRatingsMap.put(movieid, movieRatingInfo);
             movieRatingsMap.get(movieid).setMovieID(movieid);
         }
-        return movieRatingInfo.addRating(rating, userid);
+        if(!(userRatingInfo.addRating(rating, movieid) && movieRatingInfo.addRating(rating, userid)))return false;
+        size++;
+        return true;
     }
 
     
@@ -91,7 +88,7 @@ public class Ratings implements IRatings {
             }
         }
         if (removedFromUserMap && removedFromMovieMap){
-            size++;
+            size--;
             return true;
         }
         else return false;
@@ -197,9 +194,8 @@ public class Ratings implements IRatings {
         if (movieRatingsMap == null || movieRatingsMap.isEmpty()) return new int[0];
         int[] keyListStore = movieRatingsMap.keyList();
         if (keyListStore == null) return new int[0];
-        if (movieRatings.length != keyListStore.length){
-            this.movieRatings = new RatingInfo[keyListStore.length];
-        }
+        
+        RatingInfo[] movieRatings = new RatingInfo[keyListStore.length];
         for (int i = 0; i < keyListStore.length; i++){
             movieRatings[i] = movieRatingsMap.get(keyListStore[i]);
         }  
@@ -227,9 +223,8 @@ public class Ratings implements IRatings {
         if (userRatingsMap == null || userRatingsMap.isEmpty()) return new int[0];
         int[] keyListStore = userRatingsMap.keyList();
         if (keyListStore == null) return new int[0];
-        if (userRatings.length != keyListStore.length){
-            this.userRatings = new RatingInfo[keyListStore.length];
-        }
+        
+        RatingInfo[] userRatings = new RatingInfo[keyListStore.length];
         for (int i = 0; i < keyListStore.length; i++){
             userRatings[i] = userRatingsMap.get(keyListStore[i]);
         }  
@@ -285,22 +280,21 @@ public class Ratings implements IRatings {
      */
     @Override
     public int[] getTopAverageRatedMovies(int numResults) {
-        if (movieRatings == null) return new int[0];
         int[] keyListStore = movieRatingsMap.keyList();
         if (keyListStore == null) return new int[0];
-        if (movieRatings.length != keyListStore.length){
-            this.movieRatings = new RatingInfo[keyListStore.length];
-        }
+
+        RatingInfo movieRatingsAverage[] = new RatingInfo[keyListStore.length];
+
         for (int i = 0; i < keyListStore.length; i++){
-            movieRatings[i] = movieRatingsMap.get(keyListStore[i]);
+            movieRatingsAverage[i] = movieRatingsMap.get(keyListStore[i]);
         }  
         
         Comparator<RatingInfo> averageMovieRationsCountComparator = (o1, o2) -> Float.compare(o1.getAverageRating(), o2.getAverageRating());
-        Sort.genericSort(movieRatings, averageMovieRationsCountComparator);
+        Sort.genericSort(movieRatingsAverage, averageMovieRationsCountComparator);
 
         int[] returnArr = new int[numResults];
         for (int i = 0; i < numResults; i++){
-            returnArr[i] = movieRatings[i].getMovieID();
+            returnArr[i] = movieRatingsAverage[i].getMovieID();
         }
 
         return returnArr;

@@ -80,24 +80,6 @@ public class HashMap<K, V> {
         return null;
     }
 
-    public boolean putR(K key, V value) {
-        while ((size + 1) >= capacity * loadFactor) {
-            resize();
-        }
-    
-        int index = hash(key);
-        for (Entry<K, V> entry = map[index]; entry != null; entry = entry.next) {
-            if (entry.key.equals(key)) {
-                entry.value = value;
-                return false;
-            }
-        }
-    
-        map[index] = new Entry<>(key, value, map[index]);
-        this.size++;
-        return true;
-    }
-
     public V take(K key) {
         int index = hash(key);
         Entry<K, V> prev = null;

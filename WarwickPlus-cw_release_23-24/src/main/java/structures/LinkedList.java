@@ -102,7 +102,6 @@ public class LinkedList<T> {
             values[index++] = clazz.cast(current.element);
             current = current.next;
         }
-
         return values;
     }
 }
