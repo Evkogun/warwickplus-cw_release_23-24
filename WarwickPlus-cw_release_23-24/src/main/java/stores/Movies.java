@@ -66,8 +66,9 @@ public class Movies implements IMovies{
      */
     @Override
     public boolean remove(int id) {
-        if (movieInfo.get(id) != null) {
-            timeTreeMap.take(movieInfo.get(id).release, id);
+        MovieInfoData holder = movieInfo.get(id);
+        if (holder != null) {
+            timeTreeMap.take(holder.release, id);
             movieInfo.take(id); 
             return true;
         }
@@ -95,10 +96,9 @@ public class Movies implements IMovies{
      */
     @Override
     public int[] getAllIDsReleasedInRange(LocalDate start, LocalDate end) {
-        if (timeTreeMap == null) return new int[0];
+        if (timeTreeMap == null)return new int[0];
         LinkedList<Integer> movieIdList = timeTreeMap.getMovieIdsInRange(start, end);
         if (movieIdList == null) return new int[0];
-        
         return movieIdList.getValues();
     }
 
@@ -111,7 +111,8 @@ public class Movies implements IMovies{
      */
     @Override
     public String getTitle(int id) {
-        return movieInfo.get(id) != null ? movieInfo.get(id).title : null;
+        MovieInfoData holder = movieInfo.get(id);
+        return holder != null ? holder.title : null;
     }
 
     /**
@@ -124,7 +125,8 @@ public class Movies implements IMovies{
      */
     @Override
     public String getOriginalTitle(int id) {
-        return movieInfo.get(id) != null ? movieInfo.get(id).originalTitle : null;
+        MovieInfoData holder = movieInfo.get(id);
+        return holder != null ? holder.originalTitle : null;
     }
 
     /**
@@ -136,7 +138,8 @@ public class Movies implements IMovies{
      */
     @Override
     public String getOverview(int id) {
-        return movieInfo.get(id) != null ? movieInfo.get(id).overview : null;
+        MovieInfoData holder = movieInfo.get(id);
+        return holder != null ? holder.overview : null;
     }
 
     /**
@@ -148,7 +151,8 @@ public class Movies implements IMovies{
      */
     @Override
     public String getTagline(int id) {
-        return movieInfo.get(id) != null ? movieInfo.get(id).tagline : null;
+        MovieInfoData holder = movieInfo.get(id);
+        return holder != null ? holder.tagline : null;
     }
 
     /**
@@ -160,7 +164,8 @@ public class Movies implements IMovies{
      */
     @Override
     public String getStatus(int id) {
-        return movieInfo.get(id) != null ? movieInfo.get(id).status : null;
+        MovieInfoData holder = movieInfo.get(id);
+        return holder != null ? holder.status : null;
     }
 
     /**
@@ -172,7 +177,8 @@ public class Movies implements IMovies{
      */
     @Override
     public Genre[] getGenres(int id) {
-        return movieInfo.get(id) != null ? movieInfo.get(id).genres : null;
+        MovieInfoData holder = movieInfo.get(id);
+        return holder != null ? holder.genres : null;
     }
 
     /**
@@ -184,7 +190,8 @@ public class Movies implements IMovies{
      */
     @Override
     public LocalDate getRelease(int id) {
-        return movieInfo.get(id) != null ? movieInfo.get(id).release : null;
+        MovieInfoData holder = movieInfo.get(id);
+        return holder != null ? holder.release : null;
     }
 
     /**
@@ -196,7 +203,8 @@ public class Movies implements IMovies{
      */
     @Override
     public long getBudget(int id) {
-        return movieInfo.get(id) != null ? movieInfo.get(id).budget : -1;
+        MovieInfoData holder = movieInfo.get(id);
+        return holder != null ? holder.budget : -1;
     }
 
     /**
@@ -208,7 +216,8 @@ public class Movies implements IMovies{
      */
     @Override
     public long getRevenue(int id) {
-        return movieInfo.get(id) != null ? movieInfo.get(id).revenue : -1;
+        MovieInfoData holder = movieInfo.get(id);
+        return holder != null ? holder.revenue : -1;
     }
 
     /**
@@ -220,7 +229,8 @@ public class Movies implements IMovies{
      */
     @Override
     public String[] getLanguages(int id) {
-        return movieInfo.get(id) != null ? movieInfo.get(id).languages : null;
+        MovieInfoData holder = movieInfo.get(id);
+        return holder != null ? holder.languages : null;
     }
 
     /**
@@ -233,7 +243,8 @@ public class Movies implements IMovies{
      */
     @Override
     public String getOriginalLanguage(int id) {
-        return movieInfo.get(id) != null ? movieInfo.get(id).originalLanguage : null;
+        MovieInfoData holder = movieInfo.get(id);
+        return holder != null ? holder.originalLanguage : null;
     }
 
     /**
@@ -245,7 +256,8 @@ public class Movies implements IMovies{
      */
     @Override
     public double getRuntime(int id) {
-        return movieInfo.get(id) != null ? movieInfo.get(id).runtime : -1;
+        MovieInfoData holder = movieInfo.get(id);
+        return holder != null ? holder.runtime : -1;
     }
 
     /**
@@ -257,7 +269,8 @@ public class Movies implements IMovies{
      */
     @Override
     public String getHomepage(int id) {
-        return movieInfo.get(id) != null ? movieInfo.get(id).homepage : null;
+        MovieInfoData holder = movieInfo.get(id);
+        return holder != null ? holder.homepage : null;
     }
 
     /**
@@ -270,7 +283,8 @@ public class Movies implements IMovies{
      */
     @Override
     public boolean getAdult(int id) {
-        return movieInfo.get(id) != null ? movieInfo.get(id).adult : false;
+        MovieInfoData holder = movieInfo.get(id);
+        return holder != null ? holder.adult : false;
     }
 
     /**
@@ -283,7 +297,8 @@ public class Movies implements IMovies{
      */
     @Override
     public boolean getVideo(int id) {
-        return movieInfo.get(id) != null ? movieInfo.get(id).video : false;
+        MovieInfoData holder = movieInfo.get(id);
+        return holder != null ? holder.video : false;
     }
 
     /**
@@ -295,7 +310,8 @@ public class Movies implements IMovies{
      */
     @Override
     public String getPoster(int id) {
-        return movieInfo.get(id) != null ? movieInfo.get(id).poster : null;
+        MovieInfoData holder = movieInfo.get(id);
+        return holder != null ? holder.poster : null;
     }
 
     /**
@@ -327,8 +343,9 @@ public class Movies implements IMovies{
      */
     @Override
     public double getVoteAverage(int id) {
-        if (movieInfo.get(id) == null) return -1;
-        return movieInfo.get(id).voteAverage;
+        MovieInfoData holder = movieInfo.get(id);
+        if (holder == null) return -1;
+        return holder.voteAverage;
     }
 
     /**
@@ -341,8 +358,9 @@ public class Movies implements IMovies{
      */
     @Override
     public int getVoteCount(int id) {
-        if (movieInfo.get(id) == null) return -1;
-        return movieInfo.get(id).voteCount;
+        MovieInfoData holder = movieInfo.get(id);
+        if (holder == null) return -1;
+        return holder.voteCount;
     }
 
     /**
@@ -361,9 +379,7 @@ public class Movies implements IMovies{
     @Override
     public boolean addToCollection(int filmID, int collectionID, String collectionName, String collectionPosterPath, String collectionBackdropPath) {
         MovieInfoData movie = movieInfo.get(filmID);
-        if (movie == null) {
-            return false; 
-        }
+        if (movie == null) return false; 
         CollectionData collection = collectionInfo.get(collectionID);
         if (collection == null) {
             collection = new CollectionData(filmID, collectionName, collectionPosterPath, collectionBackdropPath);
@@ -390,9 +406,7 @@ public class Movies implements IMovies{
     @Override
     public int[] getFilmsInCollection(int collectionID) {
         CollectionData collectionData = collectionInfo.get(collectionID);
-        if (collectionData == null || collectionData.filmStore == null) {
-            return new int[0];
-        }
+        if (collectionData == null || collectionData.filmStore == null || collectionData.filmStore.size == 0) return new int[0];
         return collectionData.filmStore.getValues();
     }
 
@@ -405,8 +419,9 @@ public class Movies implements IMovies{
      */
     @Override
     public String getCollectionName(int collectionID) {
-        if (collectionInfo.get(collectionID) == null) return null;
-        return collectionInfo.get(collectionID).collectionName;
+        CollectionData preventlookup = collectionInfo.get(collectionID);
+        if (preventlookup == null) return null;
+        return preventlookup.collectionName;
     }
 
     /**
@@ -418,8 +433,9 @@ public class Movies implements IMovies{
      */
     @Override
     public String getCollectionPoster(int collectionID) {
-        if (collectionInfo.get(collectionID) == null) return null;
-        return collectionInfo.get(collectionID).collectionPosterPath;
+        CollectionData preventlookup = collectionInfo.get(collectionID);
+        if (preventlookup == null) return null;
+        return preventlookup.collectionPosterPath;
     }
 
     /**
@@ -431,8 +447,9 @@ public class Movies implements IMovies{
      */
     @Override
     public String getCollectionBackdrop(int collectionID) {
-        if (collectionInfo.get(collectionID) == null) return null;
-        return collectionInfo.get(collectionID).collectionBackdropPath;
+        CollectionData preventlookup = collectionInfo.get(collectionID);
+        if (preventlookup == null) return null;
+        return preventlookup.collectionBackdropPath;
     }
 
     /**
@@ -444,8 +461,9 @@ public class Movies implements IMovies{
      */
     @Override
     public int getCollectionID(int filmID) {
-        if (movieInfo.get(filmID) == null) return -1;
-        return movieInfo.get(filmID).collectionID;
+        MovieInfoData preventlookup = movieInfo.get(filmID);
+        if (preventlookup == null) return -1;
+        return preventlookup.collectionID;
     }
 
     /**
@@ -457,8 +475,9 @@ public class Movies implements IMovies{
      */
     @Override
     public boolean setIMDB(int filmID, String imdbID) {
-        if (movieInfo.get(filmID) == null) return false;
-        movieInfo.get(filmID).imdbID = imdbID;
+        MovieInfoData preventlookup = movieInfo.get(filmID);
+        if (preventlookup == null) return false;
+        preventlookup.imdbID = imdbID;
         return true;
     }
 
@@ -471,8 +490,9 @@ public class Movies implements IMovies{
      */
     @Override
     public String getIMDB(int filmID) {
-        if (movieInfo.get(filmID) == null) return null;
-        return movieInfo.get(filmID).imdbID;
+        MovieInfoData preventlookup = movieInfo.get(filmID);
+        if (preventlookup == null) return null;
+        return preventlookup.imdbID;
     }
 
     /**
@@ -484,8 +504,9 @@ public class Movies implements IMovies{
      */
     @Override
     public boolean setPopularity(int id, double popularity) {
-        if (movieInfo.get(id) == null) return false;
-        movieInfo.get(id).popularity = popularity;
+        MovieInfoData preventlookup = movieInfo.get(id);
+        if (preventlookup == null) return false;
+        preventlookup.popularity = popularity;
         return true;
     }
 
@@ -498,8 +519,9 @@ public class Movies implements IMovies{
      */
     @Override
     public double getPopularity(int id) {
-        if (movieInfo.get(id) == null) return -1;
-        return movieInfo.get(id).popularity;
+        MovieInfoData preventlookup = movieInfo.get(id);
+        if (preventlookup == null) return -1;
+        return preventlookup.popularity;
     }
 
     /**
@@ -512,8 +534,9 @@ public class Movies implements IMovies{
      */
     @Override
     public boolean addProductionCompany(int id, Company company) {
-        if (movieInfo.get(id) == null) return false;
-        movieInfo.get(id).productionCompanyAdd(company);
+        MovieInfoData preventlookup = movieInfo.get(id);
+        if (preventlookup == null) return false;
+        preventlookup.productionCompanyAdd(company);
         return true;
     }
 
@@ -526,8 +549,9 @@ public class Movies implements IMovies{
      */
     @Override
     public boolean addProductionCountry(int id, String country) {
-        if (movieInfo.get(id) == null) return false;
-        movieInfo.get(id).productionCountryAdd(country);
+        MovieInfoData preventlookup = movieInfo.get(id);
+        if (preventlookup == null) return false;
+        preventlookup.productionCountryAdd(country);
         return true;
     }
 
@@ -541,8 +565,9 @@ public class Movies implements IMovies{
      */
     @Override
     public Company[] getProductionCompanies(int id) {
-        if (movieInfo.get(id) == null) return null;
-        return movieInfo.get(id).getProductionCompanies();
+        MovieInfoData temp = movieInfo.get(id);
+        if (temp == null) return null;
+        return temp.getProductionCompanies();
     }
 
     /**
@@ -555,8 +580,9 @@ public class Movies implements IMovies{
      */
     @Override
     public String[] getProductionCountries(int id) {
-        if (movieInfo.get(id) == null) return null;
-        return movieInfo.get(id).getProductionCountries();
+        MovieInfoData temp = movieInfo.get(id);
+        if (temp == null) return null;
+        return temp.getProductionCountries();
     }
 
     /**
@@ -589,13 +615,8 @@ public class Movies implements IMovies{
             }
         }
 
-        if (matchingMovieIds.getSize() == 0) {
-            return new int[0];
-        }
-
-        if (matchingMovieIds.element == 0) {
-            matchingMovieIds = matchingMovieIds.next;
-        }
+        if (matchingMovieIds.getSize() == 0) return new int[0];
+        if (matchingMovieIds.element == 0) matchingMovieIds = matchingMovieIds.next;
     
         int[] foundFilms = new int[matchingMovieIds.getSize()];
         int index = 0;
@@ -704,12 +725,12 @@ public class Movies implements IMovies{
         }
 
         public Company[] getProductionCompanies(){
-            if (productionCompanyList == null) return new Company[0];
+            if (productionCompanyList == null || productionCompanyList.getSize() == 0) return new Company[0];
             return productionCompanyList.getValuez(Company.class);
         }
 
         public String[] getProductionCountries(){
-            if (productionCountryList == null) return new String[0];
+            if (productionCountryList == null || productionCountryList.getSize() == 0) return new String[0];
             return productionCountryList.getValuez(String.class);
         }
     }

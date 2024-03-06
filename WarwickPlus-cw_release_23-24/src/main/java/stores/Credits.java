@@ -47,18 +47,20 @@ public class Credits implements ICredits{
      */
     @Override
     public boolean add(CastCredit[] cast, CrewCredit[] crew, int id) {
+        CreditInfo info = new CreditInfo(cast, crew);      
         for (CastCredit castMember : cast){
             if (uniqueCast.get(castMember.getName()) == null){
                 uniqueCast.put(castMember.getName(), new Person(castMember.getID(), castMember.getName(), castMember.getProfilePath()));
                 castIDToCast.put(castMember.getID(), castMember.getName());
             }
-            if (castIDToFilmID.get(castMember.getID()) == null){
+            LinkedList<Integer> temp = castIDToFilmID.get(castMember.getID());
+            if (temp == null){
                 LinkedList<Integer> idList = new LinkedList<>();
                 idList.add(id);
                 castIDToFilmID.put(castMember.getID(), idList);
             }
             else{
-                castIDToFilmID.get(castMember.getID()).add(id);
+                temp.add(id);
             }
         }
         for (CrewCredit crewMember : crew){
@@ -66,16 +68,17 @@ public class Credits implements ICredits{
                 uniqueCrew.put(crewMember.getName(), new Person(crewMember.getID(), crewMember.getName(), crewMember.getProfilePath())); 
                 crewIDToCrew.put(crewMember.getID(), crewMember.getName());
             }
-            if (crewIDToFilmID.get(crewMember.getID()) == null){
+            LinkedList<Integer> temp = crewIDToFilmID.get(crewMember.getID());;
+            if (temp == null){
                 LinkedList<Integer> idList = new LinkedList<>();
                 idList.add(id);
                 crewIDToFilmID.put(crewMember.getID(), idList);
             }
             else{
-                crewIDToFilmID.get(crewMember.getID()).add(id);
+                temp.add(id);
             }
         }
-        return creditInfo.put(id, new CreditInfo(cast, crew));
+        return creditInfo.put(id, info);
     }
 
     /**
@@ -86,21 +89,24 @@ public class Credits implements ICredits{
      */
     @Override
     public boolean remove(int id) {
-        if (creditInfo.get(id) != null){
-            CastCredit[] cast = creditInfo.get(id).cast;
-            CrewCredit[] crew = creditInfo.get(id).crew;
+        CreditInfo temp = creditInfo.get(id);
+        if (temp != null){
+            CastCredit[] cast = temp.cast;
+            CrewCredit[] crew = temp.crew;
             for (int i = 0; i < cast.length; i++){
                 uniqueCast.take(cast[i].getName());
                 castIDToCast.take(cast[i].getID());
-                if (castIDToFilmID.get(cast[i].getID()) != null){
-                    castIDToFilmID.get(cast[i].getID()).remove(id);
+                LinkedList<Integer> tempL = castIDToFilmID.get(cast[i].getID());
+                if (tempL != null && tempL.getSize() != 0){
+                    tempL.remove(id);
                 }
             }
             for (int j = 0; j < crew.length; j++){
                 uniqueCrew.take(crew[j].getName());
                 crewIDToCrew.take(crew[j].getID());
-                if (crewIDToFilmID.get(crew[j].getID()) != null){
-                    crewIDToFilmID.get(crew[j].getID()).remove(id);
+                LinkedList<Integer> tempL = crewIDToFilmID.get(crew[j].getID());
+                if (tempL != null && tempL.getSize() != 0){
+                    tempL.remove(id);
                 }
             }
         }
@@ -118,7 +124,8 @@ public class Credits implements ICredits{
      */
     @Override
     public CastCredit[] getFilmCast(int filmID) {
-        return creditInfo.get(filmID) != null ? creditInfo.get(filmID).getCast() : new CastCredit[0];
+        CreditInfo info = creditInfo.get(filmID);
+        return info != null ? info.getCast() : new CastCredit[0];
     }
 
     /**
@@ -132,7 +139,8 @@ public class Credits implements ICredits{
      */
     @Override
     public CrewCredit[] getFilmCrew(int filmID) {
-        return creditInfo.get(filmID) != null ? creditInfo.get(filmID).getCrew() : new CrewCredit[0];
+        CreditInfo info = creditInfo.get(filmID);
+        return info != null ? info.getCrew() : new CrewCredit[0];
     }
 
     /**
@@ -144,7 +152,8 @@ public class Credits implements ICredits{
      */
     @Override
     public int sizeOfCast(int filmID) {
-        return creditInfo.get(filmID) != null ? creditInfo.get(filmID).getCast().length : -1;
+        CreditInfo info = creditInfo.get(filmID);
+        return info != null ? info.getCast().length : -1;
     }
 
     /**
@@ -156,7 +165,8 @@ public class Credits implements ICredits{
      */
     @Override
     public int sizeofCrew(int filmID) {
-        return creditInfo.get(filmID) != null ? creditInfo.get(filmID).getCrew().length : -1;
+        CreditInfo info = creditInfo.get(filmID);
+        return info != null ? info.getCrew().length : -1;
     }
 
     /**
@@ -200,6 +210,7 @@ public class Credits implements ICredits{
      */
     @Override
     public Person[] findCast(String cast) {
+        if (uniqueCast.isEmpty()) return new Person[0];
         Person[] temp = uniqueCast.valuez(Person.class);
         LinkedList<Person> results = new LinkedList<>();
         for (int i = 0; i < temp.length; i++){
@@ -219,6 +230,7 @@ public class Credits implements ICredits{
      */
     @Override
     public Person[] findCrew(String crew) {
+        if (uniqueCrew.isEmpty()) return new Person[0];
         Person[] temp = uniqueCrew.valuez(Person.class);
         LinkedList<Person> results = new LinkedList<>();
         for (int i = 0; i < temp.length; i++){
@@ -238,8 +250,9 @@ public class Credits implements ICredits{
      */
     @Override
     public Person getCast(int castID) {
-        if (castIDToCast.get(castID) == null) return null;
-        return uniqueCast.get(castIDToCast.get(castID));
+        String checkNull = castIDToCast.get(castID);
+        if (checkNull == null) return null;
+        return uniqueCast.get(checkNull);
     }
 
     /**
@@ -251,8 +264,9 @@ public class Credits implements ICredits{
      */
     @Override
     public Person getCrew(int crewID){
-        if (crewIDToCrew.get(crewID) == null) return null; 
-        return uniqueCrew.get(crewIDToCrew.get(crewID));
+        String temp = crewIDToCrew.get(crewID);
+        if (temp == null) return null; 
+        return uniqueCrew.get(temp);
     }
 
     
@@ -266,8 +280,9 @@ public class Credits implements ICredits{
      */
     @Override
     public int[] getCastFilms(int castID){
-        if (castIDToFilmID.get(castID) == null) return new int[0]; 
-        return castIDToFilmID.get(castID).getValues();
+        LinkedList<Integer> returnList = castIDToFilmID.get(castID);
+        if (returnList == null) return new int[0]; 
+        return returnList.getValues();
     }
 
     /**
@@ -280,8 +295,9 @@ public class Credits implements ICredits{
      */
     @Override
     public int[] getCrewFilms(int crewID) {
-        if (crewIDToFilmID.get(crewID) == null) return new int[0];
-        return crewIDToFilmID.get(crewID).getValues();
+        LinkedList<Integer> returnList = crewIDToFilmID.get(crewID);
+        if (returnList == null) return new int[0];
+        return returnList.getValues();
     }
 
     /**
@@ -332,9 +348,9 @@ public class Credits implements ICredits{
 
     @Override
     public Person[] getMostCastCredits(int numResults) {
-        if (castIDToCast.isEmpty() || castIDToFilmID.isEmpty()) return new Person[0];
+        if (castIDToCast == null || castIDToFilmID == null || castIDToCast.isEmpty() || castIDToFilmID.isEmpty()) return new Person[0];
         int[] castIDList = castIDToFilmID.keyList();
-        if (castIDList == null) return new Person[0];
+        if (castIDList == null || castIDList.length == 0) return new Person[0];
         CastCount[] mostCastCredits = new CastCount[castIDList.length];
         for (int i = 0; i < castIDList.length; i++){
             LinkedList<Integer> temp = castIDToFilmID.get(castIDList[i]);
@@ -368,8 +384,9 @@ public class Credits implements ICredits{
     @Override
     public int getNumCastCredits(int castID) {
         if (castIDToFilmID.get(castID) != null) {
-            if (castIDToFilmID.get(castID) == null) return -1;
-            return castIDToFilmID.get(castID).getSize(); 
+            LinkedList<Integer> films = castIDToFilmID.get(castID);
+            if (films == null) return -1;
+            return films.getSize(); 
         }
         return -1; 
     }

@@ -109,7 +109,10 @@ public class Ratings implements IRatings {
      */
     @Override
     public boolean set(int userid, int movieid, float rating, LocalDateTime timestamp) {
-        if (movieRatingsMap.get(movieid).ratedByUsers(userid))remove(userid, movieid);
+        RatingInfo movieRatingInfo = movieRatingsMap.get(movieid);
+        if (movieRatingInfo.ratedByUsers(userid)){
+            remove(userid, movieid);
+        }
         add(userid, movieid, rating, timestamp);
         return true;
     }
@@ -123,10 +126,9 @@ public class Ratings implements IRatings {
      */
     @Override
     public float[] getMovieRatings(int movieid) {
-        if (movieRatingsMap.get(movieid) == null) {
-            return new float[0];
-        }
-        return  movieRatingsMap.get(movieid).getRatings().values();
+        RatingInfo movieRatingInfo = movieRatingsMap.get(movieid);
+        if (movieRatingInfo == null || movieRatingInfo.isEmpty()) return new float[0];
+        return movieRatingInfo.getRatings().values();
     }
 
     /**
@@ -138,10 +140,9 @@ public class Ratings implements IRatings {
      */
     @Override
     public float[] getUserRatings(int userid) {
-        if (userRatingsMap.get(userid) == null) {
-            return new float[0]; 
-        }
-        return userRatingsMap.get(userid).getRatings().values();
+        RatingInfo userRatingsInfo = userRatingsMap.get(userid);
+        if (userRatingsInfo == null || userRatingsInfo.isEmpty()) return new float[0]; 
+        return userRatingsInfo.getRatings().values();
     }
 
     /**
@@ -154,9 +155,9 @@ public class Ratings implements IRatings {
      */
 
     public float getMovieAverageRating(int movieid) {
-        if (movieRatingsMap.get(movieid) == null) return -1.0f;
-        else if (movieRatingsMap.get(movieid).isEmpty()) return 0.0f;
-        return movieRatingsMap.get(movieid).getAverageRating();
+        RatingInfo movieRatingInfo = movieRatingsMap.get(movieid);
+        if (movieRatingInfo == null || movieRatingInfo.isEmpty()) return movieRatingInfo == null ? -1.0f : 0.0f;
+        return movieRatingInfo.getAverageRating();
     }
     /**
      * Get the average rating for a given user
@@ -167,9 +168,9 @@ public class Ratings implements IRatings {
      */
     @Override
     public float getUserAverageRating(int userid) {
-        if (userRatingsMap.get(userid) == null) return -1.0f;
-        else if (userRatingsMap.get(userid).isEmpty()) return 0.0f;
-        return userRatingsMap.get(userid).getAverageRating();
+        RatingInfo userRatingInfo = userRatingsMap.get(userid);
+        if (userRatingInfo == null || userRatingInfo.isEmpty()) return userRatingInfo == null ? -1.0f : 0.0f;
+        return userRatingInfo.getAverageRating();
     }
 
     /**
@@ -182,7 +183,14 @@ public class Ratings implements IRatings {
      */
     @Override
     public int[] getMostRatedMovies(int num) {
-        RatingInfo[] movieRatings = movieRatingsMap.valuez(RatingInfo.class);
+        if (movieRatingsMap == null || movieRatingsMap.isEmpty()) return new int[0];
+        int[] keyListStore = movieRatingsMap.keyList();
+        if (keyListStore == null || keyListStore.length == 0) return new int[0];
+        
+        RatingInfo[] movieRatings = new RatingInfo[keyListStore.length];
+        for (int i = 0; i < keyListStore.length; i++){
+            movieRatings[i] = movieRatingsMap.get(keyListStore[i]);
+        }  
         Comparator<RatingInfo> movieRatingCountComparator = (o1, o2) -> Integer.compare(o1.getCount(), o2.getCount());
         Sort.genericSort(movieRatings, movieRatingCountComparator);
 
@@ -190,6 +198,7 @@ public class Ratings implements IRatings {
         for (int i = 0; i < num; i++){
             returnArr[i] = movieRatings[i].getMovieID();
         }
+
         return returnArr;
     }
 
@@ -203,7 +212,14 @@ public class Ratings implements IRatings {
      */
     @Override
     public int[] getMostRatedUsers(int num) {
-        RatingInfo[] userRatings = userRatingsMap.valuez(RatingInfo.class);
+        if (userRatingsMap == null || userRatingsMap.isEmpty()) return new int[0];
+        int[] keyListStore = userRatingsMap.keyList();
+        if (keyListStore == null || keyListStore.length == 0) return new int[0];
+        
+        RatingInfo[] userRatings = new RatingInfo[keyListStore.length];
+        for (int i = 0; i < keyListStore.length; i++){
+            userRatings[i] = userRatingsMap.get(keyListStore[i]);
+        }  
         Comparator<RatingInfo> userRatingCountComparator = (o1, o2) -> Integer.compare(o1.getCount(), o2.getCount());
         Sort.genericSort(userRatings, userRatingCountComparator);
 
@@ -211,6 +227,7 @@ public class Ratings implements IRatings {
         for (int i = 0; i < num; i++){
             returnArr[i] = userRatings[i].getMovieID();
         }
+
         return returnArr;
     }
 
@@ -237,8 +254,11 @@ public class Ratings implements IRatings {
      */
     @Override
     public int getNumRatings(int movieid) {
-        if (movieRatingsMap.get(movieid) == null) return -1;
-        return movieRatingsMap.get(movieid).getCount();
+        RatingInfo movieRatingInfo = movieRatingsMap.get(movieid);
+        if (movieRatingInfo == null) {
+            return -1;
+        }
+        return movieRatingInfo.getCount();
     }
 
     /**
@@ -252,7 +272,15 @@ public class Ratings implements IRatings {
      */
     @Override
     public int[] getTopAverageRatedMovies(int numResults) {
-        RatingInfo movieRatingsAverage[] = movieRatingsMap.valuez(RatingInfo.class);
+        int[] keyListStore = movieRatingsMap.keyList();
+        if (keyListStore == null || keyListStore.length == 0) return new int[0];
+
+        RatingInfo movieRatingsAverage[] = new RatingInfo[keyListStore.length];
+
+        for (int i = 0; i < keyListStore.length; i++){
+            movieRatingsAverage[i] = movieRatingsMap.get(keyListStore[i]);
+        }  
+        
         Comparator<RatingInfo> averageMovieRationsCountComparator = (o1, o2) -> Float.compare(o1.getAverageRating(), o2.getAverageRating());
         Sort.genericSort(movieRatingsAverage, averageMovieRationsCountComparator);
 
@@ -260,6 +288,7 @@ public class Ratings implements IRatings {
         for (int i = 0; i < numResults; i++){
             returnArr[i] = movieRatingsAverage[i].getMovieID();
         }
+
         return returnArr;
     }
 }
@@ -284,7 +313,6 @@ class RatingInfo {
     }
 
     public boolean removeRating(int userid) {
-        // holder value was kept since it is only a float and has minimal impact
         Float ratingToRemove = ratings.take(userid);
         if (ratingToRemove != null) {
             totalRating -= ratingToRemove;

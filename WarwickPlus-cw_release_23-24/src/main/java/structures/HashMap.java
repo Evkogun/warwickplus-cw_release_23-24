@@ -72,8 +72,7 @@ public class HashMap<K, V> {
 
     public V get(K key) {
         if (size == 0) return null;
-        int index = hash(key);
-        for (Entry<K, V> entry = map[index]; entry != null; entry = entry.next) {
+        for (Entry<K, V> entry = map[hash(key)]; entry != null; entry = entry.next) {
             if (entry.key.equals(key)) {
                 return entry.value;
             }
