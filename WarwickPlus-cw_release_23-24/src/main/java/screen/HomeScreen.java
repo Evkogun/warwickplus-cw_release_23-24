@@ -162,7 +162,9 @@ class MostCastCredits implements Runnable {
             JPanel resultItem = new JPanel();
             resultItem.setSize(scrollPane.getWidth() - 40, itemHeight);
 
-            int numCredits = stores.getCredits().getNumCastCredits(mostCastCredits[i].getID());
+            ICredits temp = stores.getCredits();
+            int temp2 = mostCastCredits[i].getID(); // Seperated for debugging purposes.
+            int numCredits = temp.getNumCastCredits(temp2);
             String personNameAndID = "ID: "+ mostCastCredits[i].getID() +"\t Name: " + mostCastCredits[i].getName();
             if (numCredits < 0){
                 loadingText.setText("No number of cast credits found: Received number less than 0! (For Person "+ personNameAndID);

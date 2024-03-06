@@ -199,7 +199,7 @@ public class Ratings implements IRatings {
         for (int i = 0; i < keyListStore.length; i++){
             movieRatings[i] = movieRatingsMap.get(keyListStore[i]);
         }  
-        Comparator<RatingInfo> movieRatingCountComparator = (o1, o2) -> Float.compare(o1.getCount(), o2.getCount());
+        Comparator<RatingInfo> movieRatingCountComparator = (o1, o2) -> Integer.compare(o1.getCount(), o2.getCount());
         Sort.genericSort(movieRatings, movieRatingCountComparator);
 
         int[] returnArr = new int[num];
@@ -228,7 +228,7 @@ public class Ratings implements IRatings {
         for (int i = 0; i < keyListStore.length; i++){
             userRatings[i] = userRatingsMap.get(keyListStore[i]);
         }  
-        Comparator<RatingInfo> userRatingCountComparator = (o1, o2) -> Float.compare(o1.getCount(), o2.getCount());
+        Comparator<RatingInfo> userRatingCountComparator = (o1, o2) -> Integer.compare(o1.getCount(), o2.getCount());
         Sort.genericSort(userRatings, userRatingCountComparator);
 
         int[] returnArr = new int[num];
@@ -343,7 +343,7 @@ class RatingInfo {
     }
 
     public boolean ratedByUsers(int userid) {
-        return ratings.containsKey(userid);
+        return ratings.get(userid) != null;
     }
 
     public int getCount(){

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="MoviesTest" tests="94" skipped="0" failures="0" errors="0" timestamp="2024-03-05T21:02:13" hostname="HOMEWORK-GAMING" time="0.104">
+<testsuite name="MoviesTest" tests="94" skipped="0" failures="0" errors="0" timestamp="2024-03-06T00:59:28" hostname="HOMEWORK-GAMING" time="0.105">
   <properties/>
-  <testcase name="testAddNeg()" classname="MoviesTest" time="0.008"/>
-  <testcase name="testAddPos()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testAddNeg()" classname="MoviesTest" time="0.009"/>
+  <testcase name="testAddPos()" classname="MoviesTest" time="0.002"/>
   <testcase name="testAddProductionCompanyNeg()" classname="MoviesTest" time="0.003"/>
   <testcase name="testAddProductionCompanyPos()" classname="MoviesTest" time="0.002"/>
   <testcase name="testAddProductionCountryNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testAddProductionCountryPos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testAddToCollectionNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testAddToCollectionNeg()" classname="MoviesTest" time="0.002"/>
   <testcase name="testAddToCollectionPos()" classname="MoviesTest" time="0.001"/>
   <testcase name="testAdultPos()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGenreNegID()" classname="MoviesTest" time="0.001"/>
@@ -16,84 +16,84 @@
   <testcase name="testGetAllIDs()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetAllIDsReleasedInRangeNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetAllIDsReleasedInRangePos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetBudgetAll()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetBudgetNeg()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetBudgetAll()" classname="MoviesTest" time="0.002"/>
+  <testcase name="testGetBudgetNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetBudgetPos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetCollectionBackdropNeg()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetCollectionBackdropPos()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetCollectionIDNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetCollectionBackdropNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetCollectionBackdropPos()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetCollectionIDNeg()" classname="MoviesTest" time="0.002"/>
   <testcase name="testGetCollectionIDPos()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetCollectionNameNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetCollectionNamePos()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetCollectionPosterNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetCollectionPosterPos()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetFilmsInCollectionNeg()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetFilmsInCollectionPos()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetGenreAll()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetFilmsInCollectionPos()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetGenreAll()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGetGenrePos()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetHomepageAll()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetHomepageNeg()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetHomepagePos()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetIMDBNeg()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetHomepagePos()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetIMDBNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetIMDBPos()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetLanguagesMany()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetLanguagesNeg()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetLanguagesPos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetOriginalLanguageAll()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetOriginalLanguageNeg()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetLanguagesPos()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetOriginalLanguageAll()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetOriginalLanguageNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetOriginalLanguagePos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetOriginalTitleAll()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetOriginalTitleAll()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetOriginalTitleNeg()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetOriginalTitlePos()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetOriginalTitlePos()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGetOverviewAll()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetOverviewNeg()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetOverviewPos()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetOverviewNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetOverviewPos()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetPopularityEmpty()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetPopularityNeg()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetPopularityPos()" classname="MoviesTest" time="0.002"/>
-  <testcase name="testGetPosterAll()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetPopularityNeg()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetPopularityPos()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetPosterAll()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetPosterNeg()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetPosterPos()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetPosterPos()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetProductionCompanyNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetProductionCompanyPos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetProductionCountriesNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetProductionCountriesNeg()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGetProductionCountryPos()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetReleaseAll()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGetReleaseNeg()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGetReleaseNegVal()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetReleasePos()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetRevenueAll()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetRevenueNeg()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetRevenuePos()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetRuntimeAll()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetRuntimeNeg()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetRevenueNeg()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetRevenuePos()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetRuntimeAll()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetRuntimeNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetRuntimePos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetStatusAll()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetStatusNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetStatusAll()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetStatusNeg()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGetStatusPos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetTaglineAll()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetTaglineAll()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetTaglineNeg()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetTaglinePos()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetTaglinePos()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGetTitleAll()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetTitleNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetTitlePos()" classname="MoviesTest" time="0.001"/>
   <testcase name="testGetVideoAll()" classname="MoviesTest" time="0.0"/>
-  <testcase name="testGetVideoNeg()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetVideoPos()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetVideoNeg()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetVideoPos()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGetVoteAverageNeg()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetVoteAveragePos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testGetVoteCountNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testGetVoteAveragePos()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testGetVoteCountNeg()" classname="MoviesTest" time="0.0"/>
   <testcase name="testGetVoteCountPos()" classname="MoviesTest" time="0.001"/>
   <testcase name="testRemoveNeg()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testRemovePos()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testRemovePos()" classname="MoviesTest" time="0.001"/>
   <testcase name="testSetIMDBNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testSetIMDBPos()" classname="MoviesTest" time="0.001"/>
   <testcase name="testSetPopularityNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testSetPopularityPos()" classname="MoviesTest" time="0.001"/>
   <testcase name="testSetVoteNeg()" classname="MoviesTest" time="0.001"/>
   <testcase name="testSetVotePos()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testSize()" classname="MoviesTest" time="0.001"/>
-  <testcase name="testfindFilmsNeg()" classname="MoviesTest" time="0.001"/>
+  <testcase name="testSize()" classname="MoviesTest" time="0.0"/>
+  <testcase name="testfindFilmsNeg()" classname="MoviesTest" time="0.0"/>
   <testcase name="testfindFilmsPos()" classname="MoviesTest" time="0.001"/>
   <system-out><![CDATA[
 Starting testAddNeg...

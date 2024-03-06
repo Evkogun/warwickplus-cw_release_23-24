@@ -18,11 +18,11 @@ public class HashMap<K, V> {
     private int capacity;
     private final double loadFactor = 0.75;
     private int[] primes = {2, 5, 11, 23, 47, 97, 197, 397, 797, 1597, 3203, 6421, 12853, 25717, 51437, 102877, 205759, 411527, 823117, 1646237, 3292489, 6584983, 13169977, 26339969, 52679969, 105359939, 210719881, 421439783, 842879579, 1685759167};
-    private int primecount = 3;
+    private int primecount = 2;
 
     @SuppressWarnings("unchecked")
     public HashMap() {
-        this.capacity = 16; 
+        this.capacity = 5; 
         map = new Entry[capacity];
     }
 
@@ -116,19 +116,6 @@ public class HashMap<K, V> {
 
     public boolean isEmpty(){
         return size == 0;
-    }
-
-    public boolean containsKey(K userid){
-        int index = hash(userid);  
-        Entry<K, V> entry = map[index]; 
-
-        while (entry != null) {  
-            if (entry.key.equals(userid)) {
-                return true;  
-            }
-            entry = entry.next;  
-        }
-        return false;
     }
 
 

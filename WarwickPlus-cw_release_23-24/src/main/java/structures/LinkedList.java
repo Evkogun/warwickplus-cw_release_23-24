@@ -14,7 +14,7 @@ public class LinkedList<T> {
     }
 
     public boolean add(T newElement) {
-        
+        if (newElement == null) return false;
         if (this.size == 0) {
             this.element = newElement;
             this.size = 1;
@@ -103,5 +103,9 @@ public class LinkedList<T> {
             current = current.next;
         }
         return values;
+    }
+    
+    public int getSize(){
+        return size;
     }
 }
