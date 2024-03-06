@@ -71,6 +71,7 @@ public class HashMap<K, V> {
     }
 
     public V get(K key) {
+        if (size == 0) return null;
         int index = hash(key);
         for (Entry<K, V> entry = map[index]; entry != null; entry = entry.next) {
             if (entry.key.equals(key)) {
@@ -81,6 +82,7 @@ public class HashMap<K, V> {
     }
 
     public V take(K key) {
+        if (size == 0) return null;
         int index = hash(key);
         Entry<K, V> prev = null;
         for (Entry<K, V> entry = map[index]; entry != null; entry = entry.next) {
@@ -121,6 +123,7 @@ public class HashMap<K, V> {
 
     public float[] values() {
         float[] valuesArray = new float[size];
+        if (size == 0) return valuesArray;
         int i = 0;
     
         for (Entry<K, V> entry : map) {
@@ -135,6 +138,7 @@ public class HashMap<K, V> {
 
     public int[] keyList(){
         int[] keyListArray = new int[size];
+        if (size == 0) return keyListArray;
         int i = 0;
         
         for (Entry<K, V> entry : map) {
@@ -149,6 +153,7 @@ public class HashMap<K, V> {
     @SuppressWarnings("unchecked")
     public <T> T[] valuez(Class<T> clazz) {
         T[] array = (T[]) java.lang.reflect.Array.newInstance(clazz, size);
+        if (size == 0) return array;
         int i = 0;
 
         for (Entry<K, V> entry : map) {

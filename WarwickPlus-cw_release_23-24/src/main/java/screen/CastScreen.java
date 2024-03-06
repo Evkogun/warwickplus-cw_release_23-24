@@ -273,7 +273,7 @@ class OldMoviesCastRunnable implements Runnable {
         scrollPane.setVisible(true);
 
         endDate = LocalDate.of(2000, 1, 1); // date is 01/01/2000 00:00:00
-        startDate = LocalDate.of(1900, 1, 1); // date is EpOCH 0, 01/01/1990 00:00:00
+        startDate = LocalDate.of(1990, 1, 1); // date is EpOCH 0, 01/01/1990 00:00:00
     }
 
     @Override

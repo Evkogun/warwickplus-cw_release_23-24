@@ -49,6 +49,7 @@ public class LinkedList<T> {
     }
 
     public boolean remove(T elementToRemove) {
+        if (size == 0) return false;
         if (this.element == null) {
             return false;
         }
@@ -75,8 +76,8 @@ public class LinkedList<T> {
     }
 
     public int[] getValues() {
-        if (size == 0) return new int[0];
         int[] values = new int[this.size];
+        if (size == 0) return values;
         LinkedList<T> current = this;
         int index = 0;
         while (current != null) {
@@ -87,15 +88,9 @@ public class LinkedList<T> {
     }
 
     public <E> E[] getValuez(Class<E> clazz) {
-        if (this.size == 0) {
-            @SuppressWarnings("unchecked")
-            E[] emptyArray = (E[]) Array.newInstance(clazz, 0);
-            return emptyArray;
-        }
-
         @SuppressWarnings("unchecked")
         E[] values = (E[]) Array.newInstance(clazz, this.size);
-
+        if (this.size == 0) return values;
         LinkedList<T> current = this;
         int index = 0;
         while (current != null) {
