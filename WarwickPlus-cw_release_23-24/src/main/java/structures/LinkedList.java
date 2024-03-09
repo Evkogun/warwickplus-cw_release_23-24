@@ -3,14 +3,11 @@ import java.lang.reflect.Array;
 
 public class LinkedList<T> {
 
-    public T element;
-    public LinkedList<T> next;
-    public int size;
+    public T element = null;
+    public LinkedList<T> next = null;
+    public int size = 0;
 
     public LinkedList() {
-        this.element = null;
-        this.next = null;
-        this.size = 0;
     }
 
     public boolean add(T newElement) {

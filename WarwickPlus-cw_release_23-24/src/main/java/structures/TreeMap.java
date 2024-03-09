@@ -8,7 +8,7 @@ public class TreeMap {
         LocalDate key;
         LinkedList<Integer> movieIds;
         Node left, right;
-        int height;
+        int height = 0;
 
         public Node(LocalDate key, Integer id) {
             this.key = key;

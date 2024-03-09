@@ -47,6 +47,7 @@ public class Credits implements ICredits{
      */
     @Override
     public boolean add(CastCredit[] cast, CrewCredit[] crew, int id) {
+        if (creditInfo.get(id) != null) return false;
         CreditInfo info = new CreditInfo(cast, crew);      
         for (CastCredit castMember : cast){
             if (uniqueCast.get(castMember.getName()) == null){
@@ -110,6 +111,7 @@ public class Credits implements ICredits{
                 }
             }
         }
+        else return false;
         return creditInfo.take(id) != null;
     }
 
@@ -311,9 +313,9 @@ public class Credits implements ICredits{
      *         or the cast member does not exist, return an empty array
      */
     public int[] getCastStarsInFilms(int castID) {
-        LinkedList<Integer> topBilledFilms = new LinkedList<>();
         LinkedList<Integer> temp = castIDToFilmID.get(castID);
-        if (temp == null) return new int[0]; 
+        if (temp == null || temp.getSize() == 0) return new int[0];
+        LinkedList<Integer> topBilledFilms = new LinkedList<>();
         int[] filmIDs = temp.getValues(); 
         for (int filmID : filmIDs) {
             CreditInfo creditInfoT = this.creditInfo.get(filmID); 

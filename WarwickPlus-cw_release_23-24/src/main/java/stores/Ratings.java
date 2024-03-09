@@ -295,14 +295,12 @@ public class Ratings implements IRatings {
 
 class RatingInfo {
     private HashMap<Integer, Float> ratings;
-    private float totalRating;
-    private int count;
+    private float totalRating = 0;
+    private int count = 0;
     private int movieid;
 
     public RatingInfo() {
         ratings = new HashMap<>();
-        totalRating = 0;
-        count = 0;
     }
 
     public boolean addRating(float rating, int userid) {
