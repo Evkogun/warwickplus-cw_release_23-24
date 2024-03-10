@@ -406,7 +406,7 @@ public class Movies implements IMovies{
     @Override
     public int[] getFilmsInCollection(int collectionID) {
         CollectionData collectionData = collectionInfo.get(collectionID);
-        if (collectionData == null || collectionData.getFilmStore() == null || collectionData.getFilmStore().getSize() == 0) return new int[0];
+        if (collectionData == null || collectionData.getFilmStore() == null) return new int[0];
         return collectionData.filmStore.getValues();
     }
 
@@ -606,6 +606,7 @@ public class Movies implements IMovies{
      */
     @Override
     public int[] findFilms(String searchTerm) {
+        if (searchTerm == "") return new int[0];
         MovieInfoData[] movieStore = movieInfo.valuez(MovieInfoData.class);
         LinkedList<Integer> matchingMovieIds = new LinkedList<>();
         
@@ -661,7 +662,7 @@ public class Movies implements IMovies{
             this.title = title;
             this.originalTitle = originalTitle;
             this.overview = overview;
-            this.tagline = tagline.isEmpty() ? null : tagline; 
+            this.tagline = tagline; 
             this.status = status;
             this.genres = genres;
             this.release = release;
@@ -726,12 +727,12 @@ public class Movies implements IMovies{
         }
 
         public Company[] getProductionCompanies(){
-            if (productionCompanyList == null || productionCompanyList.getSize() == 0) return new Company[0];
+            if (productionCompanyList == null) return new Company[0];
             return productionCompanyList.getValuez(Company.class);
         }
 
         public String[] getProductionCountries(){
-            if (productionCountryList == null || productionCountryList.getSize() == 0) return new String[0];
+            if (productionCountryList == null) return new String[0];
             return productionCountryList.getValuez(String.class);
         }
         public int getId() {
