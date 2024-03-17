@@ -25,19 +25,29 @@ public class TreeMap {
     private Node rightRotate(Node y) {
         Node x = y.left;
         Node T2 = x.right;
-        x.right = y;
+        x.right = y; // Move x to the "top", moves xs right node to ys left node.
         y.left = T2;
-        y.height = Math.max(height(y.left), height(y.right)) + 1;
+        y.height = Math.max(height(y.left), height(y.right)) + 1; // Recalculates heights.
         x.height = Math.max(height(x.left), height(x.right)) + 1;
         return x;
     }
+        ///////////////////////////
+        //      rightRotate      //
+        //                       //
+        //      y           x    //
+        //     / \         / \   //
+        //    x   T3  ->  T1  y  //
+        //   / \         / \     //
+        //  T1  T2      T2  T3   //
+        //                       //
+        ///////////////////////////
 
     private Node leftRotate(Node x) {
         Node y = x.right;
         Node T2 = y.left;
-        y.left = x;
+        y.left = x; // Opposite of rightRotate.
         x.right = T2;
-        x.height = Math.max(height(x.left), height(x.right)) + 1;
+        x.height = Math.max(height(x.left), height(x.right)) + 1; // Recalculates Heights
         y.height = Math.max(height(y.left), height(y.right)) + 1;
         return y;
     }
@@ -83,7 +93,7 @@ public class TreeMap {
             node.right = rightRotate(node.right);
             return leftRotate(node);
         }
-        return node;
+        return node; // This rotates the nodes based off of the length of the left and right node.
     }
 
     public void take(LocalDate key, Integer movieId) {
@@ -92,30 +102,33 @@ public class TreeMap {
 
     private Node take(Node node, LocalDate key, Integer movieId) {
         if (node == null) return null;
-
+        // Travels through the node, using compareTo to judge needed direction.
         int cmp = key.compareTo(node.key);
         if (cmp < 0) {
             node.left = take(node.left, key, movieId);
         } else if (cmp > 0) {
             node.right = take(node.right, key, movieId);
         } else {
-            node.movieIds.remove(movieId);
+            node.movieIds.remove(movieId); // Removes value from stored linkedlist.
 
-            if (node.movieIds.size == 0) {
+            if (node.movieIds.getSize() == 0) { // If that was the last value...
                 if (node.left == null) return node.right;
+                // Case: No left child, replace node with right child.
                 if (node.right == null) return node.left;
-
+                // Case: No right child, replace node with left child.
+                
                 Node t = node;
                 node = min(t.right); 
                 node.right = deleteMin(t.right);
                 node.left = t.left;
+                // Case: Two children, find the successor and delete the minimum.
             }
         }
-        return balanceNode(node);
+        return balanceNode(node); 
     }
 
     private Node min(Node node) {
-        if (node.left == null) return node;
+        if (node.left == null) return node; // Helper methods for other methods.
         else return min(node.left);
     }
 
@@ -127,26 +140,18 @@ public class TreeMap {
 
     public LinkedList<Integer> getMovieIdsInRange(LocalDate start, LocalDate end) {
         LinkedList<Integer> result = new LinkedList<>();
-        getMovieIdsInRange(root, start, end, result);
-        if (result.next != null){
-            result.next.size = result.size;
-            return result.next;
-        }
+        getMovieIdsInRange(root, start, end, result); // Begins recursive search for root
         return result;
     }
-
+    
     private void getMovieIdsInRange(Node node, LocalDate start, LocalDate end, LinkedList<Integer> result) {
         if (node == null) return;
-        if (node.key.isAfter(start) && node.key.isBefore(end)) {
-            LinkedList<Integer> dummyHead = new LinkedList<>();
-            dummyHead.appendList(node.movieIds);
-            result.appendList(dummyHead.next);
-        }
-        if (start.isBefore(node.key) || start.equals(node.key)) {
-            getMovieIdsInRange(node.left, start, end, result);
-        }
-        if (end.isAfter(node.key) || end.equals(node.key)) {
-            getMovieIdsInRange(node.right, start, end, result);
-        }
+        // If the current node's key (date) is within the [start, end] range, add all its movie IDs to the result list.
+        if (!node.key.isBefore(start) && !node.key.isAfter(end)) for (int movieId : node.movieIds.getValues()) result.add(movieId);
+        // Recursively search in the left subtree if the start date is before or equal to the current node's date.
+        if (start.isBefore(node.key)) getMovieIdsInRange(node.left, start, end, result);
+        // Recursively search in the right subtree if the end date is after or equal to the current node's date.
+        if (end.isAfter(node.key)) getMovieIdsInRange(node.right, start, end, result);
+        
     }
 }

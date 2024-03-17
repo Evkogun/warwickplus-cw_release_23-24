@@ -7,8 +7,8 @@ import structures.*;
 
 public class Ratings implements IRatings {
     Stores stores;
-    private HashMap<Integer, RatingInfo> userRatingsMap;
-    private HashMap<Integer, RatingInfo> movieRatingsMap;
+    private HashMap<RatingInfo> userRatingsMap;
+    private HashMap<RatingInfo> movieRatingsMap;
     private int size;
 
     /**
@@ -51,7 +51,7 @@ public class Ratings implements IRatings {
             movieRatingsMap.put(movieid, movieRatingInfo);
             movieRatingsMap.get(movieid).setMovieID(movieid);
         }
-        if(!(userRatingInfo.addRating(rating, movieid) && movieRatingInfo.addRating(rating, userid)))return false;
+        if(!(userRatingInfo.addRating(rating, movieid, timestamp) && movieRatingInfo.addRating(rating, userid, timestamp)))return false;
         size++;
         return true;
     }
@@ -128,7 +128,7 @@ public class Ratings implements IRatings {
     public float[] getMovieRatings(int movieid) {
         RatingInfo movieRatingInfo = movieRatingsMap.get(movieid);
         if (movieRatingInfo == null) return new float[0];
-        return movieRatingInfo.getRatings().values();
+        return movieRatingInfo.getRatingsValues();
     }
 
     /**
@@ -142,7 +142,7 @@ public class Ratings implements IRatings {
     public float[] getUserRatings(int userid) {
         RatingInfo userRatingsInfo = userRatingsMap.get(userid);
         if (userRatingsInfo == null) return new float[0]; 
-        return userRatingsInfo.getRatings().values();
+        return userRatingsInfo.getRatingsValues();
     }
 
     /**
@@ -183,21 +183,19 @@ public class Ratings implements IRatings {
      */
     @Override
     public int[] getMostRatedMovies(int num) {
-        if (movieRatingsMap == null) return new int[0];
+        if (movieRatingsMap.size() == 0) return new int[0];
         int[] keyListStore = movieRatingsMap.keyList();
-        if (keyListStore == null || keyListStore.length == 0) return new int[0];
+        if (keyListStore == null) return new int[0];
         
         RatingInfo[] movieRatings = new RatingInfo[keyListStore.length];
-        for (int i = 0; i < keyListStore.length; i++){
-            movieRatings[i] = movieRatingsMap.get(keyListStore[i]);
-        }  
+        for (int i = 0; i < keyListStore.length; i++) movieRatings[i] = movieRatingsMap.get(keyListStore[i]);
+        
         Comparator<RatingInfo> movieRatingCountComparator = (o1, o2) -> Integer.compare(o1.getCount(), o2.getCount());
         Sort.genericSort(movieRatings, movieRatingCountComparator);
 
         int[] returnArr = new int[num];
-        for (int i = 0; i < num; i++){
-            returnArr[i] = movieRatings[i].getMovieID();
-        }
+        for (int i = 0; i < num; i++) returnArr[i] = movieRatings[i].getMovieID();
+        
 
         return returnArr;
     }
@@ -212,21 +210,16 @@ public class Ratings implements IRatings {
      */
     @Override
     public int[] getMostRatedUsers(int num) {
-        if (userRatingsMap == null) return new int[0];
+        if (userRatingsMap.size() == 0) return new int[0];
         int[] keyListStore = userRatingsMap.keyList();
-        if (keyListStore == null || keyListStore.length == 0) return new int[0];
         
         RatingInfo[] userRatings = new RatingInfo[keyListStore.length];
-        for (int i = 0; i < keyListStore.length; i++){
-            userRatings[i] = userRatingsMap.get(keyListStore[i]);
-        }  
+        for (int i = 0; i < keyListStore.length; i++) userRatings[i] = userRatingsMap.get(keyListStore[i]);
         Comparator<RatingInfo> userRatingCountComparator = (o1, o2) -> Integer.compare(o1.getCount(), o2.getCount());
         Sort.genericSort(userRatings, userRatingCountComparator);
 
         int[] returnArr = new int[num];
-        for (int i = 0; i < num; i++){
-            returnArr[i] = userRatings[i].getMovieID();
-        }
+        for (int i = 0; i < num; i++)returnArr[i] = userRatings[i].getMovieID();
 
         return returnArr;
     }
@@ -272,121 +265,91 @@ public class Ratings implements IRatings {
      */
     @Override
     public int[] getTopAverageRatedMovies(int numResults) {
+        if (movieRatingsMap.size() == 0) return new int[0];
         int[] keyListStore = movieRatingsMap.keyList();
-        if (keyListStore == null || keyListStore.length == 0) return new int[0];
+        if (keyListStore == null) return new int[0];
 
         RatingInfo movieRatingsAverage[] = new RatingInfo[keyListStore.length];
 
-        for (int i = 0; i < keyListStore.length; i++){
-            movieRatingsAverage[i] = movieRatingsMap.get(keyListStore[i]);
-        }  
+        for (int i = 0; i < keyListStore.length; i++)movieRatingsAverage[i] = movieRatingsMap.get(keyListStore[i]);
         
         Comparator<RatingInfo> averageMovieRationsCountComparator = (o1, o2) -> Float.compare(o1.getAverageRating(), o2.getAverageRating());
         Sort.genericSort(movieRatingsAverage, averageMovieRationsCountComparator);
 
         int[] returnArr = new int[numResults];
-        for (int i = 0; i < numResults; i++){
-            returnArr[i] = movieRatingsAverage[i].getMovieID();
-        }
+        for (int i = 0; i < numResults; i++) returnArr[i] = movieRatingsAverage[i].getMovieID();
+        
 
         return returnArr;
     }
-}
 
-class RatingInfo {
-    private HashMap<Integer, Float> ratings;
-    private float totalRating = 0;
-    private int count = 0;
-    private int movieid;
 
-    public RatingInfo() {
-        ratings = new HashMap<>();
-    }
 
-    public boolean addRating(float rating, int userid) {
-        if (!ratings.put(userid, rating)) return false;
-        totalRating += rating;
-        count = ratings.size();
-        return true;
-    }
-
-    public boolean removeRating(int userid) {
-        Float ratingToRemove = ratings.take(userid);
-        if (ratingToRemove != null) {
-            totalRating -= ratingToRemove;
+    class RatingInfo {
+        private HashMap<TimePair> ratings;
+        private float totalRating = 0;
+        private int count = 0;
+        private int movieid;
+    
+        public RatingInfo() {
+            ratings = new HashMap<>();
+        }
+    
+        public boolean addRating(float rating, int userid, LocalDateTime timestamp) {
+            if (!ratings.put(userid, new TimePair(timestamp, rating))) return false;
+            totalRating += rating;
             count = ratings.size();
             return true;
         }
-        return false;
-    }
-
-    public float getAverageRating() {
-        return count > 0 ? totalRating / count : 0.0f;
-    }
-
-    public HashMap<Integer, Float> getRatings() {
-        return ratings;
-    }
-
-    public boolean isEmpty() {
-        return count == 0;
-    }
-
-    public boolean ratedByUsers(int userid) {
-        return ratings.get(userid) != null;
-    }
-
-    public int getCount(){
-        return count;
-    }
-
-    public int getMovieID(){
-        return movieid;
-    }
-
-    public void setMovieID(int movieidinput){
-        this.movieid = movieidinput;
-    }
-}
-
-
-
-class Sort {
-    @SuppressWarnings("unchecked")
-    public static <T> void genericSort(T[] array, Comparator<T> comparator) {
-        if (array.length <= 1) {
-            return;
-        }
-
-        T[] leftHalf = (T[]) new Object[array.length / 2];
-        T[] rightHalf = (T[]) new Object[array.length - leftHalf.length];
-
-        System.arraycopy(array, 0, leftHalf, 0, leftHalf.length);
-        System.arraycopy(array, leftHalf.length, rightHalf, 0, rightHalf.length);
-
-        genericSort(leftHalf, comparator);
-        genericSort(rightHalf, comparator);
-
-        genericMerge(array, leftHalf, rightHalf, comparator);
-    }
-
-    private static <T> void genericMerge(T[] outputArray, T[] leftHalf, T[] rightHalf, Comparator<T> comparator) {
-        int leftIndex = 0;
-        int rightIndex = 0;
-        int mergeIndex = 0;
-
-        while (leftIndex < leftHalf.length && rightIndex < rightHalf.length) {
-            if (comparator.compare(leftHalf[leftIndex], rightHalf[rightIndex]) >= 0) {
-                outputArray[mergeIndex++] = leftHalf[leftIndex++];
-            } else {
-                outputArray[mergeIndex++] = rightHalf[rightIndex++];
+    
+        public boolean removeRating(int userid) {
+            TimePair ratingToRemove = ratings.take(userid);
+            if (ratingToRemove != null) {
+                totalRating -= ratingToRemove.getRating();
+                count = ratings.size();
+                return true;
             }
+            return false;
         }
-
-        System.arraycopy(leftHalf, leftIndex, outputArray, mergeIndex, leftHalf.length - leftIndex);
-        System.arraycopy(rightHalf, rightIndex, outputArray, mergeIndex, rightHalf.length - rightIndex);
+    
+        public float getAverageRating() {
+            return count > 0 ? totalRating / count : 0.0f;
+        }
+    
+        public float[] getRatingsValues() {
+            return ratings.ratingValuesTimePair();
+        }
+    
+        public boolean isEmpty() {
+            return count == 0;
+        }
+    
+        public boolean ratedByUsers(int userid) {
+            return ratings.get(userid) != null;
+        }
+    
+        public int getCount(){
+            return count;
+        }
+    
+        public int getMovieID(){
+            return movieid;
+        }
+    
+        public void setMovieID(int movieidinput){
+            this.movieid = movieidinput;
+        }
     }
+
+    
+
     
 }
+
+
+
+
+
+
 
 

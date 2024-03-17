@@ -8,9 +8,9 @@ import structures.*;
 
 public class Movies implements IMovies{
     Stores stores;
-    private HashMap<Integer, MovieInfoData> movieInfo;
+    private HashMap<MovieInfoData> movieInfo;
     private TreeMap timeTreeMap;
-    private HashMap<Integer, CollectionData> collectionInfo;
+    private HashMap<CollectionData> collectionInfo;
     /**
      * The constructor for the Movies data store. This is where you should
      * initialise your data structures.
@@ -69,7 +69,7 @@ public class Movies implements IMovies{
     public boolean remove(int id) {
         MovieInfoData holder = movieInfo.get(id);
         if (holder != null) {
-            timeTreeMap.take(holder.release, id);
+            timeTreeMap.take(holder.getRelease(), id);
             movieInfo.take(id); 
             return true;
         }
@@ -385,7 +385,7 @@ public class Movies implements IMovies{
             collection = new CollectionData(filmID, collectionName, collectionPosterPath, collectionBackdropPath);
             collectionInfo.put(collectionID, collection);
         } else {
-            LinkedList<Integer> filmList = collection.filmStore;
+            LinkedList<Integer> filmList = collection.getFilmStore();
             if (filmList == null) {
                 collection.filmAdd(filmID);
             }
@@ -407,7 +407,7 @@ public class Movies implements IMovies{
     public int[] getFilmsInCollection(int collectionID) {
         CollectionData collectionData = collectionInfo.get(collectionID);
         if (collectionData == null || collectionData.getFilmStore() == null) return new int[0];
-        return collectionData.filmStore.getValues();
+        return collectionData.getFilmStore().getValues();
     }
 
     /**
@@ -606,277 +606,21 @@ public class Movies implements IMovies{
      */
     @Override
     public int[] findFilms(String searchTerm) {
-        if (searchTerm == "") return new int[0];
-        MovieInfoData[] movieStore = movieInfo.valuez(MovieInfoData.class);
+        if (searchTerm == null || searchTerm.isEmpty()) return new int[0];
+    
+        MovieInfoData[] movieStore = movieInfo.movieInfoList();
         LinkedList<Integer> matchingMovieIds = new LinkedList<>();
-        
-        for (int i = 0; i < movieStore.length; i++){
-            if (movieStore[i].getTitle() != null && movieStore[i].getTitle().toLowerCase().contains(searchTerm.toLowerCase())){
-                matchingMovieIds.add(movieStore[i].id);
+    
+        for (int i = 0; i < movieStore.length; i++) {
+            if (movieStore[i].getTitle() != null && movieStore[i].getTitle().toLowerCase().contains(searchTerm.toLowerCase())) { // Assumes case insensitivity.
+                matchingMovieIds.add(movieStore[i].getId());
             }
         }
-
+    
         if (matchingMovieIds.getSize() == 0) return new int[0];
-        if (matchingMovieIds.element == 0) matchingMovieIds = matchingMovieIds.next;
-    
-        int[] foundFilms = new int[matchingMovieIds.getSize()];
-        int index = 0;
-        LinkedList<Integer> current = matchingMovieIds;
-        while (current != null) {
-            foundFilms[index++] = current.element;
-            current = current.next;
-        }
-    
+        int[] foundFilms = matchingMovieIds.getValues();
         return foundFilms;
     }
 
-    public class MovieInfoData {
-        private int id;
-        private String title;
-        private String originalTitle;
-        private String overview;
-        private String tagline;
-        private String status;
-        private Genre[] genres; 
-        private LocalDate release;
-        private long budget;
-        private long revenue;
-        private String[] languages; 
-        private String originalLanguage; 
-        private double runtime; 
-        private String homepage;
-        private boolean adult;
-        private boolean video;
-        private String poster; 
-        private double voteAverage = -1;
-        private int voteCount = -1;
-        private int collectionID = -1;
-        private String imdbID = null;
-        private double popularity = 0;
-        private LinkedList<Company> productionCompanyList;
-        private LinkedList<String> productionCountryList;
-    
-        
-        public MovieInfoData(int id, String title, String originalTitle, String overview, String tagline, String status, Genre[] genres, LocalDate release, long budget, long revenue, String[] languages, String originalLanguage, double runtime, String homepage, boolean adult, boolean video, String poster) {
-            this.id = id;
-            this.title = title;
-            this.originalTitle = originalTitle;
-            this.overview = overview;
-            this.tagline = tagline; 
-            this.status = status;
-            this.genres = genres;
-            this.release = release;
-            this.budget = budget;
-            this.revenue = revenue;
-            this.languages = languages;
-            this.originalLanguage = originalLanguage;
-            this.runtime = runtime;
-            this.homepage = homepage;
-            this.adult = adult;
-            this.video = video;
-            this.poster = poster;
-
-        }
-        
-        public boolean setVote(double voteAverageReplacement, int voteCountReplacement){
-            this.voteAverage = voteAverageReplacement;
-            this.voteCount = voteCountReplacement;
-            return true;
-        }
-
-        public void productionCompanyAdd(Company company){
-            if (productionCompanyList == null) {
-                productionCompanyList = new LinkedList<>();
-                productionCompanyList.add(company);
-            } 
-            else {
-                LinkedList<Company> current = productionCompanyList;
-                boolean found = false;
-                while (current != null) {
-                    if (current.element.equals(company)) {
-                        found = true;
-                        break;
-                    }
-                    current = current.next;
-                }
-                if (!found) {
-                    productionCompanyList.add(company);
-                }
-            }
-        }
-
-        public void productionCountryAdd(String country){
-            if (productionCountryList == null) {
-                productionCountryList = new LinkedList<>();
-                productionCountryList.add(country);
-            } 
-            else {
-                LinkedList<String> current = productionCountryList;
-                boolean found = false;
-                while (current != null) {
-                    if (current.element.equals(country)) {
-                        found = true;
-                        break;
-                    }
-                    current = current.next;
-                }
-                if (!found) {
-                    productionCountryList.add(country);
-                }
-            }
-        }
-
-        public Company[] getProductionCompanies(){
-            if (productionCompanyList == null) return new Company[0];
-            return productionCompanyList.getValuez(Company.class);
-        }
-
-        public String[] getProductionCountries(){
-            if (productionCountryList == null) return new String[0];
-            return productionCountryList.getValuez(String.class);
-        }
-        public int getId() {
-            return id;
-        }
-    
-        public String getTitle() {
-            return title;
-        }
-    
-        public String getOriginalTitle() {
-            return originalTitle;
-        }
-    
-        public String getOverview() {
-            return overview;
-        }
-    
-        public String getTagline() {
-            return tagline;
-        }
-    
-        public String getStatus() {
-            return status;
-        }
-    
-        public Genre[] getGenres() {
-            return genres;
-        }
-    
-        public LocalDate getRelease() {
-            return release;
-        }
-    
-        public long getBudget() {
-            return budget;
-        }
-    
-        public long getRevenue() {
-            return revenue;
-        }
-    
-        public String[] getLanguages() {
-            return languages;
-        }
-    
-        public String getOriginalLanguage() {
-            return originalLanguage;
-        }
-    
-        public double getRuntime() {
-            return runtime;
-        }
-    
-        public String getHomepage() {
-            return homepage;
-        }
-    
-        public boolean isAdult() {
-            return adult;
-        }
-    
-        public boolean isVideo() {
-            return video;
-        }
-    
-        public String getPoster() {
-            return poster;
-        }
-    
-        public double getVoteAverage() {
-            return voteAverage;
-        }
-    
-        public int getVoteCount() {
-            return voteCount;
-        }
-    
-        public int getCollectionID() {
-            return collectionID;
-        }
-    
-        public String getImdbID() {
-            return imdbID;
-        }
-    
-        public double getPopularity() {
-            return popularity;
-        }
-    
-        public LinkedList<Company> getProductionCompanyList() {
-            return productionCompanyList;
-        }
-    
-        public LinkedList<String> getProductionCountryList() {
-            return productionCountryList;
-        }
-
-        public void setImbdID(String imbdid){
-            this.imdbID = imbdid;
-        }
-
-        public void setCollectionID(int collectionid){
-            this.collectionID = collectionid;
-        }
-
-        public void setPopularity(double popularityreplacement){
-            this.popularity = popularityreplacement;
-        }
-    }
-    
-    public class CollectionData {
-        private LinkedList<Integer> filmStore;
-        private String collectionName;
-        private String collectionPosterPath;
-        private String collectionBackdropPath;
-    
-        public CollectionData(int filmID, String collectionName, String collectionPosterPath, String collectionBackdropPath) {
-            this.filmStore = new LinkedList<>();
-            filmStore.add(filmID);
-            this.collectionName = collectionName;
-            this.collectionPosterPath = collectionPosterPath;
-            this.collectionBackdropPath = collectionBackdropPath;
-        }
-
-        public boolean filmAdd(int filmID){
-            return filmStore.add(filmID);
-        }
-
-        public LinkedList<Integer> getFilmStore() {
-            return filmStore;
-        }
-    
-        public String getCollectionName() {
-            return collectionName;
-        }
-    
-        public String getCollectionPosterPath() {
-            return collectionPosterPath;
-        }
-    
-        public String getCollectionBackdropPath() {
-            return collectionBackdropPath;
-        }
-    }
-    
 }
+

@@ -8,11 +8,11 @@ import interfaces.ICredits;
 
 public class Credits implements ICredits{
     Stores stores;
-    private HashMap<Integer, CreditInfo> creditInfo;
-    private HashMap<Integer, Person> uniqueCast;
-    private HashMap<Integer, Person> uniqueCrew;
-    private HashMap<Integer, LinkedList<Integer>> castIDToFilmID;
-    private HashMap<Integer, LinkedList<Integer>> crewIDToFilmID;
+    private HashMap<CreditInfo> creditInfo;
+    private HashMap<Person> uniqueCast;
+    private HashMap<Person> uniqueCrew;
+    private HashMap<LinkedList<Integer>> castIDToFilmID;
+    private HashMap<LinkedList<Integer>> crewIDToFilmID;
     
 
 
@@ -73,7 +73,7 @@ public class Credits implements ICredits{
                 temp.add(id);
             }
         }
-        return creditInfo.put(id, info);
+        return creditInfo.put(id, info); // always true if code reaches this point
     }
 
     /**
@@ -181,7 +181,7 @@ public class Credits implements ICredits{
      */
     @Override
     public Person[] getUniqueCast() {
-        return uniqueCast.valuez(Person.class);
+        return uniqueCast.personList();
     }
 
     /**
@@ -192,7 +192,7 @@ public class Credits implements ICredits{
      */
     @Override
     public Person[] getUniqueCrew() {
-        return uniqueCrew.valuez(Person.class);
+        return uniqueCrew.personList();
     }
 
     /**
@@ -204,15 +204,15 @@ public class Credits implements ICredits{
      */
     @Override
     public Person[] findCast(String cast) {
-        if (uniqueCast.isEmpty()) return new Person[0];
-        Person[] temp = uniqueCast.valuez(Person.class);
+        Person[] temp = uniqueCast.personList();
+        if (temp.length == 0) return new Person[0];
         LinkedList<Person> results = new LinkedList<>();
         for (int i = 0; i < temp.length; i++){
             if (temp[i].getName().toLowerCase().contains(cast.toLowerCase())){
                 results.add(temp[i]);
             }
         }
-        return results.getValuez(Person.class);
+        return results.getValuesPerson();
     }
 
     /**
@@ -224,15 +224,15 @@ public class Credits implements ICredits{
      */
     @Override
     public Person[] findCrew(String crew) {
-        if (uniqueCrew.isEmpty()) return new Person[0];
-        Person[] temp = uniqueCrew.valuez(Person.class);
+        Person[] temp = uniqueCrew.personList();
+        if (temp.length == 0) return new Person[0];
         LinkedList<Person> results = new LinkedList<>();
         for (int i = 0; i < temp.length; i++){
             if (temp[i].getName().toLowerCase().contains(crew.toLowerCase())){
                 results.add(temp[i]);
             }
         }
-        return results.getValuez(Person.class);
+        return results.getValuesPerson();
     }
 
     /**
@@ -307,6 +307,7 @@ public class Credits implements ICredits{
         if (temp == null) return new int[0];
         LinkedList<Integer> topBilledFilms = new LinkedList<>();
         int[] filmIDs = temp.getValues(); 
+        if (filmIDs.length == 0) return new int[0];
         for (int filmID : filmIDs) {
             CreditInfo creditInfoT = this.creditInfo.get(filmID); 
             if (creditInfoT != null) {
