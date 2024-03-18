@@ -283,8 +283,6 @@ public class Ratings implements IRatings {
         return returnArr;
     }
 
-
-
     class RatingInfo {
         private HashMap<TimePair> ratings;
         private float totalRating = 0;
@@ -339,11 +337,7 @@ public class Ratings implements IRatings {
         public void setMovieID(int movieidinput){
             this.movieid = movieidinput;
         }
-    }
-
-    
-
-    
+    }    
 }
 
 
